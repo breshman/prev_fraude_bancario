@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NgbAccordionModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 import { FraudMockService, FraudAlert } from '../../../core/services/fraud-mock.service';
 
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-alerts-list',
   standalone: true,
@@ -11,11 +13,11 @@ import { FraudMockService, FraudAlert } from '../../../core/services/fraud-mock.
   styleUrl: './alerts-list.component.scss'
 })
 export class AlertsListComponent implements OnInit {
-  alerts: FraudAlert[] = [];
+  alerts$!: Observable<FraudAlert[]>;
 
   constructor(private fraudService: FraudMockService) {}
 
   ngOnInit() {
-    this.fraudService.getRecentAlerts().subscribe(a => this.alerts = a);
+    this.alerts$ = this.fraudService.getRecentAlerts();
   }
 }

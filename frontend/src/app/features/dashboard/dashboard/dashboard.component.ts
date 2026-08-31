@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FraudMockService, DashboardMetrics, FraudAlert } from '../../../core/services/fraud-mock.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,13 +11,13 @@ import { FraudMockService, DashboardMetrics, FraudAlert } from '../../../core/se
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
-  metrics?: DashboardMetrics;
-  recentAlerts: FraudAlert[] = [];
+  metrics$!: Observable<DashboardMetrics>;
+  recentAlerts$!: Observable<FraudAlert[]>;
 
   constructor(private fraudService: FraudMockService) {}
 
   ngOnInit() {
-    this.fraudService.getDashboardMetrics().subscribe(m => this.metrics = m);
-    this.fraudService.getRecentAlerts().subscribe(a => this.recentAlerts = a);
+    this.metrics$ = this.fraudService.getDashboardMetrics();
+    this.recentAlerts$ = this.fraudService.getRecentAlerts();
   }
 }

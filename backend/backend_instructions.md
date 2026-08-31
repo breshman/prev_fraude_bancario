@@ -36,6 +36,7 @@ com.empresa.fraude
 ```
 
 ## 3. Patrones de Diseño a Implementar
+- **Principios SOLID:** Todo el diseño orientado a objetos debe adherirse estrictamente a los principios SOLID, garantizando alta cohesión, bajo acoplamiento, clases con una sola responsabilidad, uso de interfaces (abstracciones) y código cerrado a modificación pero abierto a extensión.
 - **Strategy Pattern:** En el Motor de Fraude (paquete `domain/rule`), define una interfaz `FraudRuleStrategy`. Cada regla de fraude (Monto Inusual, País Nuevo, IP Nueva, etc.) será una implementación de esta estrategia.
 - **DTO Pattern:** Todo input y output hacia `adapter/in/web` debe hacerse mediante DTOs. Usa `MapStruct` o mapping manual en los adaptadores para transformar DTOs a Modelos de Dominio.
 - **Repository Pattern:** En la capa `application/port/out`, define repositorios genéricos. En `adapter/out/persistence` implementarás los verdaderos repositorios que se comunican con Spring Data JPA o MongoDB.

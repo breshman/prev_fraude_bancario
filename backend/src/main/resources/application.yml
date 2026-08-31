@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: prev-fraude-bancario
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fraude_db
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+server:
+  port: 8080
+jwt:
+  secret: c3VwZXJfc2VjcmV0X2tleV9mb3Jfand0X3NpZ25hdHVyZV8yNTZfYml0cw==
+  expiration: 86400000

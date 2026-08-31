@@ -2,7 +2,7 @@
   <h2 class="mb-4 fw-bold">Dashboard de Prevención de Fraude</h2>
 
   <!-- Metrics Cards -->
-  <div class="row g-4 mb-4" *ngIf="metrics; else loading">
+  <div class="row g-4 mb-4" *ngIf="metrics$ | async as metrics; else loading">
     <div class="col-md-3">
       <div class="card border-0 shadow-sm rounded-4 h-100">
         <div class="card-body">
@@ -64,7 +64,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let alert of recentAlerts">
+            <tr *ngFor="let alert of recentAlerts$ | async">
               <td><strong>{{alert.id}}</strong></td>
               <td>{{alert.customerName}}</td>
               <td>${{alert.amount | number:'1.2-2'}}</td>

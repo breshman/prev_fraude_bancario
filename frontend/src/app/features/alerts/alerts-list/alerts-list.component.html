@@ -15,7 +15,7 @@
         </select>
       </div>
 
-      <div class="p-4" *ngIf="alerts.length; else loading">
+      <div class="p-4" *ngIf="alerts$ | async as alerts; else loading">
         <div ngbAccordion>
           <div ngbAccordionItem *ngFor="let alert of alerts" [collapsed]="true">
             <h2 ngbAccordionHeader>

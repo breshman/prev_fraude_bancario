@@ -1,59 +1,41 @@
-# Frontend
+# Sistema de Prevención de Fraude Bancario - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.27.
+Esta es la aplicación web para los analistas de seguridad, diseñada para monitorear, auditar y gestionar las alertas de fraude generadas por el motor de evaluación.
 
-## Development server
+## Arquitectura y Principios
 
-To start a local development server, run:
+Este proyecto de Angular implementa:
+- **Standalone Components:** Arquitectura modular moderna sin `NgModules`.
+- **Patrón Facade:** Toda la comunicación HTTP y WebSockets pasa por un servicio Facade, manteniendo a los componentes limpios y enfocados en la UI.
+- **Estado Reactivo (RxJS):** Se aprovechan los Observables (y el `async` pipe en los templates) para propagar los cambios en tiempo real, evitando errores de Change Detection y garantizando el flujo unidireccional.
+- **Smart & Dumb Components:** Separación lógica entre contenedores que manejan estado (Smart) y componentes puramente visuales (Dumb).
 
+## Stack Tecnológico
+- Angular (v22)
+- Ng-Bootstrap (Componentes UI y Grid)
+- SCSS
+- RxJS
+
+## Estructura del Proyecto
+
+```text
+src/app/
+├── core/               # Interceptores (JWT), Manejadores de Errores, Servicios WebSocket
+├── shared/             # Componentes, directivas y pipes reutilizables
+├── features/           # Módulos Funcionales (Dashboard, Alertas, Transacciones)
+└── layout/             # Componentes de estructura global (Sidebar, Navbar)
+```
+
+## Comandos de Desarrollo
+
+Levantar servidor de desarrollo:
 ```bash
 ng serve
 ```
+La aplicación estará disponible en `http://localhost:4200/`. La página se recargará automáticamente si haces cambios en el código.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
+Compilar para producción:
 ```bash
 ng build
 ```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Los artefactos se almacenarán en el directorio `dist/`.

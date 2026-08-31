@@ -1,0 +1,1915 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "FraudeApplication.java",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/FraudeApplication.java",
+      "source_location": "L1",
+      "id": "backend_src_main_java_com_empresa_fraude_fraudeapplication_java",
+      "community": 8,
+      "norm_label": "fraudeapplication.java"
+    },
+    {
+      "label": "FraudeApplication",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/FraudeApplication.java",
+      "source_location": "L6",
+      "id": "fraude_fraudeapplication_fraudeapplication",
+      "community": 8,
+      "norm_label": "fraudeapplication"
+    },
+    {
+      "label": ".main()",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/FraudeApplication.java",
+      "source_location": "L9",
+      "id": "fraude_fraudeapplication_fraudeapplication_main",
+      "community": 8,
+      "norm_label": ".main()"
+    },
+    {
+      "label": "AlertaFraude.java",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/AlertaFraude.java",
+      "source_location": "L1",
+      "id": "backend_src_main_java_com_empresa_fraude_domain_model_alertafraude_java",
+      "community": 10,
+      "norm_label": "alertafraude.java"
+    },
+    {
+      "label": "AlertaFraude",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/AlertaFraude.java",
+      "source_location": "L10",
+      "id": "model_alertafraude_alertafraude",
+      "community": 10,
+      "norm_label": "alertafraude"
+    },
+    {
+      "label": "Cliente.java",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/Cliente.java",
+      "source_location": "L1",
+      "id": "backend_src_main_java_com_empresa_fraude_domain_model_cliente_java",
+      "community": 11,
+      "norm_label": "cliente.java"
+    },
+    {
+      "label": "Cliente",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/Cliente.java",
+      "source_location": "L8",
+      "id": "model_cliente_cliente",
+      "community": 11,
+      "norm_label": "cliente"
+    },
+    {
+      "label": "Transaccion.java",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/Transaccion.java",
+      "source_location": "L1",
+      "id": "backend_src_main_java_com_empresa_fraude_domain_model_transaccion_java",
+      "community": 12,
+      "norm_label": "transaccion.java"
+    },
+    {
+      "label": "Transaccion",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/Transaccion.java",
+      "source_location": "L9",
+      "id": "model_transaccion_transaccion",
+      "community": 12,
+      "norm_label": "transaccion"
+    },
+    {
+      "label": "FraudeApplicationTests.java",
+      "file_type": "code",
+      "source_file": "backend/src/test/java/com/empresa/fraude/FraudeApplicationTests.java",
+      "source_location": "L1",
+      "id": "backend_src_test_java_com_empresa_fraude_fraudeapplicationtests_java",
+      "community": 9,
+      "norm_label": "fraudeapplicationtests.java"
+    },
+    {
+      "label": "FraudeApplicationTests",
+      "file_type": "code",
+      "source_file": "backend/src/test/java/com/empresa/fraude/FraudeApplicationTests.java",
+      "source_location": "L6",
+      "id": "fraude_fraudeapplicationtests_fraudeapplicationtests",
+      "community": 9,
+      "norm_label": "fraudeapplicationtests"
+    },
+    {
+      "label": ".contextLoads()",
+      "file_type": "code",
+      "source_file": "backend/src/test/java/com/empresa/fraude/FraudeApplicationTests.java",
+      "source_location": "L9",
+      "id": "fraude_fraudeapplicationtests_fraudeapplicationtests_contextloads",
+      "community": 9,
+      "norm_label": ".contextloads()"
+    },
+    {
+      "label": "main.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/main.ts",
+      "source_location": "L1",
+      "id": "frontend_src_main_ts",
+      "community": 3,
+      "norm_label": "main.ts"
+    },
+    {
+      "label": "app.component.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_app_component_spec_ts",
+      "community": 3,
+      "norm_label": "app.component.spec.ts"
+    },
+    {
+      "label": "fixture",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L12",
+      "id": "app_app_component_spec_fixture",
+      "community": 3,
+      "norm_label": "fixture"
+    },
+    {
+      "label": "compiled",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L26",
+      "id": "app_app_component_spec_compiled",
+      "community": 3,
+      "norm_label": "compiled"
+    },
+    {
+      "label": "app.component.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.component.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_app_component_ts",
+      "community": 3,
+      "norm_label": "app.component.ts"
+    },
+    {
+      "label": "AppComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.component.ts",
+      "source_location": "L10",
+      "id": "app_app_component_appcomponent",
+      "community": 3,
+      "norm_label": "appcomponent"
+    },
+    {
+      "label": "app.config.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.config.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_app_config_ts",
+      "community": 3,
+      "norm_label": "app.config.ts"
+    },
+    {
+      "label": "appConfig",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.config.ts",
+      "source_location": "L6",
+      "id": "app_app_config_appconfig",
+      "community": 3,
+      "norm_label": "appconfig"
+    },
+    {
+      "label": "app.routes.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_app_routes_ts",
+      "community": 2,
+      "norm_label": "app.routes.ts"
+    },
+    {
+      "label": "routes",
+      "file_type": "code",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L6",
+      "id": "app_app_routes_routes",
+      "community": 3,
+      "norm_label": "routes"
+    },
+    {
+      "label": "fraud-mock.service.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_core_services_fraud_mock_service_spec_ts",
+      "community": 0,
+      "norm_label": "fraud-mock.service.spec.ts"
+    },
+    {
+      "label": "fraud-mock.service.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "community": 0,
+      "norm_label": "fraud-mock.service.ts"
+    },
+    {
+      "label": "FraudAlert",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L5",
+      "id": "services_fraud_mock_service_fraudalert",
+      "community": 0,
+      "norm_label": "fraudalert"
+    },
+    {
+      "label": "DashboardMetrics",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L17",
+      "id": "services_fraud_mock_service_dashboardmetrics",
+      "community": 0,
+      "norm_label": "dashboardmetrics"
+    },
+    {
+      "label": "FraudMockService",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L27",
+      "id": "services_fraud_mock_service_fraudmockservice",
+      "community": 0,
+      "norm_label": "fraudmockservice"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L65",
+      "id": "services_fraud_mock_service_fraudmockservice_constructor",
+      "community": 0,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".getDashboardMetrics()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L67",
+      "id": "services_fraud_mock_service_fraudmockservice_getdashboardmetrics",
+      "community": 0,
+      "norm_label": ".getdashboardmetrics()"
+    },
+    {
+      "label": ".getRecentAlerts()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L77",
+      "id": "services_fraud_mock_service_fraudmockservice_getrecentalerts",
+      "community": 0,
+      "norm_label": ".getrecentalerts()"
+    },
+    {
+      "label": "alerts-list.component.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_spec_ts",
+      "community": 0,
+      "norm_label": "alerts-list.component.spec.ts"
+    },
+    {
+      "label": "alerts-list.component.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "community": 0,
+      "norm_label": "alerts-list.component.ts"
+    },
+    {
+      "label": "AlertsListComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L15",
+      "id": "alerts_list_alerts_list_component_alertslistcomponent",
+      "community": 0,
+      "norm_label": "alertslistcomponent"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L18",
+      "id": "alerts_list_alerts_list_component_alertslistcomponent_constructor",
+      "community": 0,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".ngOnInit()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L20",
+      "id": "alerts_list_alerts_list_component_alertslistcomponent_ngoninit",
+      "community": 0,
+      "norm_label": ".ngoninit()"
+    },
+    {
+      "label": "dashboard.component.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_features_dashboard_dashboard_dashboard_component_spec_ts",
+      "community": 0,
+      "norm_label": "dashboard.component.spec.ts"
+    },
+    {
+      "label": "dashboard.component.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "community": 0,
+      "norm_label": "dashboard.component.ts"
+    },
+    {
+      "label": "DashboardComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L13",
+      "id": "dashboard_dashboard_component_dashboardcomponent",
+      "community": 0,
+      "norm_label": "dashboardcomponent"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L17",
+      "id": "dashboard_dashboard_component_dashboardcomponent_constructor",
+      "community": 0,
+      "norm_label": ".constructor()"
+    },
+    {
+      "label": ".ngOnInit()",
+      "file_type": "code",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L19",
+      "id": "dashboard_dashboard_component_dashboardcomponent_ngoninit",
+      "community": 0,
+      "norm_label": ".ngoninit()"
+    },
+    {
+      "label": "main-layout.component.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_layout_main_layout_main_layout_component_spec_ts",
+      "community": 2,
+      "norm_label": "main-layout.component.spec.ts"
+    },
+    {
+      "label": "main-layout.component.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "community": 2,
+      "norm_label": "main-layout.component.ts"
+    },
+    {
+      "label": "MainLayoutComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L13",
+      "id": "main_layout_main_layout_component_mainlayoutcomponent",
+      "community": 2,
+      "norm_label": "mainlayoutcomponent"
+    },
+    {
+      "label": "navbar.component.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/navbar/navbar.component.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_layout_navbar_navbar_component_spec_ts",
+      "community": 2,
+      "norm_label": "navbar.component.spec.ts"
+    },
+    {
+      "label": "navbar.component.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/navbar/navbar.component.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_layout_navbar_navbar_component_ts",
+      "community": 2,
+      "norm_label": "navbar.component.ts"
+    },
+    {
+      "label": "NavbarComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/navbar/navbar.component.ts",
+      "source_location": "L9",
+      "id": "navbar_navbar_component_navbarcomponent",
+      "community": 2,
+      "norm_label": "navbarcomponent"
+    },
+    {
+      "label": "sidebar.component.spec.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/sidebar/sidebar.component.spec.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_layout_sidebar_sidebar_component_spec_ts",
+      "community": 2,
+      "norm_label": "sidebar.component.spec.ts"
+    },
+    {
+      "label": "sidebar.component.ts",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/sidebar/sidebar.component.ts",
+      "source_location": "L1",
+      "id": "frontend_src_app_layout_sidebar_sidebar_component_ts",
+      "community": 2,
+      "norm_label": "sidebar.component.ts"
+    },
+    {
+      "label": "SidebarComponent",
+      "file_type": "code",
+      "source_file": "frontend/src/app/layout/sidebar/sidebar.component.ts",
+      "source_location": "L11",
+      "id": "sidebar_sidebar_component_sidebarcomponent",
+      "community": 2,
+      "norm_label": "sidebarcomponent"
+    },
+    {
+      "label": "main_instructions.md",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L1",
+      "id": "main_instructions_md",
+      "community": 5,
+      "norm_label": "main_instructions.md"
+    },
+    {
+      "label": "Instrucciones IA - Orquestador: Sistema de Detecci\u00f3n de Fraude Bancario",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L1",
+      "id": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "community": 5,
+      "norm_label": "instrucciones ia - orquestador: sistema de deteccion de fraude bancario"
+    },
+    {
+      "label": "Rol y Objetivo del Agente Principal",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L3",
+      "id": "prev_fraude_bancario_main_instructions_rol_y_objetivo_del_agente_principal",
+      "community": 5,
+      "norm_label": "rol y objetivo del agente principal"
+    },
+    {
+      "label": "1. Visi\u00f3n Global del Proyecto",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L6",
+      "id": "prev_fraude_bancario_main_instructions_1_visi_n_global_del_proyecto",
+      "community": 5,
+      "norm_label": "1. vision global del proyecto"
+    },
+    {
+      "label": "Carpetas del Proyecto:",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L9",
+      "id": "prev_fraude_bancario_main_instructions_carpetas_del_proyecto",
+      "community": 5,
+      "norm_label": "carpetas del proyecto:"
+    },
+    {
+      "label": "2. Coordinaci\u00f3n de Agentes",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L13",
+      "id": "prev_fraude_bancario_main_instructions_2_coordinaci_n_de_agentes",
+      "community": 5,
+      "norm_label": "2. coordinacion de agentes"
+    },
+    {
+      "label": "3. Acuerdos de Integraci\u00f3n (Contratos API)",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L28",
+      "id": "prev_fraude_bancario_main_instructions_3_acuerdos_de_integraci_n_contratos_api",
+      "community": 5,
+      "norm_label": "3. acuerdos de integracion (contratos api)"
+    },
+    {
+      "label": "4. Instrucci\u00f3n Cr\u00edtica",
+      "file_type": "document",
+      "source_file": "main_instructions.md",
+      "source_location": "L33",
+      "id": "prev_fraude_bancario_main_instructions_4_instrucci_n_cr_tica",
+      "community": 5,
+      "norm_label": "4. instruccion critica"
+    },
+    {
+      "label": "backend_instructions.md",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L1",
+      "id": "backend_backend_instructions_md",
+      "community": 4,
+      "norm_label": "backend_instructions.md"
+    },
+    {
+      "label": "Instrucciones IA - Backend: Sistema de Detecci\u00f3n de Fraude Bancario",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L1",
+      "id": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "community": 4,
+      "norm_label": "instrucciones ia - backend: sistema de deteccion de fraude bancario"
+    },
+    {
+      "label": "Rol y Objetivo del Agente",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L3",
+      "id": "backend_backend_instructions_rol_y_objetivo_del_agente",
+      "community": 4,
+      "norm_label": "rol y objetivo del agente"
+    },
+    {
+      "label": "1. Stack Tecnol\u00f3gico",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L6",
+      "id": "backend_backend_instructions_1_stack_tecnol_gico",
+      "community": 4,
+      "norm_label": "1. stack tecnologico"
+    },
+    {
+      "label": "2. Arquitectura de Software: Clean Architecture / Hexagonal",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L15",
+      "id": "backend_backend_instructions_2_arquitectura_de_software_clean_architecture_hexagonal",
+      "community": 4,
+      "norm_label": "2. arquitectura de software: clean architecture / hexagonal"
+    },
+    {
+      "label": "code:block1 (com.empresa.fraude)",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L19",
+      "id": "backend_backend_instructions_codeblock_1",
+      "community": 4,
+      "norm_label": "code:block1 (com.empresa.fraude)"
+    },
+    {
+      "label": "3. Patrones de Dise\u00f1o a Implementar",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L38",
+      "id": "backend_backend_instructions_3_patrones_de_dise_o_a_implementar",
+      "community": 4,
+      "norm_label": "3. patrones de diseno a implementar"
+    },
+    {
+      "label": "4. Reglas Cr\u00edticas para la Implementaci\u00f3n (IA)",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L43",
+      "id": "backend_backend_instructions_4_reglas_cr_ticas_para_la_implementaci_n_ia",
+      "community": 4,
+      "norm_label": "4. reglas criticas para la implementacion (ia)"
+    },
+    {
+      "label": "code:json ({)",
+      "file_type": "document",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L47",
+      "id": "backend_backend_instructions_codeblock_2",
+      "community": 4,
+      "norm_label": "code:json ({)"
+    },
+    {
+      "label": "HELP.md",
+      "file_type": "document",
+      "source_file": "backend/HELP.md",
+      "source_location": "L1",
+      "id": "backend_help_md",
+      "community": 7,
+      "norm_label": "help.md"
+    },
+    {
+      "label": "Getting Started",
+      "file_type": "document",
+      "source_file": "backend/HELP.md",
+      "source_location": "L1",
+      "id": "backend_help_getting_started",
+      "community": 7,
+      "norm_label": "getting started"
+    },
+    {
+      "label": "Reference Documentation",
+      "file_type": "document",
+      "source_file": "backend/HELP.md",
+      "source_location": "L3",
+      "id": "backend_help_reference_documentation",
+      "community": 7,
+      "norm_label": "reference documentation"
+    },
+    {
+      "label": "Guides",
+      "file_type": "document",
+      "source_file": "backend/HELP.md",
+      "source_location": "L16",
+      "id": "backend_help_guides",
+      "community": 7,
+      "norm_label": "guides"
+    },
+    {
+      "label": "Maven Parent overrides",
+      "file_type": "document",
+      "source_file": "backend/HELP.md",
+      "source_location": "L28",
+      "id": "backend_help_maven_parent_overrides",
+      "community": 7,
+      "norm_label": "maven parent overrides"
+    },
+    {
+      "label": "frontend_instructions.md",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L1",
+      "id": "frontend_frontend_instructions_md",
+      "community": 6,
+      "norm_label": "frontend_instructions.md"
+    },
+    {
+      "label": "Instrucciones IA - Frontend: Sistema de Detecci\u00f3n de Fraude Bancario",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L1",
+      "id": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "community": 6,
+      "norm_label": "instrucciones ia - frontend: sistema de deteccion de fraude bancario"
+    },
+    {
+      "label": "Rol y Objetivo del Agente",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L3",
+      "id": "frontend_frontend_instructions_rol_y_objetivo_del_agente",
+      "community": 6,
+      "norm_label": "rol y objetivo del agente"
+    },
+    {
+      "label": "1. Stack Tecnol\u00f3gico",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L6",
+      "id": "frontend_frontend_instructions_1_stack_tecnol_gico",
+      "community": 6,
+      "norm_label": "1. stack tecnologico"
+    },
+    {
+      "label": "2. Arquitectura del Frontend",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L12",
+      "id": "frontend_frontend_instructions_2_arquitectura_del_frontend",
+      "community": 6,
+      "norm_label": "2. arquitectura del frontend"
+    },
+    {
+      "label": "code:block1 (src/app/)",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L15",
+      "id": "frontend_frontend_instructions_codeblock_1",
+      "community": 6,
+      "norm_label": "code:block1 (src/app/)"
+    },
+    {
+      "label": "3. Patrones de Dise\u00f1o a Implementar",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L31",
+      "id": "frontend_frontend_instructions_3_patrones_de_dise_o_a_implementar",
+      "community": 6,
+      "norm_label": "3. patrones de diseno a implementar"
+    },
+    {
+      "label": "4. Reglas Cr\u00edticas para la Implementaci\u00f3n (IA)",
+      "file_type": "document",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L38",
+      "id": "frontend_frontend_instructions_4_reglas_cr_ticas_para_la_implementaci_n_ia",
+      "community": 6,
+      "norm_label": "4. reglas criticas para la implementacion (ia)"
+    },
+    {
+      "label": "README.md",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L1",
+      "id": "frontend_readme_md",
+      "community": 1,
+      "norm_label": "readme.md"
+    },
+    {
+      "label": "Frontend",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L1",
+      "id": "frontend_readme_frontend",
+      "community": 1,
+      "norm_label": "frontend"
+    },
+    {
+      "label": "Development server",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L5",
+      "id": "frontend_readme_development_server",
+      "community": 1,
+      "norm_label": "development server"
+    },
+    {
+      "label": "code:bash (ng serve)",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L9",
+      "id": "frontend_readme_codeblock_1",
+      "community": 1,
+      "norm_label": "code:bash (ng serve)"
+    },
+    {
+      "label": "Code scaffolding",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L15",
+      "id": "frontend_readme_code_scaffolding",
+      "community": 1,
+      "norm_label": "code scaffolding"
+    },
+    {
+      "label": "code:bash (ng generate component component-name)",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L19",
+      "id": "frontend_readme_codeblock_2",
+      "community": 1,
+      "norm_label": "code:bash (ng generate component component-name)"
+    },
+    {
+      "label": "code:bash (ng generate --help)",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L25",
+      "id": "frontend_readme_codeblock_3",
+      "community": 1,
+      "norm_label": "code:bash (ng generate --help)"
+    },
+    {
+      "label": "Building",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L29",
+      "id": "frontend_readme_building",
+      "community": 1,
+      "norm_label": "building"
+    },
+    {
+      "label": "code:bash (ng build)",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L33",
+      "id": "frontend_readme_codeblock_4",
+      "community": 1,
+      "norm_label": "code:bash (ng build)"
+    },
+    {
+      "label": "Running unit tests",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L39",
+      "id": "frontend_readme_running_unit_tests",
+      "community": 1,
+      "norm_label": "running unit tests"
+    },
+    {
+      "label": "code:bash (ng test)",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L43",
+      "id": "frontend_readme_codeblock_5",
+      "community": 1,
+      "norm_label": "code:bash (ng test)"
+    },
+    {
+      "label": "Running end-to-end tests",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L47",
+      "id": "frontend_readme_running_end_to_end_tests",
+      "community": 1,
+      "norm_label": "running end-to-end tests"
+    },
+    {
+      "label": "code:bash (ng e2e)",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L51",
+      "id": "frontend_readme_codeblock_6",
+      "community": 1,
+      "norm_label": "code:bash (ng e2e)"
+    },
+    {
+      "label": "Additional Resources",
+      "file_type": "document",
+      "source_file": "frontend/README.md",
+      "source_location": "L57",
+      "id": "frontend_readme_additional_resources",
+      "community": 1,
+      "norm_label": "additional resources"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/FraudeApplication.java",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_src_main_java_com_empresa_fraude_fraudeapplication_java",
+      "target": "fraude_fraudeapplication_fraudeapplication",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/FraudeApplication.java",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "fraude_fraudeapplication_fraudeapplication",
+      "target": "fraude_fraudeapplication_fraudeapplication_main",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/AlertaFraude.java",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "backend_src_main_java_com_empresa_fraude_domain_model_alertafraude_java",
+      "target": "model_alertafraude_alertafraude",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/Cliente.java",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "backend_src_main_java_com_empresa_fraude_domain_model_cliente_java",
+      "target": "model_cliente_cliente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/domain/model/Transaccion.java",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "backend_src_main_java_com_empresa_fraude_domain_model_transaccion_java",
+      "target": "model_transaccion_transaccion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/test/java/com/empresa/fraude/FraudeApplicationTests.java",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_src_test_java_com_empresa_fraude_fraudeapplicationtests_java",
+      "target": "fraude_fraudeapplicationtests_fraudeapplicationtests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/test/java/com/empresa/fraude/FraudeApplicationTests.java",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "fraude_fraudeapplicationtests_fraudeapplicationtests",
+      "target": "fraude_fraudeapplicationtests_fraudeapplicationtests_contextloads",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "frontend_src_main_ts",
+      "target": "frontend_src_app_app_config_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "frontend_src_main_ts",
+      "target": "app_app_config_appconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_main_ts",
+      "target": "frontend_src_app_app_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/main.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_main_ts",
+      "target": "app_app_component_appcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_component_spec_ts",
+      "target": "frontend_src_app_app_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_component_spec_ts",
+      "target": "app_app_component_appcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_component_spec_ts",
+      "target": "app_app_component_spec_fixture",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.component.spec.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_component_spec_ts",
+      "target": "app_app_component_spec_compiled",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.component.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_component_ts",
+      "target": "app_app_component_appcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.config.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_config_ts",
+      "target": "frontend_src_app_app_routes_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.config.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_config_ts",
+      "target": "app_app_routes_routes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.config.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_config_ts",
+      "target": "app_app_config_appconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "main_layout_main_layout_component_mainlayoutcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "dashboard_dashboard_component_dashboardcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "alerts_list_alerts_list_component_alertslistcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/app.routes.ts",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "frontend_src_app_app_routes_ts",
+      "target": "app_app_routes_routes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_core_services_fraud_mock_service_spec_ts",
+      "target": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_core_services_fraud_mock_service_spec_ts",
+      "target": "services_fraud_mock_service_fraudmockservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "target": "services_fraud_mock_service_fraudalert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "target": "services_fraud_mock_service_dashboardmetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "target": "services_fraud_mock_service_fraudmockservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "target": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "target": "frontend_src_app_core_services_fraud_mock_service_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "target": "services_fraud_mock_service_fraudalert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "target": "services_fraud_mock_service_fraudalert",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "target": "services_fraud_mock_service_dashboardmetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L65",
+      "weight": 1.0,
+      "source": "services_fraud_mock_service_fraudmockservice",
+      "target": "services_fraud_mock_service_fraudmockservice_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "services_fraud_mock_service_fraudmockservice",
+      "target": "services_fraud_mock_service_fraudmockservice_getdashboardmetrics",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/core/services/fraud-mock.service.ts",
+      "source_location": "L77",
+      "weight": 1.0,
+      "source": "services_fraud_mock_service_fraudmockservice",
+      "target": "services_fraud_mock_service_fraudmockservice_getrecentalerts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "target": "services_fraud_mock_service_fraudmockservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "target": "services_fraud_mock_service_fraudmockservice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_spec_ts",
+      "target": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_spec_ts",
+      "target": "alerts_list_alerts_list_component_alertslistcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_alerts_alerts_list_alerts_list_component_ts",
+      "target": "alerts_list_alerts_list_component_alertslistcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "alerts_list_alerts_list_component_alertslistcomponent",
+      "target": "alerts_list_alerts_list_component_alertslistcomponent_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "alerts_list_alerts_list_component_alertslistcomponent",
+      "target": "alerts_list_alerts_list_component_alertslistcomponent_ngoninit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_spec_ts",
+      "target": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_spec_ts",
+      "target": "dashboard_dashboard_component_dashboardcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "frontend_src_app_features_dashboard_dashboard_dashboard_component_ts",
+      "target": "dashboard_dashboard_component_dashboardcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L17",
+      "weight": 1.0,
+      "source": "dashboard_dashboard_component_dashboardcomponent",
+      "target": "dashboard_dashboard_component_dashboardcomponent_constructor",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "dashboard_dashboard_component_dashboardcomponent",
+      "target": "dashboard_dashboard_component_dashboardcomponent_ngoninit",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_spec_ts",
+      "target": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_spec_ts",
+      "target": "main_layout_main_layout_component_mainlayoutcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "target": "frontend_src_app_layout_navbar_navbar_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "target": "navbar_navbar_component_navbarcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "target": "frontend_src_app_layout_sidebar_sidebar_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "target": "sidebar_sidebar_component_sidebarcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/main-layout/main-layout.component.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_main_layout_main_layout_component_ts",
+      "target": "main_layout_main_layout_component_mainlayoutcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/navbar/navbar.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_navbar_navbar_component_spec_ts",
+      "target": "frontend_src_app_layout_navbar_navbar_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/navbar/navbar.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_navbar_navbar_component_spec_ts",
+      "target": "navbar_navbar_component_navbarcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/navbar/navbar.component.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_navbar_navbar_component_ts",
+      "target": "navbar_navbar_component_navbarcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/sidebar/sidebar.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_sidebar_sidebar_component_spec_ts",
+      "target": "frontend_src_app_layout_sidebar_sidebar_component_ts",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/sidebar/sidebar.component.spec.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_sidebar_sidebar_component_spec_ts",
+      "target": "sidebar_sidebar_component_sidebarcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/app/layout/sidebar/sidebar.component.ts",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "frontend_src_app_layout_sidebar_sidebar_component_ts",
+      "target": "sidebar_sidebar_component_sidebarcomponent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "main_instructions_md",
+      "target": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "prev_fraude_bancario_main_instructions_rol_y_objetivo_del_agente_principal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "prev_fraude_bancario_main_instructions_1_visi_n_global_del_proyecto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "prev_fraude_bancario_main_instructions_2_coordinaci_n_de_agentes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "prev_fraude_bancario_main_instructions_3_acuerdos_de_integraci_n_contratos_api",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "prev_fraude_bancario_main_instructions_instrucciones_ia_orquestador_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "prev_fraude_bancario_main_instructions_4_instrucci_n_cr_tica",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "main_instructions.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "prev_fraude_bancario_main_instructions_1_visi_n_global_del_proyecto",
+      "target": "prev_fraude_bancario_main_instructions_carpetas_del_proyecto",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_md",
+      "target": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "backend_backend_instructions_rol_y_objetivo_del_agente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "backend_backend_instructions_1_stack_tecnol_gico",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "backend_backend_instructions_2_arquitectura_de_software_clean_architecture_hexagonal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "backend_backend_instructions_3_patrones_de_dise_o_a_implementar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_instrucciones_ia_backend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "backend_backend_instructions_4_reglas_cr_ticas_para_la_implementaci_n_ia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_2_arquitectura_de_software_clean_architecture_hexagonal",
+      "target": "backend_backend_instructions_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/backend_instructions.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "backend_backend_instructions_4_reglas_cr_ticas_para_la_implementaci_n_ia",
+      "target": "backend_backend_instructions_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/HELP.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "backend_help_md",
+      "target": "backend_help_getting_started",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/HELP.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "backend_help_getting_started",
+      "target": "backend_help_reference_documentation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/HELP.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "backend_help_getting_started",
+      "target": "backend_help_guides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/HELP.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "source": "backend_help_getting_started",
+      "target": "backend_help_maven_parent_overrides",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_md",
+      "target": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L3",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "frontend_frontend_instructions_rol_y_objetivo_del_agente",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "frontend_frontend_instructions_1_stack_tecnol_gico",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "frontend_frontend_instructions_2_arquitectura_del_frontend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "frontend_frontend_instructions_3_patrones_de_dise_o_a_implementar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_instrucciones_ia_frontend_sistema_de_detecci_n_de_fraude_bancario",
+      "target": "frontend_frontend_instructions_4_reglas_cr_ticas_para_la_implementaci_n_ia",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/frontend_instructions.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "frontend_frontend_instructions_2_arquitectura_del_frontend",
+      "target": "frontend_frontend_instructions_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "frontend_readme_md",
+      "target": "frontend_readme_frontend",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "frontend_readme_frontend",
+      "target": "frontend_readme_development_server",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "frontend_readme_frontend",
+      "target": "frontend_readme_code_scaffolding",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "frontend_readme_frontend",
+      "target": "frontend_readme_building",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L39",
+      "weight": 1.0,
+      "source": "frontend_readme_frontend",
+      "target": "frontend_readme_running_unit_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L47",
+      "weight": 1.0,
+      "source": "frontend_readme_frontend",
+      "target": "frontend_readme_running_end_to_end_tests",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "frontend_readme_frontend",
+      "target": "frontend_readme_additional_resources",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "frontend_readme_development_server",
+      "target": "frontend_readme_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "source": "frontend_readme_code_scaffolding",
+      "target": "frontend_readme_codeblock_2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "source": "frontend_readme_code_scaffolding",
+      "target": "frontend_readme_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "frontend_readme_building",
+      "target": "frontend_readme_codeblock_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "frontend_readme_running_unit_tests",
+      "target": "frontend_readme_codeblock_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/README.md",
+      "source_location": "L51",
+      "weight": 1.0,
+      "source": "frontend_readme_running_end_to_end_tests",
+      "target": "frontend_readme_codeblock_6",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "641eeb05425374dad591da596499e360f725c910"
+}

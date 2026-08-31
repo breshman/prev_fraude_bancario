@@ -1,0 +1,150 @@
+{
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\mvnw": {
+    "mtime": 1788234086.0,
+    "hash": "ab50dd89da7da2346b28003352eeeeeb"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\FraudeApplication.java": {
+    "mtime": 1788234086.0,
+    "hash": "ec4e24614eff792e976cfc85b4505ff8"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\domain\\model\\AlertaFraude.java": {
+    "mtime": 1788216164.4254005,
+    "hash": "758632a0b415f769aa9b167f5fe911da"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\domain\\model\\Cliente.java": {
+    "mtime": 1788216160.3851762,
+    "hash": "ecafb47b873a55338df58bc0f1d2bb57"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\domain\\model\\Transaccion.java": {
+    "mtime": 1788216162.4119048,
+    "hash": "8b8dba2b83ff1c4d65d3ca17404353b1"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\resources\\db\\migration\\V1__init.sql": {
+    "mtime": 1788216146.9224753,
+    "hash": "c4be5376b9d6f0007a4e9f7521fc157e"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\test\\java\\com\\empresa\\fraude\\FraudeApplicationTests.java": {
+    "mtime": 1788234086.0,
+    "hash": "8e3e8a960522b57fe0547c33290420b0"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\main.ts": {
+    "mtime": 1788180967.0011916,
+    "hash": "b5c1d106e573fea21ef1ad9e4360e77a"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.component.spec.ts": {
+    "mtime": 1788180966.9818323,
+    "hash": "59a2498d8ba2c6570bf1065606724cae"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.component.ts": {
+    "mtime": 1788180966.9818323,
+    "hash": "f2028e5f87c7960d10a220120d4a671a"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.config.ts": {
+    "mtime": 1788180966.9818323,
+    "hash": "b3783e1fb2e6298f7fdaeb3874308fd3"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.routes.ts": {
+    "mtime": 1788180966.9835775,
+    "hash": "c1bf81d846c3a732d9de32d0a710a128"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\core\\services\\fraud-mock.service.spec.ts": {
+    "mtime": 1788180966.9835775,
+    "hash": "187490d4bdc1b01582ea74e8f52982ce"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\core\\services\\fraud-mock.service.ts": {
+    "mtime": 1788180966.9835775,
+    "hash": "864363ead59db554523b3918e662ed93"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\alerts\\alerts-list\\alerts-list.component.spec.ts": {
+    "mtime": 1788180966.9889855,
+    "hash": "0fff2c8ef5fcea68bbd2338add148cdc"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\alerts\\alerts-list\\alerts-list.component.ts": {
+    "mtime": 1788182082.2859597,
+    "hash": "f9d307191288831bcc41d2979743ab70"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\dashboard\\dashboard\\dashboard.component.spec.ts": {
+    "mtime": 1788180966.993833,
+    "hash": "586924c39aed83d2433ffdfb493abbf4"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\dashboard\\dashboard\\dashboard.component.ts": {
+    "mtime": 1788182017.429096,
+    "hash": "f693979272c62ba73c48af5d00a1042a"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\main-layout\\main-layout.component.spec.ts": {
+    "mtime": 1788180966.9985085,
+    "hash": "0524a94bbd34848b986876bdfce51b8a"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\main-layout\\main-layout.component.ts": {
+    "mtime": 1788180966.9985085,
+    "hash": "cadbc41c4af1c53bae30b06e026e7626"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\navbar\\navbar.component.spec.ts": {
+    "mtime": 1788180966.999186,
+    "hash": "268b83184c388bfd5e950093b9146c30"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\navbar\\navbar.component.ts": {
+    "mtime": 1788180967.0011916,
+    "hash": "0144618b197a8b9cb659fcdf1978e387"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\sidebar\\sidebar.component.spec.ts": {
+    "mtime": 1788180967.0011916,
+    "hash": "74c62329087c1d75f1f07a0bd16e76ca"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\sidebar\\sidebar.component.ts": {
+    "mtime": 1788180967.0011916,
+    "hash": "62feff1c8aaf424545205fdd30f9a892"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\main_instructions.md": {
+    "mtime": 1788180967.0031972,
+    "hash": "0c853e545fddefdb8d27794d65aa63ba"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\backend_instructions.md": {
+    "mtime": 1788180966.9706972,
+    "hash": "d02c634009d8ed00c0b28aee497d0f5e"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\HELP.md": {
+    "mtime": 1788234086.0,
+    "hash": "b4bf00fbc7d55ea68bb7760f38194f68"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\resources\\application.yml": {
+    "mtime": 1788216144.895322,
+    "hash": "22eb309c5009e5d2685e79197dd697b7"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\frontend_instructions.md": {
+    "mtime": 1788180966.9756374,
+    "hash": "d186aada2984fecb30bbcd0a579609d1"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\README.md": {
+    "mtime": 1788180966.9738255,
+    "hash": "0fc69c6b83e4618619075e15b5e88c4b"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\index.html": {
+    "mtime": 1788180967.0011916,
+    "hash": "ff81e1e33011abb66bf0061d4a2f8fa4"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.component.html": {
+    "mtime": 1788180966.9818323,
+    "hash": "31729744a5a7cb0909b01bce2a386e41"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\alerts\\alerts-list\\alerts-list.component.html": {
+    "mtime": 1788182094.048274,
+    "hash": "9abf03afae954a5cd2c1d9becc3640a6"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\dashboard\\dashboard\\dashboard.component.html": {
+    "mtime": 1788182026.7662852,
+    "hash": "2e03cc14823b21a8e051f3a02af444d8"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\main-layout\\main-layout.component.html": {
+    "mtime": 1788180966.993833,
+    "hash": "e2f9da5e7ca99348c87137beefe6614a"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\navbar\\navbar.component.html": {
+    "mtime": 1788180966.999186,
+    "hash": "1bd270b88b06402204e3bd8a82aa61f9"
+  },
+  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\sidebar\\sidebar.component.html": {
+    "mtime": 1788180967.0011916,
+    "hash": "919ffbff7f7e721d4a1d3b517afd2b91"
+  }
+}
