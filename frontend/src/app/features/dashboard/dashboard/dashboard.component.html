@@ -1,0 +1,108 @@
+<div class="container-fluid">
+  <h2 class="mb-4 fw-bold">Dashboard de Prevención de Fraude</h2>
+
+  <!-- Metrics Cards -->
+  <div class="row g-4 mb-4" *ngIf="metrics; else loading">
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+          <h6 class="text-muted text-uppercase fw-semibold mb-2">Total Alertas</h6>
+          <h2 class="display-5 fw-bold mb-0 text-primary">{{metrics.totalAlerts}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+          <h6 class="text-muted text-uppercase fw-semibold mb-2">Alertas Críticas</h6>
+          <h2 class="display-5 fw-bold mb-0 text-danger">{{metrics.criticalAlerts}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+          <h6 class="text-muted text-uppercase fw-semibold mb-2">Score Promedio</h6>
+          <h2 class="display-5 fw-bold mb-0 text-warning">{{metrics.avgRiskScore}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body">
+          <h6 class="text-muted text-uppercase fw-semibold mb-2">TX Monitoreadas</h6>
+          <h2 class="display-5 fw-bold mb-0 text-success">{{metrics.monitoredTransactions}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <div class="d-flex justify-content-center my-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Recent Alerts Table -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-header bg-white border-0 pt-4 pb-2">
+      <h5 class="fw-bold mb-0">Alertas Recientes</h5>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light text-muted">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Monto</th>
+              <th scope="col">Score</th>
+              <th scope="col">Riesgo</th>
+              <th scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let alert of recentAlerts">
+              <td><strong>{{alert.id}}</strong></td>
+              <td>{{alert.customerName}}</td>
+              <td>${{alert.amount | number:'1.2-2'}}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="me-2">{{alert.riskScore}}</span>
+                  <div class="progress flex-grow-1" style="height: 6px;">
+                    <div class="progress-bar" role="progressbar" 
+                         [ngClass]="{'bg-danger': alert.riskScore > 75, 'bg-warning': alert.riskScore > 40 && alert.riskScore <= 75, 'bg-success': alert.riskScore <= 40}"
+                         [style.width]="alert.riskScore + '%'"></div>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="badge rounded-pill" 
+                      [ngClass]="{
+                        'bg-danger': alert.riskLevel === 'CRITICO',
+                        'bg-warning text-dark': alert.riskLevel === 'ALTO',
+                        'bg-secondary': alert.riskLevel === 'MEDIO',
+                        'bg-success': alert.riskLevel === 'BAJO'
+                      }">
+                  {{alert.riskLevel}}
+                </span>
+              </td>
+              <td>
+                <span class="badge" 
+                      [ngClass]="{
+                        'bg-primary': alert.status === 'NUEVA',
+                        'bg-info text-dark': alert.status === 'EN_REVISION',
+                        'bg-light text-dark': alert.status === 'CERRADA'
+                      }">
+                  {{alert.status}}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

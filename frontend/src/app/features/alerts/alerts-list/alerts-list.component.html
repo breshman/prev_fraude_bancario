@@ -1,0 +1,82 @@
+<div class="container-fluid">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">Gestión de Alertas</h2>
+    <button class="btn btn-primary shadow-sm"><i class="bi bi-arrow-clockwise me-2"></i>Actualizar</button>
+  </div>
+
+  <div class="card border-0 shadow-sm rounded-4">
+    <div class="card-body p-0">
+      <div class="p-3 bg-light border-bottom d-flex gap-2 rounded-top-4">
+        <input type="text" class="form-control w-25 shadow-sm border-0" placeholder="Buscar por ID o Cliente...">
+        <select class="form-select w-auto shadow-sm border-0">
+          <option value="">Riesgo (Todos)</option>
+          <option value="CRITICO">Crítico</option>
+          <option value="ALTO">Alto</option>
+        </select>
+      </div>
+
+      <div class="p-4" *ngIf="alerts.length; else loading">
+        <div ngbAccordion>
+          <div ngbAccordionItem *ngFor="let alert of alerts" [collapsed]="true">
+            <h2 ngbAccordionHeader>
+              <button ngbAccordionButton class="w-100">
+                <div class="d-flex w-100 justify-content-between align-items-center">
+                  <div>
+                    <span class="badge" 
+                          [ngClass]="{
+                            'bg-danger': alert.riskLevel === 'CRITICO',
+                            'bg-warning text-dark': alert.riskLevel === 'ALTO',
+                            'bg-secondary': alert.riskLevel === 'MEDIO',
+                            'bg-success': alert.riskLevel === 'BAJO'
+                          }">
+                      {{alert.riskLevel}}
+                    </span>
+                    <strong class="ms-3">{{alert.id}}</strong>
+                    <span class="text-muted ms-2">- {{alert.customerName}}</span>
+                  </div>
+                  <div class="text-end">
+                    <span class="fw-bold">${{alert.amount | number:'1.2-2'}}</span>
+                    <span class="ms-3 text-muted small">{{alert.date | date:'short'}}</span>
+                  </div>
+                </div>
+              </button>
+            </h2>
+            <div ngbAccordionCollapse>
+              <div ngbAccordionBody>
+                <ng-template>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h6 class="fw-bold text-muted text-uppercase small">Detalle Transacción</h6>
+                      <p class="mb-1"><strong>ID Transacción:</strong> {{alert.transactionId}}</p>
+                      <p class="mb-1"><strong>Estado:</strong> {{alert.status}}</p>
+                      <p class="mb-0"><strong>Score Generado:</strong> <span class="text-danger fw-bold">{{alert.riskScore}}/100</span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <h6 class="fw-bold text-muted text-uppercase small">Reglas Disparadas</h6>
+                      <ul class="mb-0 ps-3 text-danger">
+                        <li *ngFor="let reason of alert.reasons">{{reason}}</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="mt-4 pt-3 border-top d-flex gap-2">
+                    <button class="btn btn-sm btn-outline-success">Aprobar</button>
+                    <button class="btn btn-sm btn-outline-warning">Retener</button>
+                    <button class="btn btn-sm btn-danger">Bloquear</button>
+                  </div>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #loading>
+        <div class="d-flex justify-content-center p-5">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
