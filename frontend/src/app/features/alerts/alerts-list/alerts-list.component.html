@@ -1,82 +1,186 @@
-<div class="container-fluid">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="fw-bold mb-0">Gestión de Alertas</h2>
-    <button class="btn btn-primary shadow-sm"><i class="bi bi-arrow-clockwise me-2"></i>Actualizar</button>
+<div class="container-fluid py-3">
+  <!-- Encabezado -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+    <div>
+      <h2 class="fw-bold mb-1 text-dark">Gestión de Alertas de Fraude</h2>
+      <p class="text-muted mb-0">
+        Bandeja unificada de alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el umbral configurado.
+      </p>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-primary shadow-sm" (click)="onRefresh()">
+        <span class="me-1">🔄</span> Actualizar
+      </button>
+      <a routerLink="/simulation" class="btn btn-primary shadow-sm fw-semibold">
+        <span class="me-1">🧪</span> Ir al Simulador
+      </a>
+    </div>
   </div>
 
-  <div class="card border-0 shadow-sm rounded-4">
+  <div class="card border-0 shadow-sm rounded-4" *ngIf="alerts$ | async as rawAlerts">
     <div class="card-body p-0">
-      <div class="p-3 bg-light border-bottom d-flex gap-2 rounded-top-4">
-        <input type="text" class="form-control w-25 shadow-sm border-0" placeholder="Buscar por ID o Cliente...">
-        <select class="form-select w-auto shadow-sm border-0">
-          <option value="">Riesgo (Todos)</option>
-          <option value="CRITICO">Crítico</option>
-          <option value="ALTO">Alto</option>
-        </select>
+      <!-- Barra de Filtros y Búsqueda -->
+      <div class="p-3 bg-light border-bottom d-flex flex-wrap gap-2 rounded-top-4 align-items-center">
+        <div class="flex-grow-1" style="min-width: 240px;">
+          <input type="text" class="form-control shadow-sm border-0"
+                 placeholder="Buscar por ID, N° Transacción, Cliente o Regla..."
+                 [(ngModel)]="searchTerm">
+        </div>
+
+        <div>
+          <select class="form-select shadow-sm border-0" [(ngModel)]="selectedRisk">
+            <option value="">Nivel de Riesgo (Todos)</option>
+            <option value="CRITICO">🔴 Crítico</option>
+            <option value="ALTO">🟠 Alto</option>
+            <option value="MEDIO">🟡 Medio</option>
+            <option value="BAJO">🟢 Bajo</option>
+          </select>
+        </div>
+
+        <div>
+          <select class="form-select shadow-sm border-0" [(ngModel)]="selectedOrigin">
+            <option value="">Origen (Todos)</option>
+            <option value="SIMULACION">⚡ Generadas por Simulación</option>
+            <option value="SISTEMA">🏦 Sistema Central</option>
+          </select>
+        </div>
       </div>
 
-      <div class="p-md-4 p-1" *ngIf="alerts$ | async as alerts; else loading">
-        <div ngbAccordion>
-          <div ngbAccordionItem *ngFor="let alert of alerts" [collapsed]="true">
+      <!-- Lista de Alertas (Acordeón) -->
+      <div class="p-md-4 p-2" *ngIf="getFilteredAlerts(rawAlerts) as alerts">
+        <div class="d-flex justify-content-between align-items-center mb-3 text-muted small px-2">
+          <span>Mostrando <strong>{{ alerts.length }}</strong> alertas registradas</span>
+          <span *ngIf="searchTerm || selectedRisk || selectedOrigin" class="badge bg-secondary-subtle text-secondary">
+            Filtros activos
+          </span>
+        </div>
+
+        <div ngbAccordion *ngIf="alerts.length > 0">
+          <div ngbAccordionItem *ngFor="let alert of alerts" [collapsed]="true" class="border rounded-3 mb-2 shadow-xs">
             <h2 ngbAccordionHeader>
-              <button ngbAccordionButton class="w-100">
-                <div class="d-flex w-100 justify-content-between align-items-center">
-                  <div>
+              <button ngbAccordionButton class="w-100 rounded-3">
+                <div class="d-flex w-100 justify-content-between align-items-center flex-wrap gap-2 pe-3">
+                  <div class="d-flex align-items-center flex-wrap gap-2">
+                    <!-- Badge Nivel de Riesgo -->
                     <span class="badge" [ngClass]="{
                             'bg-danger': alert.riskLevel === 'CRITICO',
                             'bg-warning text-dark': alert.riskLevel === 'ALTO',
                             'bg-secondary': alert.riskLevel === 'MEDIO',
                             'bg-success': alert.riskLevel === 'BAJO'
                           }">
-                      {{alert.riskLevel}}
+                      {{ alert.riskLevel }}
                     </span>
-                    <strong class="ms-3">{{alert.id}}</strong>
-                    <span class="text-muted ms-2">- {{alert.customerName}}</span>
+
+                    <!-- Badge Origen -->
+                    <span class="badge" [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-light text-muted border'">
+                      {{ alert.origin === 'SIMULACION' ? '⚡ Simulación' : '🏦 Sistema' }}
+                    </span>
+
+                    <strong class="text-dark">{{ alert.id }}</strong>
+                    <span class="text-muted d-none d-sm-inline">- {{ alert.customerName }}</span>
                   </div>
-                  <div class="text-end">
-                    <span class="fw-bold">${{alert.amount | number:'1.2-2'}}</span>
-                    <span class="ms-3 text-muted small">{{alert.date | date:'short'}}</span>
+
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="badge" [ngClass]="{
+                            'bg-success': alert.status === 'APROBADA' || alert.status === 'CERRADA',
+                            'bg-warning text-dark': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
+                            'bg-danger': alert.status === 'BLOQUEADA',
+                            'bg-primary': alert.status === 'NUEVA',
+                            'bg-secondary': alert.status === 'PENDIENTE'
+                          }">
+                      {{ alert.status }}
+                    </span>
+                    <span class="fw-bold text-dark fs-6">${{ alert.amount | number:'1.2-2' }}</span>
+                    <span class="text-muted small d-none d-md-inline">{{ alert.date | date:'shortTime' }}</span>
                   </div>
                 </div>
               </button>
             </h2>
+
             <div ngbAccordionCollapse>
               <div ngbAccordionBody>
                 <ng-template>
-                  <div class="row">
+                  <div class="row g-3">
                     <div class="col-md-6">
-                      <h6 class="fw-bold text-muted text-uppercase small">Detalle Transacción</h6>
-                      <p class="mb-1"><strong>ID Transacción:</strong> {{alert.transactionId}}</p>
-                      <p class="mb-1"><strong>Estado:</strong> {{alert.status}}</p>
-                      <p class="mb-0"><strong>Score Generado:</strong> <span
-                          class="text-danger fw-bold">{{alert.riskScore}}/100</span></p>
+                      <h6 class="fw-bold text-muted text-uppercase small mb-2">Detalle de la Transacción</h6>
+                      <p class="mb-1"><strong>ID Transacción:</strong> <span class="font-monospace">{{ alert.transactionId }}</span></p>
+                      <p class="mb-1"><strong>Cliente:</strong> {{ alert.customerName }}</p>
+                      <p class="mb-1"><strong>Estado Actual:</strong> <span class="badge bg-secondary">{{ alert.status }}</span></p>
+                      <p class="mb-0">
+                        <strong>Score Generado:</strong>
+                        <span class="fw-bold fs-6 ms-1"
+                              [ngClass]="alert.riskScore >= 75 ? 'text-danger' : alert.riskScore >= 40 ? 'text-warning-emphasis' : 'text-success'">
+                          {{ alert.riskScore }}/100
+                        </span>
+                      </p>
                     </div>
+
                     <div class="col-md-6">
-                      <h6 class="fw-bold text-muted text-uppercase small">Reglas Disparadas</h6>
+                      <h6 class="fw-bold text-muted text-uppercase small mb-2">Reglas de Fraude Disparadas</h6>
                       <ul class="mb-0 ps-3 text-danger">
-                        <li *ngFor="let reason of alert.reasons">{{reason}}</li>
+                        <li *ngFor="let reason of alert.reasons" class="mb-1">{{ reason }}</li>
                       </ul>
                     </div>
                   </div>
-                  <div class="mt-4 pt-3 border-top d-flex gap-2">
-                    <button class="btn btn-sm btn-outline-success">Aprobar</button>
-                    <button class="btn btn-sm btn-outline-warning">Retener</button>
-                    <button class="btn btn-sm btn-danger">Bloquear</button>
+
+                  <!-- Botones de Acción de Analista -->
+                  <div class="mt-4 pt-3 border-top d-flex flex-wrap justify-content-between align-items-center gap-2">
+                    <div class="small text-muted">
+                      Fecha del evento: {{ alert.date | date:'medium' }}
+                    </div>
+                    <div class="d-flex gap-2">
+                      <button class="btn btn-sm btn-outline-success fw-semibold"
+                              [disabled]="alert.status === 'APROBADA' || alert.status === 'CERRADA'"
+                              (click)="onApprove(alert)">
+                        ✓ Aprobar
+                      </button>
+                      <button class="btn btn-sm btn-outline-warning fw-semibold text-dark"
+                              [disabled]="alert.status === 'RETENIDA' || alert.status === 'EN_REVISION'"
+                              (click)="onHold(alert)">
+                        ⏸️ Retener
+                      </button>
+                      <button class="btn btn-sm btn-danger fw-semibold shadow-sm"
+                              [disabled]="alert.status === 'BLOQUEADA'"
+                              (click)="onBlock(alert)">
+                        ⛔ Bloquear
+                      </button>
+                    </div>
                   </div>
                 </ng-template>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <ng-template #loading>
-        <div class="d-flex justify-content-center p-5">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Cargando...</span>
+        <!-- Estado Vacío -->
+        <div class="text-center py-5" *ngIf="alerts.length === 0">
+          <div class="text-muted">
+            <div class="fs-1 mb-2">🛡️</div>
+            <h6 class="fw-bold">No se encontraron alertas</h6>
+            <p class="small mb-3">No hay alertas que coincidan con los filtros seleccionados.</p>
+            <button class="btn btn-sm btn-primary" (click)="searchTerm = ''; selectedRisk = ''; selectedOrigin = ''">
+              Restablecer Filtros
+            </button>
           </div>
         </div>
-      </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Flotante -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;" *ngIf="toastMsg">
+    <div class="toast show shadow-lg border-0 rounded-3 text-white"
+         [ngClass]="{
+           'bg-success': toastType === 'success',
+           'bg-danger': toastType === 'warning',
+           'bg-dark': toastType === 'info'
+         }">
+      <div class="d-flex align-items-center p-3">
+        <div class="toast-body p-0 flex-grow-1">
+          {{ toastMsg }}
+        </div>
+        <button type="button" class="btn-close btn-close-white ms-2" (click)="toastMsg = null"></button>
+      </div>
     </div>
   </div>
 </div>

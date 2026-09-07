@@ -1,10 +1,40 @@
-<div class="container-fluid">
-  <h2 class="mb-4 fw-bold">Dashboard de Prevención de Fraude</h2>
+<div class="container-fluid py-3">
+  <!-- Encabezado con Controles de Simulación Rápida -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+    <div>
+      <h2 class="mb-1 fw-bold text-dark">Dashboard de Prevención de Fraude</h2>
+      <p class="text-muted mb-0">
+        Monitoreo en tiempo real de transacciones bancarias, alertas críticas y correlación de picos de riesgo.
+      </p>
+    </div>
 
-  <!-- Metrics Cards -->
+    <!-- Barra de Simulación Conectada al Dashboard -->
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <!-- Indicador de Streaming en Vivo -->
+      <span class="badge px-3 py-2 rounded-pill fw-semibold d-flex align-items-center gap-2"
+            [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-badge-pulse' : 'bg-light text-muted border'">
+        <span class="stream-dot" [class.stream-active]="isLiveStreaming$ | async"></span>
+        {{ (isLiveStreaming$ | async) ? 'SIMULACIÓN EN VIVO' : 'STREAMING PAUSADO' }}
+      </span>
+
+      <!-- Botón Streaming -->
+      <button class="btn btn-sm fw-semibold shadow-sm"
+              [ngClass]="(isLiveStreaming$ | async) ? 'btn-danger' : 'btn-outline-danger'"
+              (click)="onToggleStreaming()">
+        {{ (isLiveStreaming$ | async) ? '⏹️ Detener Streaming' : '▶️ Modo En Vivo' }}
+      </button>
+
+      <!-- Botón Generar 20 TX Aleatorias -->
+      <button class="btn btn-sm btn-primary shadow-sm fw-semibold" (click)="onTriggerQuickSimulation(20)">
+        ⚡ Simular 20 TX Aleatorias
+      </button>
+    </div>
+  </div>
+
+  <!-- Tarjetas de Métricas Principales -->
   <div class="row g-4 mb-4" *ngIf="metrics$ | async as metrics; else loading">
     <div class="col-md-3">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
+      <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
         <div class="card-body">
           <h6 class="text-muted text-uppercase fw-semibold mb-2">Total Alertas</h6>
           <h2 class="display-5 fw-bold mb-0 text-primary">{{metrics.totalAlerts}}</h2>
@@ -12,7 +42,8 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
+      <div class="card border-0 shadow-sm rounded-4 h-100 metric-card"
+           [class.border-start-danger]="metrics.criticalAlerts > 0">
         <div class="card-body">
           <h6 class="text-muted text-uppercase fw-semibold mb-2">Alertas Críticas</h6>
           <h2 class="display-5 fw-bold mb-0 text-danger">{{metrics.criticalAlerts}}</h2>
@@ -20,7 +51,7 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
+      <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
         <div class="card-body">
           <h6 class="text-muted text-uppercase fw-semibold mb-2">Score Promedio</h6>
           <h2 class="display-5 fw-bold mb-0 text-warning">{{metrics.avgRiskScore}}</h2>
@@ -28,10 +59,10 @@
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card border-0 shadow-sm rounded-4 h-100">
+      <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
         <div class="card-body">
           <h6 class="text-muted text-uppercase fw-semibold mb-2">TX Monitoreadas</h6>
-          <h2 class="display-5 fw-bold mb-0 text-success">{{metrics.monitoredTransactions}}</h2>
+          <h2 class="display-5 fw-bold mb-0 text-success">{{metrics.monitoredTransactions | number}}</h2>
         </div>
       </div>
     </div>
@@ -40,68 +71,118 @@
   <ng-template #loading>
     <div class="d-flex justify-content-center my-5">
       <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Cargando...</span>
+        <span class="visually-hidden">Cargando métricas...</span>
       </div>
     </div>
   </ng-template>
 
-  <!-- Recent Alerts Table -->
+  <!-- GRÁFICO DE PICOS DE RIESGO Y LÍNEA DE UMBRAL (Chart.js) -->
+  <div class="mb-4" *ngIf="simulations$ | async as simulations">
+    <app-fraud-chart
+      [transactions]="simulations"
+      [threshold]="(threshold$ | async) ?? 70"
+      title="Monitoreo Continuo de Picos de Riesgo y Superación de Umbral (Chart.js)">
+    </app-fraud-chart>
+  </div>
+
+  <!-- Tabla de Alertas Recientes (Conectada con las Alertas Generadas por la Simulación) -->
   <div class="card border-0 shadow-sm rounded-4 mb-4">
-    <div class="card-header bg-white border-0 pt-4 pb-2">
-      <h5 class="fw-bold mb-0">Alertas Recientes</h5>
+    <div class="card-header bg-white border-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="fw-bold mb-0 text-dark">Alertas Recientes en Tiempo Real</h5>
+        <small class="text-muted">Incluye alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el umbral.</small>
+      </div>
+      <a routerLink="/alerts" class="btn btn-sm btn-outline-primary fw-semibold">
+        Ver Todas las Alertas ➜
+      </a>
     </div>
-    <div class="card-body">
+    <div class="card-body px-4">
       <div class="table-responsive">
         <table class="table table-hover align-middle">
-          <thead class="table-light text-muted">
+          <thead class="table-light text-muted small text-uppercase">
             <tr>
-              <th scope="col">ID</th>
+              <th scope="col">ID / Origen</th>
               <th scope="col">Cliente</th>
               <th scope="col">Monto</th>
-              <th scope="col">Score</th>
-              <th scope="col">Riesgo</th>
+              <th scope="col">Score de Riesgo</th>
+              <th scope="col">Nivel</th>
               <th scope="col">Estado</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let alert of recentAlerts$ | async">
-              <td><strong>{{alert.id}}</strong></td>
-              <td>{{alert.customerName}}</td>
-              <td>${{alert.amount | number:'1.2-2'}}</td>
+            <tr *ngFor="let alert of (recentAlerts$ | async)?.slice(0, 8)">
               <td>
-                <div class="d-flex align-items-center">
-                  <span class="me-2">{{alert.riskScore}}</span>
+                <div class="d-flex align-items-center gap-2">
+                  <strong>{{ alert.id }}</strong>
+                  <span class="badge"
+                        [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-light text-secondary border'">
+                    {{ alert.origin === 'SIMULACION' ? '⚡ Simulado' : '🏦 Sistema' }}
+                  </span>
+                </div>
+                <small class="text-muted">{{ alert.date | date:'shortTime' }}</small>
+              </td>
+              <td>{{ alert.customerName }}</td>
+              <td class="fw-bold">${{ alert.amount | number:'1.2-2' }}</td>
+              <td>
+                <div class="d-flex align-items-center" style="max-width: 170px;">
+                  <span class="me-2 fw-bold"
+                        [ngClass]="{
+                          'text-danger': alert.riskScore >= 75,
+                          'text-warning-emphasis': alert.riskScore >= 40 && alert.riskScore < 75,
+                          'text-success': alert.riskScore < 40
+                        }">
+                    {{ alert.riskScore }}
+                  </span>
                   <div class="progress flex-grow-1" style="height: 6px;">
-                    <div class="progress-bar" role="progressbar" 
-                         [ngClass]="{'bg-danger': alert.riskScore > 75, 'bg-warning': alert.riskScore > 40 && alert.riskScore <= 75, 'bg-success': alert.riskScore <= 40}"
-                         [style.width]="alert.riskScore + '%'"></div>
+                    <div class="progress-bar" role="progressbar"
+                         [ngClass]="{
+                           'bg-danger': alert.riskScore > 75,
+                           'bg-warning': alert.riskScore >= 40 && alert.riskScore <= 75,
+                           'bg-success': alert.riskScore < 40
+                         }"
+                         [style.width]="alert.riskScore + '%'">
+                    </div>
                   </div>
                 </div>
               </td>
               <td>
-                <span class="badge rounded-pill" 
+                <span class="badge rounded-pill"
                       [ngClass]="{
                         'bg-danger': alert.riskLevel === 'CRITICO',
                         'bg-warning text-dark': alert.riskLevel === 'ALTO',
                         'bg-secondary': alert.riskLevel === 'MEDIO',
                         'bg-success': alert.riskLevel === 'BAJO'
                       }">
-                  {{alert.riskLevel}}
+                  {{ alert.riskLevel }}
                 </span>
               </td>
               <td>
-                <span class="badge" 
+                <span class="badge"
                       [ngClass]="{
                         'bg-primary': alert.status === 'NUEVA',
-                        'bg-info text-dark': alert.status === 'EN_REVISION',
-                        'bg-light text-dark': alert.status === 'CERRADA'
+                        'bg-warning text-dark': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
+                        'bg-success': alert.status === 'CERRADA' || alert.status === 'APROBADA',
+                        'bg-danger': alert.status === 'BLOQUEADA',
+                        'bg-secondary': alert.status === 'PENDIENTE'
                       }">
-                  {{alert.status}}
+                  {{ alert.status }}
                 </span>
               </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast de Notificación -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;" *ngIf="toastMsg">
+    <div class="toast show shadow-lg border-0 rounded-3 bg-dark text-white p-3">
+      <div class="d-flex align-items-center">
+        <div class="toast-body p-0 flex-grow-1">
+          {{ toastMsg }}
+        </div>
+        <button type="button" class="btn-close btn-close-white ms-2" (click)="toastMsg = null"></button>
       </div>
     </div>
   </div>

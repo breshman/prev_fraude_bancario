@@ -1,0 +1,587 @@
+<div class="container-fluid py-3 simulation-container" *ngIf="simulations$ | async as simulations">
+  <!-- Encabezado Principal -->
+  <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
+    <div>
+      <div class="d-flex align-items-center flex-wrap gap-2">
+        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-bold">
+          ⚡ Módulo de Simulación Activa
+        </span>
+        <span class="badge px-3 py-2 rounded-pill fw-semibold d-flex align-items-center gap-2"
+          [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-pulse' : 'bg-light text-muted border'">
+          <span class="stream-dot" [class.stream-active]="isLiveStreaming$ | async"></span>
+          {{ (isLiveStreaming$ | async) ? 'STREAMING EN VIVO ACTIVO' : 'STREAMING PAUSADO' }}
+        </span>
+        <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-3 py-2 rounded-pill fw-semibold"
+          *ngIf="getMetrics(simulations).breachedCount > 0">
+          ⚠️ {{ getMetrics(simulations).breachedCount }} Alertas Disparadas
+        </span>
+      </div>
+      <h2 class="fw-bold mt-2 mb-1 text-dark">Simulador y Motor de Reglas de Fraude</h2>
+      <p class="text-muted mb-0">
+        Simulación de transacciones masivas y aleatorias, picos de riesgo en tiempo real y conexión directa con el
+        Dashboard y Alertas.
+      </p>
+    </div>
+
+    <!-- Botones de Acción Global -->
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <!-- Botón Streaming en Vivo -->
+      <button class="btn btn-sm fw-semibold shadow-sm px-3 py-2"
+        [ngClass]="(isLiveStreaming$ | async) ? 'btn-danger' : 'btn-outline-danger'" (click)="onToggleLiveStreaming()">
+        {{ (isLiveStreaming$ | async) ? '⏹️ Detener Streaming' : '▶️ Simulación en Vivo' }}
+      </button>
+
+      <!-- Botón Simular Transacción Individual -->
+      <button class="btn btn-outline-primary btn-sm shadow-sm d-flex align-items-center fw-semibold px-3 py-2"
+        (click)="showSingleSimModal = true">
+        <span class="me-2">➕</span> Simular Transacción
+      </button>
+
+      <!-- Menú Generación Masiva y Aleatoria -->
+      <div class="btn-group" ngbDropdown>
+        <button type="button" class="btn btn-primary btn-sm shadow-sm dropdown-toggle fw-semibold px-3 py-2"
+          ngbDropdownToggle>
+          <span class="me-2">⚡</span> Generar Masivo / Aleatorio
+        </button>
+        <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" ngbDropdownMenu>
+          <h6 class="dropdown-header text-uppercase text-muted fw-bold small">Lote Aleatorio (Picos Variados)</h6>
+          <button class="dropdown-item rounded-2 py-2" (click)="onGenerateMassive(10)">
+            <strong>🎲 10 Transacciones Aleatorias</strong>
+          </button>
+          <button class="dropdown-item rounded-2 py-2" (click)="onGenerateMassive(25)">
+            <strong>🎲 25 Transacciones Aleatorias</strong>
+          </button>
+          <button class="dropdown-item rounded-2 py-2" (click)="onGenerateMassive(50)">
+            <strong>🎲 50 Transacciones Aleatorias</strong>
+          </button>
+          <button class="dropdown-item rounded-2 py-2 text-danger" (click)="onGenerateMassive(100)">
+            <strong>💥 100 Transacciones Masivas (Ataque)</strong>
+          </button>
+          <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header text-uppercase text-muted fw-bold small">Escenarios Específicos</h6>
+          <button class="dropdown-item rounded-2 py-2 text-danger" (click)="onGenerateBatch(20, 'HIGH_RISK')">
+            🚨 Ola de Phishing y Alto Riesgo (20 TX)
+          </button>
+          <button class="dropdown-item rounded-2 py-2 text-success" (click)="onGenerateBatch(25, 'NORMAL')">
+            🛡️ Operaciones Seguras (25 TX)
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú Exportar a Excel -->
+      <div class="btn-group" ngbDropdown>
+        <button type="button" class="btn btn-success btn-sm shadow-sm dropdown-toggle fw-semibold px-3 py-2 excel-btn"
+          ngbDropdownToggle>
+          <span class="me-2">📊</span> Descargar en Excel
+        </button>
+        <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" ngbDropdownMenu>
+          <h6 class="dropdown-header text-uppercase text-muted fw-bold small">Exportación de Resultados</h6>
+          <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('xls', false)">
+            <strong>📗 Libro de Excel (.xls)</strong>
+            <div class="small text-muted">Con estilos, colores en alertas y celdas formateadas</div>
+          </button>
+          <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('csv', false)">
+            <strong>📄 Archivo CSV con BOM UTF-8</strong>
+            <div class="small text-muted">Compatible universalmente con cualquier software de hoja de cálculo</div>
+          </button>
+          <div class="dropdown-divider" *ngIf="getSelectedCount(simulations) > 0"></div>
+          <button class="dropdown-item rounded-2 py-2 text-primary" *ngIf="getSelectedCount(simulations) > 0"
+            (click)="onExportExcel('xls', true)">
+            <strong>📥 Exportar solo Seleccionadas ({{ getSelectedCount(simulations) }})</strong>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjetas de Métricas Resumen -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card metric-card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body p-3 d-flex align-items-center">
+          <div class="metric-icon-wrapper bg-primary-subtle text-primary me-3">
+            🎯
+          </div>
+          <div>
+            <div class="text-muted text-uppercase fw-semibold small">Umbral Activo</div>
+            <h3 class="fw-bold mb-0 text-primary">{{ activeThreshold }} <span class="fs-6 text-muted">/ 100</span></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card metric-card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body p-3 d-flex align-items-center">
+          <div class="metric-icon-wrapper bg-info-subtle text-info me-3">
+            📋
+          </div>
+          <div>
+            <div class="text-muted text-uppercase fw-semibold small">Total Simuladas</div>
+            <h3 class="fw-bold mb-0 text-dark">{{ getMetrics(simulations).total }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card metric-card border-0 shadow-sm rounded-4 h-100"
+        [ngClass]="{'border-danger-custom': getMetrics(simulations).breachedCount > 0}">
+        <div class="card-body p-3 d-flex align-items-center">
+          <div class="metric-icon-wrapper bg-danger-subtle text-danger me-3">
+            🚨
+          </div>
+          <div>
+            <div class="text-muted text-uppercase fw-semibold small">Superan Umbral (Alertas)</div>
+            <h3 class="fw-bold mb-0 text-danger">
+              {{ getMetrics(simulations).breachedCount }}
+              <span class="fs-6 text-muted fw-normal">({{ getMetrics(simulations).breachedPercent }}%)</span>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card metric-card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body p-3 d-flex align-items-center">
+          <div class="metric-icon-wrapper bg-warning-subtle text-warning me-3">
+            💰
+          </div>
+          <div>
+            <div class="text-muted text-uppercase fw-semibold small">Monto en Riesgo</div>
+            <h3 class="fw-bold mb-0 text-dark">${{ getMetrics(simulations).totalAmountAtRisk | number:'1.2-2' }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Calibración del Umbral de Riesgo (Interactive Slider) -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4 threshold-panel">
+    <div class="card-body p-4">
+      <div class="row align-items-center">
+        <div class="col-lg-5 mb-3 mb-lg-0">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="fs-5">🎚️</span>
+            <h5 class="fw-bold mb-0">Calibración de Umbral de Alerta</h5>
+          </div>
+          <p class="text-muted small mb-0">
+            Toda transacción con Score ≥ <strong>{{ activeThreshold }} puntos</strong>
+            genera automáticamente una <span class="text-danger fw-bold">Alerta de Fraude</span> que se sincroniza con
+            el Dashboard y Alertas.
+          </p>
+        </div>
+
+        <div class="col-lg-4 mb-3 mb-lg-0">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <label class="form-label small fw-bold text-muted mb-0">Nivel de Sensibilidad del Umbral:</label>
+            <span class="badge fs-6 fw-bold px-3 py-1 rounded-pill" [ngClass]="{
+                    'bg-danger': activeThreshold <= 55,
+                    'bg-warning text-dark': activeThreshold > 55 && activeThreshold <= 75,
+                    'bg-success': activeThreshold > 75
+                  }">
+              {{ activeThreshold }} pts
+            </span>
+          </div>
+          <input type="range" class="form-range custom-range" min="10" max="95" step="1" [(ngModel)]="activeThreshold"
+            (ngModelChange)="onThresholdChange($event)">
+          <div class="d-flex justify-content-between text-muted x-small">
+            <span>🔴 10 (Alta Sensibilidad / Más Alertas)</span>
+            <span>🟢 95 (Baja Sensibilidad)</span>
+          </div>
+        </div>
+
+        <div class="col-lg-3 text-lg-end">
+          <div class="text-muted small mb-1 fw-semibold">Presets Rápidos:</div>
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-outline-danger" (click)="applyThresholdPreset(50)"
+              [class.active]="activeThreshold === 50">
+              50 (Estricto)
+            </button>
+            <button type="button" class="btn btn-outline-primary" (click)="applyThresholdPreset(70)"
+              [class.active]="activeThreshold === 70">
+              70 (Estándar)
+            </button>
+            <button type="button" class="btn btn-outline-success" (click)="applyThresholdPreset(85)"
+              [class.active]="activeThreshold === 85">
+              85 (Tolerante)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRÁFICO DE PICOS DE RIESGO Y LÍNEA DE UMBRAL (Chart.js) -->
+  <div class="mb-4">
+    <app-fraud-chart [transactions]="simulations" [threshold]="activeThreshold"
+      title="Picos de Riesgo en Transacciones Simuladas ">
+    </app-fraud-chart>
+  </div>
+
+  <!-- Banner Dinámico de Alerta de Fraude (Cuando se sobrepasa el umbral) -->
+  <div
+    class="alert alert-danger border-0 shadow-sm rounded-4 p-3 mb-4 alert-pulse d-flex flex-wrap align-items-center justify-content-between gap-3"
+    *ngIf="alertNotice$ | async as notice">
+    <div class="d-flex align-items-center gap-3">
+      <div class="alert-bell-icon">
+        🚨
+      </div>
+      <div>
+        <h5 class="fw-bold mb-1 text-danger">¡ALERTA DE SEGURIDAD DISPARADA!</h5>
+        <div class="small text-danger-emphasis">
+          {{ notice.message }}
+        </div>
+        <div *ngIf="notice.transaction as tx" class="mt-1 small">
+          <strong>Transacción:</strong> {{ tx.id }} &bull;
+          <strong>Cliente:</strong> {{ tx.customerName }} &bull;
+          <strong>Monto:</strong> ${{ tx.amount | number:'1.2-2' }} &bull;
+          <strong>Score:</strong> <span class="badge bg-danger">{{ tx.riskScore }} / 100</span>
+        </div>
+      </div>
+    </div>
+    <div class="d-flex gap-2 align-items-center">
+      <button class="btn btn-danger btn-sm fw-bold px-3 shadow-sm" (click)="filterByBreached()">
+        🔍 Ver Alertas Disparadas
+      </button>
+      <button class="btn btn-outline-danger btn-sm" (click)="dismissAlertNotice()">
+        ✕
+      </button>
+    </div>
+  </div>
+
+  <!-- Barra de Herramientas de Revisión Masiva -->
+  <div class="card border-0 shadow-sm rounded-4 mb-4">
+    <div class="card-header bg-white border-0 pt-4 pb-3">
+      <!-- Toolbar de Acciones Masivas (Aparece cuando hay filas seleccionadas) -->
+      <div
+        class="alert alert-primary border-0 rounded-3 py-2 px-3 mb-3 d-flex flex-wrap align-items-center justify-content-between gap-2 mass-action-bar"
+        *ngIf="getSelectedCount(simulations) > 0">
+        <div class="d-flex align-items-center gap-2">
+          <span class="badge bg-primary text-white rounded-pill fs-6 px-3 py-2">
+            ✓ {{ getSelectedCount(simulations) }} seleccionada(s)
+          </span>
+          <span class="text-primary-emphasis fw-semibold small" *ngIf="getSelectedBreachedCount(simulations) > 0">
+            ({{ getSelectedBreachedCount(simulations) }} superan el umbral)
+          </span>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
+          <button class="btn btn-success btn-sm fw-semibold shadow-sm" (click)="onBulkApprove()">
+            ✓ Aprobar Lote
+          </button>
+          <button class="btn btn-warning btn-sm fw-semibold text-dark shadow-sm" (click)="onBulkRetain()">
+            ⏸️ Retener Lote
+          </button>
+          <button class="btn btn-danger btn-sm fw-semibold shadow-sm" (click)="onBulkBlock()">
+            ⛔ Bloquear Lote
+          </button>
+          <button class="btn btn-dark btn-sm fw-semibold shadow-sm" *ngIf="getSelectedBreachedCount(simulations) > 0"
+            (click)="onBulkEscalate()"
+            ngbTooltip="Sincroniza y refuerza estas alertas en la bandeja de Alertas Oficiales">
+            📤 Re-escalar a Alertas
+          </button>
+          <button class="btn btn-outline-secondary btn-sm" (click)="onBulkDelete()">
+            🗑️ Eliminar
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtros y Búsqueda -->
+      <div class="row g-3 align-items-center justify-content-between">
+        <div class="col-12 col-md-auto">
+          <div class="btn-group filter-group" role="group">
+            <button type="button" class="btn btn-sm" [class.btn-primary]="activeFilter === 'ALL'"
+              [class.btn-light]="activeFilter !== 'ALL'" (click)="activeFilter = 'ALL'">
+              Todas ({{ simulations.length }})
+            </button>
+            <button type="button" class="btn btn-sm" [class.btn-danger]="activeFilter === 'BREACHED'"
+              [class.btn-light]="activeFilter !== 'BREACHED'" (click)="activeFilter = 'BREACHED'">
+              🚨 Superan Umbral ({{ getMetrics(simulations).breachedCount }})
+            </button>
+            <button type="button" class="btn btn-sm" [class.btn-success]="activeFilter === 'APROBADA'"
+              [class.btn-light]="activeFilter !== 'APROBADA'" (click)="activeFilter = 'APROBADA'">
+              Aprobadas
+            </button>
+            <button type="button" class="btn btn-sm" [class.btn-warning]="activeFilter === 'RETENIDA'"
+              [class.btn-light]="activeFilter !== 'RETENIDA'" (click)="activeFilter = 'RETENIDA'">
+              Retenidas
+            </button>
+            <button type="button" class="btn btn-sm" [class.btn-dark]="activeFilter === 'BLOQUEADA'"
+              [class.btn-light]="activeFilter !== 'BLOQUEADA'" (click)="activeFilter = 'BLOQUEADA'">
+              Bloqueadas
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-5 col-lg-4">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-light border-0">🔍</span>
+            <input type="text" class="form-control bg-light border-0"
+              placeholder="Buscar por ID, Cliente, Cuenta, País..." [(ngModel)]="searchTerm">
+            <button class="btn btn-light border-0" type="button" *ngIf="searchTerm" (click)="searchTerm = ''">
+              ✕
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla de Transacciones Simuladas (Revisión Masiva) -->
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0 custom-table">
+          <thead class="table-light text-muted small text-uppercase">
+            <tr>
+              <th scope="col" style="width: 45px;" class="text-center">
+                <input type="checkbox" class="form-check-input"
+                  [checked]="isAllSelected(getFilteredSimulations(simulations))"
+                  (change)="toggleSelectAll(getFilteredSimulations(simulations), $event)"
+                  ngbTooltip="Seleccionar todas las visibles">
+              </th>
+              <th scope="col">ID / Fecha</th>
+              <th scope="col">Cliente / Cuenta</th>
+              <th scope="col">Canal / Ubicación</th>
+              <th scope="col" class="text-end">Monto</th>
+              <th scope="col" style="min-width: 170px;">Score de Riesgo</th>
+              <th scope="col" class="text-center">¿Supera Umbral?</th>
+              <th scope="col">Reglas Disparadas</th>
+              <th scope="col" class="text-center">Decisión / Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tx of getFilteredSimulations(simulations)" [class.table-danger-subtle]="tx.exceedsThreshold"
+              [class.selected-row]="tx.selected">
+              <!-- Checkbox de fila -->
+              <td class="text-center">
+                <input type="checkbox" class="form-check-input" [checked]="tx.selected" (change)="toggleSelect(tx.id)">
+              </td>
+
+              <!-- ID y Fecha -->
+              <td>
+                <div class="fw-bold text-dark">{{ tx.id }}</div>
+                <small class="text-muted">{{ tx.timestamp | date:'shortTime' }} &bull; {{ tx.timestamp | date:'dd/MM/yy'
+                  }}</small>
+              </td>
+
+              <!-- Cliente y Cuenta -->
+              <td>
+                <div class="fw-semibold text-dark">{{ tx.customerName }}</div>
+                <small class="text-muted font-monospace">{{ tx.accountId }}</small>
+              </td>
+
+              <!-- Canal y Ubicación -->
+              <td>
+                <div>
+                  <span class="badge bg-light text-dark border me-1">{{ tx.channel }}</span>
+                  <span class="badge bg-secondary-subtle text-secondary">{{ tx.country }}</span>
+                </div>
+                <small class="text-muted d-block text-truncate" style="max-width: 170px;" [title]="tx.device">
+                  {{ tx.device }}
+                </small>
+              </td>
+
+              <!-- Monto -->
+              <td class="text-end">
+                <div class="fw-bold text-dark fs-6">${{ tx.amount | number:'1.2-2' }}</div>
+              </td>
+
+              <!-- Score y Barra de Progreso -->
+              <td>
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                  <span class="fw-bold" [ngClass]="{
+                          'text-danger': tx.riskScore >= 75,
+                          'text-warning-emphasis': tx.riskScore >= 40 && tx.riskScore < 75,
+                          'text-success': tx.riskScore < 40
+                        }">
+                    {{ tx.riskScore }} / 100
+                  </span>
+                  <span class="badge rounded-pill" [ngClass]="{
+                          'bg-danger': tx.riskLevel === 'CRITICO',
+                          'bg-warning text-dark': tx.riskLevel === 'ALTO',
+                          'bg-info text-dark': tx.riskLevel === 'MEDIO',
+                          'bg-success': tx.riskLevel === 'BAJO'
+                        }">
+                    {{ tx.riskLevel }}
+                  </span>
+                </div>
+                <div class="progress" style="height: 6px;">
+                  <div class="progress-bar" role="progressbar" [style.width]="tx.riskScore + '%'" [ngClass]="{
+                         'bg-danger': tx.riskScore >= 75,
+                         'bg-warning': tx.riskScore >= 40 && tx.riskScore < 75,
+                         'bg-success': tx.riskScore < 40
+                       }">
+                  </div>
+                </div>
+              </td>
+
+              <!-- ¿Supera Umbral? -->
+              <td class="text-center">
+                <span class="badge rounded-pill px-3 py-2 fw-bold"
+                  [ngClass]="tx.exceedsThreshold ? 'bg-danger shadow-sm' : 'bg-success-subtle text-success border border-success-subtle'">
+                  {{ tx.exceedsThreshold ? '🚨 SÍ (ALERTA)' : '✓ NO' }}
+                </span>
+              </td>
+
+              <!-- Reglas Disparadas -->
+              <td>
+                <div class="d-flex flex-wrap gap-1" style="max-width: 250px;">
+                  <span class="badge bg-light text-dark border text-wrap text-start small mb-1"
+                    *ngFor="let reason of tx.reasons">
+                    {{ reason }}
+                  </span>
+                </div>
+              </td>
+
+              <!-- Decisión / Estado con Dropdown individual -->
+              <td class="text-center">
+                <div class="btn-group" ngbDropdown>
+                  <button type="button" class="btn btn-sm rounded-pill px-3 fw-semibold dropdown-toggle" [ngClass]="{
+                            'btn-success': tx.status === 'APROBADA',
+                            'btn-warning text-dark': tx.status === 'RETENIDA',
+                            'btn-danger': tx.status === 'BLOQUEADA',
+                            'btn-outline-secondary': tx.status === 'PENDIENTE'
+                          }" ngbDropdownToggle>
+                    {{ tx.status }}
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end shadow border-0 p-1" ngbDropdownMenu>
+                    <button class="dropdown-item py-1 text-success" (click)="updateSingleStatus(tx, 'APROBADA')">
+                      ✓ Aprobar
+                    </button>
+                    <button class="dropdown-item py-1 text-warning" (click)="updateSingleStatus(tx, 'RETENIDA')">
+                      ⏸️ Retener
+                    </button>
+                    <button class="dropdown-item py-1 text-danger" (click)="updateSingleStatus(tx, 'BLOQUEADA')">
+                      ⛔ Bloquear
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Estado Vacío -->
+            <tr *ngIf="getFilteredSimulations(simulations).length === 0">
+              <td colspan="9" class="text-center py-5">
+                <div class="text-muted">
+                  <div class="fs-1 mb-2">🔍</div>
+                  <h6 class="fw-bold">No se encontraron transacciones simuladas</h6>
+                  <p class="small mb-3">Ajuste los filtros o genere un nuevo lote aleatorio de transacciones.</p>
+                  <button class="btn btn-sm btn-primary" (click)="onGenerateMassive(25)">
+                    Generar 25 Transacciones Aleatorias
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal / Drawer de Simulación Individual -->
+  <div class="modal fade show d-block modal-backdrop-custom" *ngIf="showSingleSimModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-header border-0 pb-0 pt-4 px-4">
+          <div>
+            <h5 class="modal-title fw-bold">➕ Simular Transacción Individual</h5>
+            <small class="text-muted">Configure los parámetros para evaluar el score de riesgo en tiempo real.</small>
+          </div>
+          <button type="button" class="btn-close" (click)="showSingleSimModal = false"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Nombre del Cliente</label>
+              <input type="text" class="form-control" [(ngModel)]="singleForm.customerName">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Monto de la Operación ($)</label>
+              <div class="input-group">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" [(ngModel)]="singleForm.amount" min="1" step="50">
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Canal</label>
+              <select class="form-select" [(ngModel)]="singleForm.channel">
+                <option value="ONLINE">ONLINE (Web)</option>
+                <option value="TRANSFERENCIA_MOVIL">App Móvil</option>
+                <option value="POS">POS Físico</option>
+                <option value="ATM">Cajero ATM</option>
+                <option value="INTERNACIONAL">Internacional SWIFT</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">País de Origen</label>
+              <select class="form-select" [(ngModel)]="singleForm.country">
+                <option value="Perú">Perú (Local)</option>
+                <option value="EE.UU.">EE.UU.</option>
+                <option value="España">España</option>
+                <option value="Rusia">Rusia (Alto Riesgo)</option>
+                <option value="Nigeria">Nigeria (Alto Riesgo)</option>
+                <option value="Islas Caimán">Islas Caimán (Paraíso Fiscal)</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label small fw-bold">Ciudad</label>
+              <input type="text" class="form-control" [(ngModel)]="singleForm.city">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold">Dispositivo / Agente</label>
+              <input type="text" class="form-control" [(ngModel)]="singleForm.device">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label small fw-bold text-muted">Factores de Riesgo Específicos:</label>
+              <div class="d-flex flex-wrap gap-3">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="checkNocturnal"
+                    [(ngModel)]="singleForm.isNocturnal">
+                  <label class="form-check-label small" for="checkNocturnal">Horario Nocturno (Madrugada)</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="checkRapid"
+                    [(ngModel)]="singleForm.isRapidFrequency">
+                  <label class="form-check-label small" for="checkRapid">Frecuencia Rápida (< 60s)</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="checkNewDev" [(ngModel)]="singleForm.isNewDevice">
+                  <label class="form-check-label small" for="checkNewDev">Dispositivo No Enrolado</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer border-0 pt-0 pb-4 px-4">
+          <button type="button" class="btn btn-light" (click)="showSingleSimModal = false">Cancelar</button>
+          <button type="button" class="btn btn-primary fw-semibold px-4 shadow-sm" (click)="onSimulateSingle()">
+            ⚡ Evaluar y Simular
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Flotante -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;" *ngIf="toastMessage">
+    <div class="toast show shadow-lg border-0 rounded-3 text-white" [ngClass]="{
+           'bg-success': toastType === 'success',
+           'bg-danger': toastType === 'warning',
+           'bg-dark': toastType === 'info'
+         }">
+      <div class="d-flex align-items-center p-3">
+        <div class="toast-body p-0 flex-grow-1">
+          {{ toastMessage }}
+        </div>
+        <button type="button" class="btn-close btn-close-white ms-2" (click)="dismissToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

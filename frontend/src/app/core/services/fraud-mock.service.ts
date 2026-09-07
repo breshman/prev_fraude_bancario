@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface FraudAlert {
   id: string;
@@ -9,9 +8,10 @@ export interface FraudAlert {
   amount: number;
   riskScore: number;
   riskLevel: 'BAJO' | 'MEDIO' | 'ALTO' | 'CRITICO';
-  status: 'NUEVA' | 'EN_REVISION' | 'CERRADA';
+  status: 'NUEVA' | 'EN_REVISION' | 'CERRADA' | 'APROBADA' | 'RETENIDA' | 'BLOQUEADA' | 'PENDIENTE';
   date: Date;
   reasons: string[];
+  origin?: 'SISTEMA' | 'SIMULACION';
 }
 
 export interface DashboardMetrics {
@@ -26,7 +26,7 @@ export interface DashboardMetrics {
 })
 export class FraudMockService {
 
-  private mockAlerts: FraudAlert[] = [
+  private alertsSubject = new BehaviorSubject<FraudAlert[]>([
     {
       id: 'ALRT-001',
       transactionId: 'TX-10492',
@@ -36,7 +36,8 @@ export class FraudMockService {
       riskLevel: 'CRITICO',
       status: 'NUEVA',
       date: new Date(),
-      reasons: ['País no habitual', 'Monto inusual']
+      reasons: ['País no habitual', 'Monto inusual'],
+      origin: 'SISTEMA'
     },
     {
       id: 'ALRT-002',
@@ -47,7 +48,8 @@ export class FraudMockService {
       riskLevel: 'ALTO',
       status: 'EN_REVISION',
       date: new Date(Date.now() - 3600000), // Hace 1 hora
-      reasons: ['Alta frecuencia']
+      reasons: ['Alta frecuencia'],
+      origin: 'SISTEMA'
     },
     {
       id: 'ALRT-003',
@@ -58,23 +60,83 @@ export class FraudMockService {
       riskLevel: 'MEDIO',
       status: 'NUEVA',
       date: new Date(Date.now() - 7200000), // Hace 2 horas
-      reasons: ['Dispositivo nuevo']
+      reasons: ['Dispositivo nuevo'],
+      origin: 'SISTEMA'
     }
-  ];
+  ]);
+
+  private baseMonitored = 8940;
+  private extraMonitored = 0;
+
+  private metricsSubject = new BehaviorSubject<DashboardMetrics>({
+    totalAlerts: 145,
+    criticalAlerts: 12,
+    avgRiskScore: 34.5,
+    monitoredTransactions: 8940
+  });
 
   constructor() { }
 
   getDashboardMetrics(): Observable<DashboardMetrics> {
-    const metrics: DashboardMetrics = {
-      totalAlerts: 145,
-      criticalAlerts: 12,
-      avgRiskScore: 34.5,
-      monitoredTransactions: 8940
-    };
-    return of(metrics).pipe(delay(800)); // Simular latencia de red
+    return this.metricsSubject.asObservable();
   }
 
   getRecentAlerts(): Observable<FraudAlert[]> {
-    return of(this.mockAlerts).pipe(delay(1000));
+    return this.alertsSubject.asObservable();
+  }
+
+  addAlert(alert: FraudAlert): void {
+    const current = this.alertsSubject.value;
+    // Evitar duplicados por transactionId
+    if (current.some(a => a.transactionId === alert.transactionId)) {
+      return;
+    }
+    const updated = [alert, ...current];
+    this.alertsSubject.next(updated);
+    this.refreshMetrics(updated);
+  }
+
+  addAlerts(newAlerts: FraudAlert[]): void {
+    const current = this.alertsSubject.value;
+    const existingTxIds = new Set(current.map(a => a.transactionId));
+    const toAdd = newAlerts.filter(a => !existingTxIds.has(a.transactionId));
+    if (toAdd.length === 0) return;
+
+    const updated = [...toAdd, ...current];
+    this.alertsSubject.next(updated);
+    this.refreshMetrics(updated);
+  }
+
+  updateAlertStatus(alertId: string, status: FraudAlert['status']): void {
+    const current = this.alertsSubject.value;
+    const updated = current.map(alert =>
+      alert.id === alertId ? { ...alert, status } : alert
+    );
+    this.alertsSubject.next(updated);
+    this.refreshMetrics(updated);
+  }
+
+  incrementMonitoredTransactions(count: number): void {
+    this.extraMonitored += count;
+    const currentMetrics = this.metricsSubject.value;
+    this.metricsSubject.next({
+      ...currentMetrics,
+      monitoredTransactions: this.baseMonitored + this.extraMonitored
+    });
+  }
+
+  private refreshMetrics(alerts: FraudAlert[]): void {
+    const critical = alerts.filter(a => a.riskLevel === 'CRITICO' && a.status !== 'CERRADA' && a.status !== 'APROBADA').length;
+    const totalScore = alerts.reduce((acc, a) => acc + a.riskScore, 0);
+    const avgScore = alerts.length > 0 ? Math.round((totalScore / alerts.length) * 10) / 10 : 34.5;
+    const currentMetrics = this.metricsSubject.value;
+
+    this.metricsSubject.next({
+      ...currentMetrics,
+      totalAlerts: 145 + (alerts.length - 3),
+      criticalAlerts: Math.max(12, critical),
+      avgRiskScore: avgScore,
+      monitoredTransactions: this.baseMonitored + this.extraMonitored
+    });
   }
 }
