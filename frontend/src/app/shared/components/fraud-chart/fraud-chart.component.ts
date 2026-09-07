@@ -236,7 +236,7 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
             return [
               `Score: ${tx.riskScore}/100 [${tx.riskLevel}]`,
               `Estado: ${statusTag}`,
-              `Monto: $${tx.amount.toFixed(2)} | Canal: ${tx.channel}`,
+              `Monto: S/ ${tx.amount.toFixed(2)} | Canal: ${tx.channel}`,
               `Ubicación: ${tx.country} (${tx.city})`,
               `Reglas: ${tx.reasons?.[0] || 'Comportamiento habitual'}`
             ];

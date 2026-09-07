@@ -174,10 +174,10 @@ export class SimulationService implements OnDestroy {
     // Regla 1: Monto
     if (params.amount >= 10000) {
       score += 32;
-      reasons.push(`Monto elevado ($${params.amount.toFixed(2)}) muy superior a la media histórica`);
+      reasons.push(`Monto elevado (S/ ${params.amount.toFixed(2)}) muy superior a la media histórica`);
     } else if (params.amount >= 4000) {
       score += 18;
-      reasons.push(`Monto considerable ($${params.amount.toFixed(2)}) requiere validación`);
+      reasons.push(`Monto considerable (S/ ${params.amount.toFixed(2)}) requiere validación`);
     }
 
     // Regla 2: Ubicación
@@ -305,7 +305,7 @@ export class SimulationService implements OnDestroy {
         loc = this.getRandomItem(this.countries);
         dev = this.getRandomItem(this.devices);
         ch = this.getRandomItem(this.channels);
-        reasons.push(`Monto medio-alto de $${amount} requiere validación`);
+        reasons.push(`Monto medio-alto de S/ ${amount} requiere validación`);
         if (loc.risk > 0) reasons.push(`Ubicación inusual: ${loc.country} (${loc.city})`);
       } else {
         // PICO AGUDO DE FRAUDE (Supera el umbral)
@@ -314,7 +314,7 @@ export class SimulationService implements OnDestroy {
         loc = this.getRandomItem(this.countries.filter(c => c.risk > 0));
         dev = this.getRandomItem(this.devices.slice(5)); // Anónimos o emuladores
         ch = this.getRandomItem(['INTERNACIONAL', 'ONLINE', 'TRANSFERENCIA_MOVIL'] as const);
-        reasons.push(`Pico de riesgo: Retiro o transferencia de alto valor ($${amount})`);
+        reasons.push(`Pico de riesgo: Retiro o transferencia de alto valor (S/ ${amount})`);
         reasons.push(`Geolocalización crítica desde ${loc.country} (${loc.city})`);
         reasons.push('Dispositivo sospechoso o red con proxy Tor/VPN');
       }

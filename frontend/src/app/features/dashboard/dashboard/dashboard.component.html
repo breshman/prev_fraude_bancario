@@ -107,10 +107,15 @@
               <th scope="col">Score de Riesgo</th>
               <th scope="col">Nivel</th>
               <th scope="col">Estado</th>
+              <th scope="col" class="text-end">Acción</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let alert of (recentAlerts$ | async)?.slice(0, 8)">
+            <tr *ngFor="let alert of (recentAlerts$ | async)?.slice(0, 8)"
+                (click)="openAlertDetails(alert)"
+                class="clickable-row"
+                style="cursor: pointer;"
+                title="Haga clic para ver el detalle de la transacción">
               <td>
                 <div class="d-flex align-items-center gap-2">
                   <strong>{{ alert.id }}</strong>
@@ -122,7 +127,7 @@
                 <small class="text-muted">{{ alert.date | date:'shortTime' }}</small>
               </td>
               <td>{{ alert.customerName }}</td>
-              <td class="fw-bold">${{ alert.amount | number:'1.2-2' }}</td>
+              <td class="fw-bold">S/ {{ alert.amount | number:'1.2-2' }}</td>
               <td>
                 <div class="d-flex align-items-center" style="max-width: 170px;">
                   <span class="me-2 fw-bold"
@@ -168,9 +173,166 @@
                   {{ alert.status }}
                 </span>
               </td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary fw-semibold"
+                        (click)="openAlertDetails(alert); $event.stopPropagation()">
+                  🔍 Ver Detalle
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Detalle de Alerta y Transacción -->
+  <div class="modal fade show d-block modal-backdrop-custom" *ngIf="selectedAlert as alert" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+        <!-- Modal Header -->
+        <div class="modal-header border-0 pb-0 pt-4 px-4 bg-light">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="badge" [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-primary-subtle text-primary border border-primary-subtle'">
+                {{ alert.origin === 'SIMULACION' ? '⚡ Alerta de Simulación' : '🏦 Alerta de Sistema Central' }}
+              </span>
+              <span class="badge" [ngClass]="{
+                'bg-danger': alert.riskLevel === 'CRITICO',
+                'bg-warning text-dark': alert.riskLevel === 'ALTO',
+                'bg-secondary': alert.riskLevel === 'MEDIO',
+                'bg-success': alert.riskLevel === 'BAJO'
+              }">
+                {{ alert.riskLevel }}
+              </span>
+            </div>
+            <h4 class="modal-title fw-bold text-dark mb-0">
+              Detalle de Alerta: {{ alert.id }}
+            </h4>
+            <small class="text-muted">Transacción ID: <span class="font-monospace fw-semibold">{{ alert.transactionId }}</span></small>
+          </div>
+          <button type="button" class="btn-close" (click)="closeAlertDetails()" aria-label="Close"></button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body p-4">
+          <!-- Resumen de Datos Clave -->
+          <div class="row g-3 mb-4">
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded-3 h-100">
+                <div class="text-muted small text-uppercase fw-semibold">Cliente</div>
+                <div class="fw-bold fs-6 text-dark mt-1">{{ alert.customerName }}</div>
+                <small class="text-muted font-monospace" *ngIf="selectedTxDetails as txDet">
+                  Cuenta: {{ txDet.accountId }}
+                </small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded-3 h-100">
+                <div class="text-muted small text-uppercase fw-semibold">Monto de Operación</div>
+                <div class="fw-bold fs-5 text-dark mt-1">S/ {{ alert.amount | number:'1.2-2' }}</div>
+                <small class="text-muted">Fecha: {{ alert.date | date:'short' }}</small>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="p-3 bg-light rounded-3 h-100">
+                <div class="text-muted small text-uppercase fw-semibold">Score de Riesgo</div>
+                <div class="d-flex align-items-center gap-2 mt-1">
+                  <span class="fw-bold fs-5" [ngClass]="alert.riskScore >= 75 ? 'text-danger' : alert.riskScore >= 40 ? 'text-warning-emphasis' : 'text-success'">
+                    {{ alert.riskScore }} / 100
+                  </span>
+                  <span class="badge bg-danger text-white rounded-pill px-2 py-1 small" *ngIf="alert.riskScore >= 70">
+                    Supera Umbral
+                  </span>
+                </div>
+                <div class="progress mt-2" style="height: 6px;">
+                  <div class="progress-bar" role="progressbar"
+                       [ngClass]="alert.riskScore >= 75 ? 'bg-danger' : alert.riskScore >= 40 ? 'bg-warning' : 'bg-success'"
+                       [style.width]="alert.riskScore + '%'">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Datos Adicionales de Telemetría (Canal, Ubicación, Dispositivo) -->
+          <div class="card border-0 bg-light-subtle rounded-3 p-3 mb-4" *ngIf="selectedTxDetails as tx">
+            <h6 class="fw-bold text-muted text-uppercase small mb-2">Telemetría y Contexto de Seguridad</h6>
+            <div class="row g-2 small">
+              <div class="col-sm-6 col-md-3">
+                <span class="text-muted d-block">Canal:</span>
+                <strong class="text-dark">{{ tx.channel }}</strong>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <span class="text-muted d-block">Ubicación:</span>
+                <strong class="text-dark">{{ tx.country }} ({{ tx.city }})</strong>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <span class="text-muted d-block">Dirección IP:</span>
+                <span class="font-monospace text-dark">{{ tx.ipAddress }}</span>
+              </div>
+              <div class="col-sm-6 col-md-3">
+                <span class="text-muted d-block">Dispositivo:</span>
+                <span class="text-dark text-truncate d-inline-block" style="max-width: 140px;" [title]="tx.device">
+                  {{ tx.device }}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reglas de Fraude Disparadas -->
+          <div class="mb-4">
+            <h6 class="fw-bold text-muted text-uppercase small mb-2">Reglas de Fraude y Anomalías Disparadas</h6>
+            <div class="list-group">
+              <div class="list-group-item list-group-item-danger d-flex align-items-center gap-2 border-0 rounded-3 mb-1"
+                   *ngFor="let reason of alert.reasons">
+                <span class="fs-5">⚠️</span>
+                <span>{{ reason }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Estado Actual -->
+          <div class="d-flex align-items-center gap-2 p-2 bg-light rounded-3">
+            <span class="text-muted small fw-semibold">Estado de Resolución:</span>
+            <span class="badge fs-6" [ngClass]="{
+              'bg-success': alert.status === 'APROBADA' || alert.status === 'CERRADA',
+              'bg-warning text-dark': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
+              'bg-danger': alert.status === 'BLOQUEADA',
+              'bg-primary': alert.status === 'NUEVA',
+              'bg-secondary': alert.status === 'PENDIENTE'
+            }">
+              {{ alert.status }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Modal Footer con Acciones de Analista -->
+        <div class="modal-footer border-0 pt-0 pb-4 px-4 d-flex justify-content-between">
+          <button type="button" class="btn btn-light" (click)="closeAlertDetails()">
+            Cerrar
+          </button>
+
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-success fw-semibold"
+                    [disabled]="alert.status === 'APROBADA' || alert.status === 'CERRADA'"
+                    (click)="onApproveAlert()">
+              ✓ Aprobar
+            </button>
+            <button type="button" class="btn btn-outline-warning fw-semibold text-dark"
+                    [disabled]="alert.status === 'RETENIDA' || alert.status === 'EN_REVISION'"
+                    (click)="onHoldAlert()">
+              ⏸️ Retener
+            </button>
+            <button type="button" class="btn btn-danger fw-semibold shadow-sm"
+                    [disabled]="alert.status === 'BLOQUEADA'"
+                    (click)="onBlockAlert()">
+              ⛔ Bloquear
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

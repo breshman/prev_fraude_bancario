@@ -48,7 +48,7 @@ export class ExcelExportUtil {
       'Fecha y Hora',
       'Cliente',
       'Cuenta Origen',
-      'Monto ($)',
+      'Monto (S/)',
       'Canal',
       'País',
       'Ciudad',
@@ -188,7 +188,7 @@ export class ExcelExportUtil {
   <Style ss:ID="sCurrency">
    <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
    <Font ss:FontName="Calibri" ss:Size="10" ss:Color="#0F172A" ss:Bold="1"/>
-   <NumberFormat ss:Format="&quot;$&quot;#,##0.00"/>
+   <NumberFormat ss:Format="&quot;S/ &quot;#,##0.00"/>
   </Style>
   <Style ss:ID="sAlertYes">
    <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
@@ -239,7 +239,7 @@ export class ExcelExportUtil {
     <Cell ss:StyleID="sHeader"><Data ss:Type="String">Fecha y Hora</Data></Cell>
     <Cell ss:StyleID="sHeader"><Data ss:Type="String">Cliente</Data></Cell>
     <Cell ss:StyleID="sHeader"><Data ss:Type="String">Cuenta Origen</Data></Cell>
-    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Monto ($)</Data></Cell>
+    <Cell ss:StyleID="sHeader"><Data ss:Type="String">Monto (S/)</Data></Cell>
     <Cell ss:StyleID="sHeader"><Data ss:Type="String">Canal</Data></Cell>
     <Cell ss:StyleID="sHeader"><Data ss:Type="String">País</Data></Cell>
     <Cell ss:StyleID="sHeader"><Data ss:Type="String">Ciudad</Data></Cell>

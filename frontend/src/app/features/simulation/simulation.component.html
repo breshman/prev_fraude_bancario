@@ -150,7 +150,7 @@
           </div>
           <div>
             <div class="text-muted text-uppercase fw-semibold small">Monto en Riesgo</div>
-            <h3 class="fw-bold mb-0 text-dark">${{ getMetrics(simulations).totalAmountAtRisk | number:'1.2-2' }}</h3>
+            <h3 class="fw-bold mb-0 text-dark">S/ {{ getMetrics(simulations).totalAmountAtRisk | number:'1.2-2' }}</h3>
           </div>
         </div>
       </div>
@@ -236,7 +236,7 @@
         <div *ngIf="notice.transaction as tx" class="mt-1 small">
           <strong>Transacción:</strong> {{ tx.id }} &bull;
           <strong>Cliente:</strong> {{ tx.customerName }} &bull;
-          <strong>Monto:</strong> ${{ tx.amount | number:'1.2-2' }} &bull;
+          <strong>Monto:</strong> S/ {{ tx.amount | number:'1.2-2' }} &bull;
           <strong>Score:</strong> <span class="badge bg-danger">{{ tx.riskScore }} / 100</span>
         </div>
       </div>
@@ -384,7 +384,7 @@
 
               <!-- Monto -->
               <td class="text-end">
-                <div class="fw-bold text-dark fs-6">${{ tx.amount | number:'1.2-2' }}</div>
+                <div class="fw-bold text-dark fs-6">S/ {{ tx.amount | number:'1.2-2' }}</div>
               </td>
 
               <!-- Score y Barra de Progreso -->
@@ -498,9 +498,9 @@
             </div>
 
             <div class="col-md-6">
-              <label class="form-label small fw-bold">Monto de la Operación ($)</label>
+              <label class="form-label small fw-bold">Monto de la Operación (S/)</label>
               <div class="input-group">
-                <span class="input-group-text">$</span>
+                <span class="input-group-text">S/</span>
                 <input type="number" class="form-control" [(ngModel)]="singleForm.amount" min="1" step="50">
               </div>
             </div>
