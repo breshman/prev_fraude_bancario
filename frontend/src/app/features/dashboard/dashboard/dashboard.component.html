@@ -12,15 +12,14 @@
     <div class="d-flex flex-wrap align-items-center gap-2">
       <!-- Indicador de Streaming en Vivo -->
       <span class="badge px-3 py-2 rounded-pill fw-semibold d-flex align-items-center gap-2"
-            [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-badge-pulse' : 'bg-light text-muted border'">
+        [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-badge-pulse' : 'bg-light text-muted border'">
         <span class="stream-dot" [class.stream-active]="isLiveStreaming$ | async"></span>
         {{ (isLiveStreaming$ | async) ? 'SIMULACIÓN EN VIVO' : 'STREAMING PAUSADO' }}
       </span>
 
       <!-- Botón Streaming -->
       <button class="btn btn-sm fw-semibold shadow-sm"
-              [ngClass]="(isLiveStreaming$ | async) ? 'btn-danger' : 'btn-outline-danger'"
-              (click)="onToggleStreaming()">
+        [ngClass]="(isLiveStreaming$ | async) ? 'btn-danger' : 'btn-outline-danger'" (click)="onToggleStreaming()">
         {{ (isLiveStreaming$ | async) ? '⏹️ Detener Streaming' : '▶️ Modo En Vivo' }}
       </button>
 
@@ -43,7 +42,7 @@
     </div>
     <div class="col-md-3">
       <div class="card border-0 shadow-sm rounded-4 h-100 metric-card"
-           [class.border-start-danger]="metrics.criticalAlerts > 0">
+        [class.border-start-danger]="metrics.criticalAlerts > 0">
         <div class="card-body">
           <h6 class="text-muted text-uppercase fw-semibold mb-2">Alertas Críticas</h6>
           <h2 class="display-5 fw-bold mb-0 text-danger">{{metrics.criticalAlerts}}</h2>
@@ -76,12 +75,10 @@
     </div>
   </ng-template>
 
-  <!-- GRÁFICO DE PICOS DE RIESGO Y LÍNEA DE UMBRAL (Chart.js) -->
+  <!-- GRÁFICO DE PICOS DE RIESGO Y LÍNEA DE UMBRAL -->
   <div class="mb-4" *ngIf="simulations$ | async as simulations">
-    <app-fraud-chart
-      [transactions]="simulations"
-      [threshold]="(threshold$ | async) ?? 70"
-      title="Monitoreo Continuo de Picos de Riesgo y Superación de Umbral (Chart.js)">
+    <app-fraud-chart [transactions]="simulations" [threshold]="(threshold$ | async) ?? 70"
+      title="Monitoreo Continuo de Picos de Riesgo y Superación de Umbral">
     </app-fraud-chart>
   </div>
 
@@ -90,7 +87,8 @@
     <div class="card-header bg-white border-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
       <div>
         <h5 class="fw-bold mb-0 text-dark">Alertas Recientes en Tiempo Real</h5>
-        <small class="text-muted">Incluye alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el umbral.</small>
+        <small class="text-muted">Incluye alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el
+          umbral.</small>
       </div>
       <a routerLink="/alerts" class="btn btn-sm btn-outline-primary fw-semibold">
         Ver Todas las Alertas ➜
@@ -111,16 +109,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let alert of (recentAlerts$ | async)?.slice(0, 8)"
-                (click)="openAlertDetails(alert)"
-                class="clickable-row"
-                style="cursor: pointer;"
-                title="Haga clic para ver el detalle de la transacción">
+            <tr *ngFor="let alert of (recentAlerts$ | async)?.slice(0, 8)" (click)="openAlertDetails(alert)"
+              class="clickable-row" style="cursor: pointer;" title="Haga clic para ver el detalle de la transacción">
               <td>
                 <div class="d-flex align-items-center gap-2">
                   <strong>{{ alert.id }}</strong>
                   <span class="badge"
-                        [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-light text-secondary border'">
+                    [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-light text-secondary border'">
                     {{ alert.origin === 'SIMULACION' ? '⚡ Simulado' : '🏦 Sistema' }}
                   </span>
                 </div>
@@ -130,8 +125,7 @@
               <td class="fw-bold">S/ {{ alert.amount | number:'1.2-2' }}</td>
               <td>
                 <div class="d-flex align-items-center" style="max-width: 170px;">
-                  <span class="me-2 fw-bold"
-                        [ngClass]="{
+                  <span class="me-2 fw-bold" [ngClass]="{
                           'text-danger': alert.riskScore >= 75,
                           'text-warning-emphasis': alert.riskScore >= 40 && alert.riskScore < 75,
                           'text-success': alert.riskScore < 40
@@ -139,20 +133,17 @@
                     {{ alert.riskScore }}
                   </span>
                   <div class="progress flex-grow-1" style="height: 6px;">
-                    <div class="progress-bar" role="progressbar"
-                         [ngClass]="{
+                    <div class="progress-bar" role="progressbar" [ngClass]="{
                            'bg-danger': alert.riskScore > 75,
                            'bg-warning': alert.riskScore >= 40 && alert.riskScore <= 75,
                            'bg-success': alert.riskScore < 40
-                         }"
-                         [style.width]="alert.riskScore + '%'">
+                         }" [style.width]="alert.riskScore + '%'">
                     </div>
                   </div>
                 </div>
               </td>
               <td>
-                <span class="badge rounded-pill"
-                      [ngClass]="{
+                <span class="badge rounded-pill" [ngClass]="{
                         'bg-danger': alert.riskLevel === 'CRITICO',
                         'bg-warning text-dark': alert.riskLevel === 'ALTO',
                         'bg-secondary': alert.riskLevel === 'MEDIO',
@@ -162,8 +153,7 @@
                 </span>
               </td>
               <td>
-                <span class="badge"
-                      [ngClass]="{
+                <span class="badge" [ngClass]="{
                         'bg-primary': alert.status === 'NUEVA',
                         'bg-warning text-dark': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
                         'bg-success': alert.status === 'CERRADA' || alert.status === 'APROBADA',
@@ -175,7 +165,7 @@
               </td>
               <td class="text-end">
                 <button class="btn btn-sm btn-outline-primary fw-semibold"
-                        (click)="openAlertDetails(alert); $event.stopPropagation()">
+                  (click)="openAlertDetails(alert); $event.stopPropagation()">
                   🔍 Ver Detalle
                 </button>
               </td>
@@ -194,7 +184,8 @@
         <div class="modal-header border-0 pb-0 pt-4 px-4 bg-light">
           <div>
             <div class="d-flex align-items-center gap-2 mb-1">
-              <span class="badge" [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-primary-subtle text-primary border border-primary-subtle'">
+              <span class="badge"
+                [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-primary-subtle text-primary border border-primary-subtle'">
                 {{ alert.origin === 'SIMULACION' ? '⚡ Alerta de Simulación' : '🏦 Alerta de Sistema Central' }}
               </span>
               <span class="badge" [ngClass]="{
@@ -209,7 +200,8 @@
             <h4 class="modal-title fw-bold text-dark mb-0">
               Detalle de Alerta: {{ alert.id }}
             </h4>
-            <small class="text-muted">Transacción ID: <span class="font-monospace fw-semibold">{{ alert.transactionId }}</span></small>
+            <small class="text-muted">Transacción ID: <span class="font-monospace fw-semibold">{{ alert.transactionId
+                }}</span></small>
           </div>
           <button type="button" class="btn-close" (click)="closeAlertDetails()" aria-label="Close"></button>
         </div>
@@ -240,7 +232,8 @@
               <div class="p-3 bg-light rounded-3 h-100">
                 <div class="text-muted small text-uppercase fw-semibold">Score de Riesgo</div>
                 <div class="d-flex align-items-center gap-2 mt-1">
-                  <span class="fw-bold fs-5" [ngClass]="alert.riskScore >= 75 ? 'text-danger' : alert.riskScore >= 40 ? 'text-warning-emphasis' : 'text-success'">
+                  <span class="fw-bold fs-5"
+                    [ngClass]="alert.riskScore >= 75 ? 'text-danger' : alert.riskScore >= 40 ? 'text-warning-emphasis' : 'text-success'">
                     {{ alert.riskScore }} / 100
                   </span>
                   <span class="badge bg-danger text-white rounded-pill px-2 py-1 small" *ngIf="alert.riskScore >= 70">
@@ -249,8 +242,8 @@
                 </div>
                 <div class="progress mt-2" style="height: 6px;">
                   <div class="progress-bar" role="progressbar"
-                       [ngClass]="alert.riskScore >= 75 ? 'bg-danger' : alert.riskScore >= 40 ? 'bg-warning' : 'bg-success'"
-                       [style.width]="alert.riskScore + '%'">
+                    [ngClass]="alert.riskScore >= 75 ? 'bg-danger' : alert.riskScore >= 40 ? 'bg-warning' : 'bg-success'"
+                    [style.width]="alert.riskScore + '%'">
                   </div>
                 </div>
               </div>
@@ -286,8 +279,9 @@
           <div class="mb-4">
             <h6 class="fw-bold text-muted text-uppercase small mb-2">Reglas de Fraude y Anomalías Disparadas</h6>
             <div class="list-group">
-              <div class="list-group-item list-group-item-danger d-flex align-items-center gap-2 border-0 rounded-3 mb-1"
-                   *ngFor="let reason of alert.reasons">
+              <div
+                class="list-group-item list-group-item-danger d-flex align-items-center gap-2 border-0 rounded-3 mb-1"
+                *ngFor="let reason of alert.reasons">
                 <span class="fs-5">⚠️</span>
                 <span>{{ reason }}</span>
               </div>
@@ -317,18 +311,15 @@
 
           <div class="d-flex gap-2">
             <button type="button" class="btn btn-outline-success fw-semibold"
-                    [disabled]="alert.status === 'APROBADA' || alert.status === 'CERRADA'"
-                    (click)="onApproveAlert()">
+              [disabled]="alert.status === 'APROBADA' || alert.status === 'CERRADA'" (click)="onApproveAlert()">
               ✓ Aprobar
             </button>
             <button type="button" class="btn btn-outline-warning fw-semibold text-dark"
-                    [disabled]="alert.status === 'RETENIDA' || alert.status === 'EN_REVISION'"
-                    (click)="onHoldAlert()">
+              [disabled]="alert.status === 'RETENIDA' || alert.status === 'EN_REVISION'" (click)="onHoldAlert()">
               ⏸️ Retener
             </button>
-            <button type="button" class="btn btn-danger fw-semibold shadow-sm"
-                    [disabled]="alert.status === 'BLOQUEADA'"
-                    (click)="onBlockAlert()">
+            <button type="button" class="btn btn-danger fw-semibold shadow-sm" [disabled]="alert.status === 'BLOQUEADA'"
+              (click)="onBlockAlert()">
               ⛔ Bloquear
             </button>
           </div>
