@@ -2,8 +2,8 @@
   <!-- Encabezado con Controles de Simulación Rápida -->
   <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
     <div>
-      <h2 class="mb-1 fw-bold text-black">Dashboard de Prevención de Fraude</h2>
-      <p class="text-muted mb-0">
+      <h2 class="mb-1 fw-bold text-body">Dashboard de Prevención de Fraude</h2>
+      <p class="text-body-secondary mb-0">
         Monitoreo en tiempo real de transacciones bancarias, alertas críticas y correlación de picos de riesgo.
       </p>
     </div>
@@ -12,7 +12,7 @@
     <div class="d-flex flex-wrap align-items-center gap-2">
       <!-- Indicador de Streaming en Vivo -->
       <span class="badge px-3 py-2 rounded-pill fw-semibold d-flex align-items-center gap-2"
-        [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-badge-pulse' : 'bg-light text-muted border'">
+        [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-badge-pulse' : 'bg-body-secondary text-body-secondary border'">
         <span class="stream-dot" [class.stream-active]="isLiveStreaming$ | async"></span>
         {{ (isLiveStreaming$ | async) ? 'SIMULACIÓN EN VIVO' : 'STREAMING PAUSADO' }}
       </span>
@@ -35,7 +35,7 @@
     <div class="col-md-3">
       <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
         <div class="card-body">
-          <h6 class="text-muted text-uppercase fw-semibold mb-2">Total Alertas</h6>
+          <h6 class="text-body-secondary text-uppercase fw-semibold mb-2">Total Alertas</h6>
           <h2 class="display-5 fw-bold mb-0 text-primary">{{metrics.totalAlerts}}</h2>
         </div>
       </div>
@@ -44,7 +44,7 @@
       <div class="card border-0 shadow-sm rounded-4 h-100 metric-card"
         [class.border-start-danger]="metrics.criticalAlerts > 0">
         <div class="card-body">
-          <h6 class="text-muted text-uppercase fw-semibold mb-2">Alertas Críticas</h6>
+          <h6 class="text-body-secondary text-uppercase fw-semibold mb-2">Alertas Críticas</h6>
           <h2 class="display-5 fw-bold mb-0 text-danger">{{metrics.criticalAlerts}}</h2>
         </div>
       </div>
@@ -52,7 +52,7 @@
     <div class="col-md-3">
       <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
         <div class="card-body">
-          <h6 class="text-muted text-uppercase fw-semibold mb-2">Score Promedio</h6>
+          <h6 class="text-body-secondary text-uppercase fw-semibold mb-2">Score Promedio</h6>
           <h2 class="display-5 fw-bold mb-0 text-warning">{{metrics.avgRiskScore}}</h2>
         </div>
       </div>
@@ -60,7 +60,7 @@
     <div class="col-md-3">
       <div class="card border-0 shadow-sm rounded-4 h-100 metric-card">
         <div class="card-body">
-          <h6 class="text-muted text-uppercase fw-semibold mb-2">TX Monitoreadas</h6>
+          <h6 class="text-body-secondary text-uppercase fw-semibold mb-2">TX Monitoreadas</h6>
           <h2 class="display-5 fw-bold mb-0 text-success">{{metrics.monitoredTransactions | number}}</h2>
         </div>
       </div>
@@ -84,10 +84,10 @@
 
   <!-- Tabla de Alertas Recientes (Conectada con las Alertas Generadas por la Simulación) -->
   <div class="card border-0 shadow-sm rounded-4 mb-4">
-    <div class="card-header bg-white border-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
+    <div class="card-header bg-body border-0 pt-4 pb-2 px-4 d-flex justify-content-between align-items-center">
       <div>
-        <h5 class="fw-bold mb-0 text-dark">Alertas Recientes en Tiempo Real</h5>
-        <small class="text-muted">Incluye alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el
+        <h5 class="fw-bold mb-0 text-body">Alertas Recientes en Tiempo Real</h5>
+        <small class="text-body-secondary">Incluye alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el
           umbral.</small>
       </div>
       <a routerLink="/alerts" class="btn btn-sm btn-outline-primary fw-semibold">
@@ -97,7 +97,7 @@
     <div class="card-body px-4">
       <div class="table-responsive">
         <table class="table table-hover align-middle">
-          <thead class="table-light text-muted small text-uppercase">
+          <thead class="table-light text-body-secondary small text-uppercase">
             <tr>
               <th scope="col">ID / Origen</th>
               <th scope="col">Cliente</th>
@@ -115,11 +115,11 @@
                 <div class="d-flex align-items-center gap-2">
                   <strong>{{ alert.id }}</strong>
                   <span class="badge"
-                    [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-light text-secondary border'">
+                    [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-body-secondary text-body-secondary border'">
                     {{ alert.origin === 'SIMULACION' ? '⚡ Simulado' : '🏦 Sistema' }}
                   </span>
                 </div>
-                <small class="text-muted">{{ alert.date | date:'shortTime' }}</small>
+                <small class="text-body-secondary">{{ alert.date | date:'shortTime' }}</small>
               </td>
               <td>{{ alert.customerName }}</td>
               <td class="fw-bold">S/ {{ alert.amount | number:'1.2-2' }}</td>
@@ -144,21 +144,21 @@
               </td>
               <td>
                 <span class="badge rounded-pill" [ngClass]="{
-                        'bg-danger': alert.riskLevel === 'CRITICO',
-                        'bg-warning text-dark': alert.riskLevel === 'ALTO',
-                        'bg-secondary': alert.riskLevel === 'MEDIO',
-                        'bg-success': alert.riskLevel === 'BAJO'
+                        'bg-danger-subtle text-danger border border-danger-subtle': alert.riskLevel === 'CRITICO',
+                        'bg-warning-subtle text-warning-emphasis border border-warning-subtle': alert.riskLevel === 'ALTO',
+                        'bg-secondary-subtle text-secondary border border-secondary-subtle': alert.riskLevel === 'MEDIO',
+                        'bg-success-subtle text-success border border-success-subtle': alert.riskLevel === 'BAJO'
                       }">
                   {{ alert.riskLevel }}
                 </span>
               </td>
               <td>
-                <span class="badge" [ngClass]="{
-                        'bg-primary': alert.status === 'NUEVA',
-                        'bg-warning text-dark': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
-                        'bg-success': alert.status === 'CERRADA' || alert.status === 'APROBADA',
-                        'bg-danger': alert.status === 'BLOQUEADA',
-                        'bg-secondary': alert.status === 'PENDIENTE'
+                <span class="badge rounded-pill" [ngClass]="{
+                        'bg-primary-subtle text-primary border border-primary-subtle': alert.status === 'NUEVA',
+                        'bg-warning-subtle text-warning-emphasis border border-warning-subtle': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
+                        'bg-success-subtle text-success border border-success-subtle': alert.status === 'CERRADA' || alert.status === 'APROBADA',
+                        'bg-danger-subtle text-danger border border-danger-subtle': alert.status === 'BLOQUEADA',
+                        'bg-secondary-subtle text-secondary border border-secondary-subtle': alert.status === 'PENDIENTE'
                       }">
                   {{ alert.status }}
                 </span>
@@ -181,26 +181,26 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
         <!-- Modal Header -->
-        <div class="modal-header border-0 pb-0 pt-4 px-4 bg-light">
+        <div class="modal-header border-0 pb-0 pt-4 px-4 bg-body-tertiary">
           <div>
             <div class="d-flex align-items-center gap-2 mb-1">
               <span class="badge"
                 [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-primary-subtle text-primary border border-primary-subtle'">
                 {{ alert.origin === 'SIMULACION' ? '⚡ Alerta de Simulación' : '🏦 Alerta de Sistema Central' }}
               </span>
-              <span class="badge" [ngClass]="{
-                'bg-danger': alert.riskLevel === 'CRITICO',
-                'bg-warning text-dark': alert.riskLevel === 'ALTO',
-                'bg-secondary': alert.riskLevel === 'MEDIO',
-                'bg-success': alert.riskLevel === 'BAJO'
+              <span class="badge rounded-pill" [ngClass]="{
+                'bg-danger-subtle text-danger border border-danger-subtle': alert.riskLevel === 'CRITICO',
+                'bg-warning-subtle text-warning-emphasis border border-warning-subtle': alert.riskLevel === 'ALTO',
+                'bg-secondary-subtle text-secondary border border-secondary-subtle': alert.riskLevel === 'MEDIO',
+                'bg-success-subtle text-success border border-success-subtle': alert.riskLevel === 'BAJO'
               }">
                 {{ alert.riskLevel }}
               </span>
             </div>
-            <h4 class="modal-title fw-bold text-dark mb-0">
+            <h4 class="modal-title fw-bold text-body mb-0">
               Detalle de Alerta: {{ alert.id }}
             </h4>
-            <small class="text-muted">Transacción ID: <span class="font-monospace fw-semibold">{{ alert.transactionId
+            <small class="text-body-secondary">Transacción ID: <span class="font-monospace fw-semibold">{{ alert.transactionId
                 }}</span></small>
           </div>
           <button type="button" class="btn-close" (click)="closeAlertDetails()" aria-label="Close"></button>
@@ -211,26 +211,26 @@
           <!-- Resumen de Datos Clave -->
           <div class="row g-3 mb-4">
             <div class="col-md-4">
-              <div class="p-3 bg-light rounded-3 h-100">
-                <div class="text-muted small text-uppercase fw-semibold">Cliente</div>
-                <div class="fw-bold fs-6 text-dark mt-1">{{ alert.customerName }}</div>
-                <small class="text-muted font-monospace" *ngIf="selectedTxDetails as txDet">
+              <div class="p-3 bg-body-tertiary rounded-3 h-100">
+                <div class="text-body-secondary small text-uppercase fw-semibold">Cliente</div>
+                <div class="fw-bold fs-6 text-body mt-1">{{ alert.customerName }}</div>
+                <small class="text-body-secondary font-monospace" *ngIf="selectedTxDetails as txDet">
                   Cuenta: {{ txDet.accountId }}
                 </small>
               </div>
             </div>
 
             <div class="col-md-4">
-              <div class="p-3 bg-light rounded-3 h-100">
-                <div class="text-muted small text-uppercase fw-semibold">Monto de Operación</div>
-                <div class="fw-bold fs-5 text-dark mt-1">S/ {{ alert.amount | number:'1.2-2' }}</div>
-                <small class="text-muted">Fecha: {{ alert.date | date:'short' }}</small>
+              <div class="p-3 bg-body-tertiary rounded-3 h-100">
+                <div class="text-body-secondary small text-uppercase fw-semibold">Monto de Operación</div>
+                <div class="fw-bold fs-5 text-body mt-1">S/ {{ alert.amount | number:'1.2-2' }}</div>
+                <small class="text-body-secondary">Fecha: {{ alert.date | date:'short' }}</small>
               </div>
             </div>
 
             <div class="col-md-4">
-              <div class="p-3 bg-light rounded-3 h-100">
-                <div class="text-muted small text-uppercase fw-semibold">Score de Riesgo</div>
+              <div class="p-3 bg-body-tertiary rounded-3 h-100">
+                <div class="text-body-secondary small text-uppercase fw-semibold">Score de Riesgo</div>
                 <div class="d-flex align-items-center gap-2 mt-1">
                   <span class="fw-bold fs-5"
                     [ngClass]="alert.riskScore >= 75 ? 'text-danger' : alert.riskScore >= 40 ? 'text-warning-emphasis' : 'text-success'">
@@ -251,24 +251,24 @@
           </div>
 
           <!-- Datos Adicionales de Telemetría (Canal, Ubicación, Dispositivo) -->
-          <div class="card border-0 bg-light-subtle rounded-3 p-3 mb-4" *ngIf="selectedTxDetails as tx">
-            <h6 class="fw-bold text-muted text-uppercase small mb-2">Telemetría y Contexto de Seguridad</h6>
+          <div class="card border-0 bg-body-tertiary rounded-3 p-3 mb-4" *ngIf="selectedTxDetails as tx">
+            <h6 class="fw-bold text-body-secondary text-uppercase small mb-2">Telemetría y Contexto de Seguridad</h6>
             <div class="row g-2 small">
               <div class="col-sm-6 col-md-3">
-                <span class="text-muted d-block">Canal:</span>
-                <strong class="text-dark">{{ tx.channel }}</strong>
+                <span class="text-body-secondary d-block">Canal:</span>
+                <strong class="text-body">{{ tx.channel }}</strong>
               </div>
               <div class="col-sm-6 col-md-3">
-                <span class="text-muted d-block">Ubicación:</span>
-                <strong class="text-dark">{{ tx.country }} ({{ tx.city }})</strong>
+                <span class="text-body-secondary d-block">Ubicación:</span>
+                <strong class="text-body">{{ tx.country }} ({{ tx.city }})</strong>
               </div>
               <div class="col-sm-6 col-md-3">
-                <span class="text-muted d-block">Dirección IP:</span>
-                <span class="font-monospace text-dark">{{ tx.ipAddress }}</span>
+                <span class="text-body-secondary d-block">Dirección IP:</span>
+                <span class="font-monospace text-body">{{ tx.ipAddress }}</span>
               </div>
               <div class="col-sm-6 col-md-3">
-                <span class="text-muted d-block">Dispositivo:</span>
-                <span class="text-dark text-truncate d-inline-block" style="max-width: 140px;" [title]="tx.device">
+                <span class="text-body-secondary d-block">Dispositivo:</span>
+                <span class="text-body text-truncate d-inline-block" style="max-width: 140px;" [title]="tx.device">
                   {{ tx.device }}
                 </span>
               </div>
@@ -277,7 +277,7 @@
 
           <!-- Reglas de Fraude Disparadas -->
           <div class="mb-4">
-            <h6 class="fw-bold text-muted text-uppercase small mb-2">Reglas de Fraude y Anomalías Disparadas</h6>
+            <h6 class="fw-bold text-body-secondary text-uppercase small mb-2">Reglas de Fraude y Anomalías Disparadas</h6>
             <div class="list-group">
               <div
                 class="list-group-item list-group-item-danger d-flex align-items-center gap-2 border-0 rounded-3 mb-1"
@@ -289,14 +289,14 @@
           </div>
 
           <!-- Estado Actual -->
-          <div class="d-flex align-items-center gap-2 p-2 bg-light rounded-3">
-            <span class="text-muted small fw-semibold">Estado de Resolución:</span>
-            <span class="badge fs-6" [ngClass]="{
-              'bg-success': alert.status === 'APROBADA' || alert.status === 'CERRADA',
-              'bg-warning text-dark': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
-              'bg-danger': alert.status === 'BLOQUEADA',
-              'bg-primary': alert.status === 'NUEVA',
-              'bg-secondary': alert.status === 'PENDIENTE'
+          <div class="d-flex align-items-center gap-2 p-2 bg-body-tertiary rounded-3">
+            <span class="text-body-secondary small fw-semibold">Estado de Resolución:</span>
+            <span class="badge rounded-pill fs-6" [ngClass]="{
+              'bg-success-subtle text-success border border-success-subtle': alert.status === 'APROBADA' || alert.status === 'CERRADA',
+              'bg-warning-subtle text-warning-emphasis border border-warning-subtle': alert.status === 'EN_REVISION' || alert.status === 'RETENIDA',
+              'bg-danger-subtle text-danger border border-danger-subtle': alert.status === 'BLOQUEADA',
+              'bg-primary-subtle text-primary border border-primary-subtle': alert.status === 'NUEVA',
+              'bg-secondary-subtle text-secondary border border-secondary-subtle': alert.status === 'PENDIENTE'
             }">
               {{ alert.status }}
             </span>
@@ -305,7 +305,7 @@
 
         <!-- Modal Footer con Acciones de Analista -->
         <div class="modal-footer border-0 pt-0 pb-4 px-4 d-flex justify-content-between">
-          <button type="button" class="btn btn-light" (click)="closeAlertDetails()">
+          <button type="button" class="btn btn-outline-secondary" (click)="closeAlertDetails()">
             Cerrar
           </button>
 

@@ -1,0 +1,12 @@
+.theme-toggle-btn {
+  transition: all 0.2s ease;
+  font-size: 0.85rem;
+
+  &:hover {
+    transform: scale(1.04);
+  }
+
+  &:active {
+    transform: scale(0.96);
+  }
+}

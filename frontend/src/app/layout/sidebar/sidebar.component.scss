@@ -1,0 +1,184 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.sidebar-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bs-body-bg);
+  border-right: 1px solid var(--bs-border-color);
+  padding: 1.5rem 1.15rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+// Logo y Marca Superior
+.sidebar-brand {
+  padding-bottom: 0.5rem;
+}
+
+.brand-logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--bs-primary), #4338ca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(var(--bs-primary-rgb), 0.35);
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.06);
+  }
+}
+
+.brand-title {
+  font-weight: 800;
+  font-size: 1.12rem;
+  letter-spacing: -0.02em;
+  color: var(--bs-body-color);
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--bs-body-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// Secciones de Navegación
+.nav-section-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  color: var(--bs-body-secondary);
+  padding: 0.5rem 0.75rem 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.sidebar-nav {
+  overflow-y: auto;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  padding: 0.65rem 0.85rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--bs-body-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  margin-bottom: 0.35rem;
+
+  &:hover {
+    background-color: var(--bs-tertiary-bg);
+    color: var(--bs-body-color);
+    transform: translateX(3px);
+
+    .nav-icon-wrapper {
+      transform: scale(1.08);
+    }
+  }
+
+  // Enlace activo moderno: píldora sutilmente tintada con borde primario
+  &.active {
+    background-color: rgba(var(--bs-primary-rgb), 0.12);
+    color: var(--bs-primary);
+    font-weight: 600;
+    border-color: rgba(var(--bs-primary-rgb), 0.22);
+    box-shadow: 0 2px 8px rgba(var(--bs-primary-rgb), 0.08);
+
+    .nav-icon-wrapper {
+      background-color: var(--bs-primary);
+      box-shadow: 0 2px 8px rgba(var(--bs-primary-rgb), 0.4);
+    }
+  }
+}
+
+.nav-icon-wrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--bs-tertiary-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.nav-label {
+  font-size: 0.88rem;
+}
+
+.live-tag-blink {
+  animation: liveBlink 1.4s infinite alternate ease-in-out;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+}
+
+@keyframes liveBlink {
+  from { opacity: 0.7; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+
+// Tarjeta Inferior de Estado del Sistema
+.status-card {
+  margin-top: auto;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background-color: var(--bs-tertiary-bg);
+  border: 1px solid var(--bs-border-color);
+  transition: all 0.25s ease;
+}
+
+.status-title {
+  font-size: 0.82rem;
+  color: var(--bs-body-color);
+  font-weight: 600;
+}
+
+.status-desc {
+  font-size: 0.72rem;
+  color: var(--bs-body-secondary);
+  line-height: 1.3;
+}
+
+.status-footer {
+  font-size: 0.72rem;
+  color: var(--bs-body-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #10b981;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35);
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+

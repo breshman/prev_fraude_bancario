@@ -2,8 +2,8 @@
   <!-- Encabezado -->
   <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
     <div>
-      <h2 class="fw-bold mb-1 text-dark">Gestión de Alertas de Fraude</h2>
-      <p class="text-muted mb-0">
+      <h2 class="fw-bold mb-1 text-body">Gestión de Alertas de Fraude</h2>
+      <p class="text-body-secondary mb-0">
         Bandeja unificada de alertas del sistema y aquellas disparadas cuando la simulación sobrepasa el umbral configurado.
       </p>
     </div>
@@ -20,7 +20,7 @@
   <div class="card border-0 shadow-sm rounded-4" *ngIf="alerts$ | async as rawAlerts">
     <div class="card-body p-0">
       <!-- Barra de Filtros y Búsqueda -->
-      <div class="p-3 bg-light border-bottom d-flex flex-wrap gap-2 rounded-top-4 align-items-center">
+      <div class="p-3 bg-body-tertiary border-bottom d-flex flex-wrap gap-2 rounded-top-4 align-items-center">
         <div class="flex-grow-1" style="min-width: 240px;">
           <input type="text" class="form-control shadow-sm border-0"
                  placeholder="Buscar por ID, N° Transacción, Cliente o Regla..."
@@ -48,7 +48,7 @@
 
       <!-- Lista de Alertas (Acordeón) -->
       <div class="p-md-4 p-2" *ngIf="getFilteredAlerts(rawAlerts) as alerts">
-        <div class="d-flex justify-content-between align-items-center mb-3 text-muted small px-2">
+        <div class="d-flex justify-content-between align-items-center mb-3 text-body-secondary small px-2">
           <span>Mostrando <strong>{{ alerts.length }}</strong> alertas registradas</span>
           <span *ngIf="searchTerm || selectedRisk || selectedOrigin" class="badge bg-secondary-subtle text-secondary">
             Filtros activos
@@ -72,12 +72,12 @@
                     </span>
 
                     <!-- Badge Origen -->
-                    <span class="badge" [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-light text-muted border'">
+                    <span class="badge" [ngClass]="alert.origin === 'SIMULACION' ? 'bg-info-subtle text-info border border-info-subtle' : 'bg-body-secondary text-body-secondary border'">
                       {{ alert.origin === 'SIMULACION' ? '⚡ Simulación' : '🏦 Sistema' }}
                     </span>
 
-                    <strong class="text-dark">{{ alert.id }}</strong>
-                    <span class="text-muted d-none d-sm-inline">- {{ alert.customerName }}</span>
+                    <strong class="text-body">{{ alert.id }}</strong>
+                    <span class="text-body-secondary d-none d-sm-inline">- {{ alert.customerName }}</span>
                   </div>
 
                   <div class="d-flex align-items-center gap-3">
@@ -90,8 +90,8 @@
                           }">
                       {{ alert.status }}
                     </span>
-                    <span class="fw-bold text-dark fs-6">S/ {{ alert.amount | number:'1.2-2' }}</span>
-                    <span class="text-muted small d-none d-md-inline">{{ alert.date | date:'shortTime' }}</span>
+                    <span class="fw-bold text-body fs-6">S/ {{ alert.amount | number:'1.2-2' }}</span>
+                    <span class="text-body-secondary small d-none d-md-inline">{{ alert.date | date:'shortTime' }}</span>
                   </div>
                 </div>
               </button>
@@ -102,7 +102,7 @@
                 <ng-template>
                   <div class="row g-3">
                     <div class="col-md-6">
-                      <h6 class="fw-bold text-muted text-uppercase small mb-2">Detalle de la Transacción</h6>
+                      <h6 class="fw-bold text-body-secondary text-uppercase small mb-2">Detalle de la Transacción</h6>
                       <p class="mb-1"><strong>ID Transacción:</strong> <span class="font-monospace">{{ alert.transactionId }}</span></p>
                       <p class="mb-1"><strong>Cliente:</strong> {{ alert.customerName }}</p>
                       <p class="mb-1"><strong>Estado Actual:</strong> <span class="badge bg-secondary">{{ alert.status }}</span></p>
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="col-md-6">
-                      <h6 class="fw-bold text-muted text-uppercase small mb-2">Reglas de Fraude Disparadas</h6>
+                      <h6 class="fw-bold text-body-secondary text-uppercase small mb-2">Reglas de Fraude Disparadas</h6>
                       <ul class="mb-0 ps-3 text-danger">
                         <li *ngFor="let reason of alert.reasons" class="mb-1">{{ reason }}</li>
                       </ul>
@@ -125,7 +125,7 @@
 
                   <!-- Botones de Acción de Analista -->
                   <div class="mt-4 pt-3 border-top d-flex flex-wrap justify-content-between align-items-center gap-2">
-                    <div class="small text-muted">
+                    <div class="small text-body-secondary">
                       Fecha del evento: {{ alert.date | date:'medium' }}
                     </div>
                     <div class="d-flex gap-2">
@@ -154,7 +154,7 @@
 
         <!-- Estado Vacío -->
         <div class="text-center py-5" *ngIf="alerts.length === 0">
-          <div class="text-muted">
+          <div class="text-body-secondary">
             <div class="fs-1 mb-2">🛡️</div>
             <h6 class="fw-bold">No se encontraron alertas</h6>
             <p class="small mb-3">No hay alertas que coincidan con los filtros seleccionados.</p>

@@ -16,11 +16,11 @@
 
 .metric-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  background: #ffffff;
+  background-color: var(--bs-card-bg);
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
   }
 }
 
@@ -40,8 +40,8 @@
 }
 
 .threshold-panel {
-  background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
-  border: 1px solid rgba(13, 110, 253, 0.12) !important;
+  background: linear-gradient(135deg, var(--bs-card-bg) 0%, var(--bs-tertiary-bg) 100%);
+  border: 1px solid rgba(var(--bs-primary-rgb), 0.25) !important;
 }
 
 .custom-range {
@@ -49,8 +49,8 @@
   cursor: pointer;
 
   &::-webkit-slider-thumb {
-    background: #0d6efd;
-    box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.25);
+    background: var(--bs-primary);
+    box-shadow: 0 0 0 4px rgba(var(--bs-primary-rgb), 0.25);
     transition: transform 0.1s ease;
 
     &:hover {
@@ -66,7 +66,7 @@
 .alert-pulse {
   animation: pulse-border 2s infinite;
   border-left: 5px solid #dc3545 !important;
-  background-color: #fff5f5;
+  background-color: rgba(220, 53, 69, 0.1);
 }
 
 .alert-bell-icon {
@@ -102,8 +102,8 @@
 }
 
 .mass-action-bar {
-  background-color: #e8f0fe !important;
-  border: 1px solid #bfdbfe !important;
+  background-color: rgba(var(--bs-primary-rgb), 0.12) !important;
+  border: 1px solid rgba(var(--bs-primary-rgb), 0.3) !important;
   animation: slideDown 0.25s ease-out;
 }
 
@@ -123,7 +123,7 @@
     font-weight: 600;
     letter-spacing: 0.03em;
     padding: 1rem 0.85rem;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 2px solid var(--bs-border-color);
   }
 
   tbody td {
@@ -132,17 +132,17 @@
   }
 
   tr.selected-row {
-    background-color: #eff6ff !important;
+    background-color: rgba(var(--bs-primary-rgb), 0.15) !important;
   }
 
   tr.table-danger-subtle {
-    background-color: rgba(254, 242, 242, 0.7);
+    background-color: rgba(var(--bs-danger-rgb), 0.12);
   }
 }
 
 .filter-group {
   .btn {
-    border-color: #e2e8f0;
+    border-color: var(--bs-border-color);
     font-weight: 500;
   }
 }

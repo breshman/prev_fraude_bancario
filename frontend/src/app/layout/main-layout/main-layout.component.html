@@ -1,8 +1,9 @@
-<div class="d-flex w-100 h-100 min-vh-100">
-  <app-sidebar class="d-none d-md-block bg-dark text-white" style="width: 250px; flex-shrink: 0;"></app-sidebar>
+<div class="d-flex w-100 h-100 min-vh-100 bg-body">
+  <app-sidebar class="d-none d-md-block"
+    style="width: 260px; flex-shrink: 0; height: 100vh; position: sticky; top: 0;"></app-sidebar>
   <div class="d-flex flex-column flex-grow-1 overflow-auto">
     <app-navbar></app-navbar>
-    <main class="p-md-4 p-lg-4 p-sm-1 p-1 flex-grow-1 bg-dark">
+    <main class="p-md-4 p-lg-4 p-sm-2 p-2 flex-grow-1 bg-body-tertiary">
       <router-outlet></router-outlet>
     </main>
   </div>

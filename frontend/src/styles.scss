@@ -1,7 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
-@use "bootstrap/scss/bootstrap";
+/* ==========================================================================
+   CONFIGURACIÓN GLOBAL DE COLOR PRIMARIO Y TEMA
+   ==========================================================================
+   Para cambiar el color primario de toda la aplicación, modifique el valor
+   de la variable $primary a continuación (ejemplos: #2563eb, #0284c7, #1e40af, #4f46e5):
+*/
+$primary: #2563eb;
 
-body {
-  background-color: #f8f9fa;
-  font-family: 'Inter', sans-serif;
+// Importación moderna de Bootstrap con variables personalizadas
+@use "bootstrap/scss/bootstrap" with ($primary: $primary);
+
+
+
+// ==========================================================================
+// PERSONALIZACIÓN DE PALETA PARA MODO CLARO Y OSCURO (BOOTSTRAP 5.3)
+// ==========================================================================
+:root,
+[data-bs-theme="light"] {
+  --bs-primary: #{$primary};
+  --bs-body-bg: #f8fafc;
+  --bs-body-color: #1e293b;
+  --bs-tertiary-bg: #f1f5f9;
+  --bs-secondary-bg: #e2e8f0;
+  --bs-border-color: #e2e8f0;
+  --app-card-bg: #ffffff;
+  --app-card-border: rgba(0, 0, 0, 0.06);
+}
+
+[data-bs-theme="dark"] {
+  --bs-primary: #3b82f6; // Tono más legible sobre fondo oscuro
+  --bs-body-bg: #0b0f19; // Midnight dark premium
+  --bs-body-color: #f1f5f9;
+  --bs-tertiary-bg: #151d30;
+  --bs-secondary-bg: #1e293b;
+  --bs-card-bg: #111827;
+  --bs-border-color: #1f293d;
+  --app-card-bg: #111827;
+  --app-card-border: rgba(255, 255, 255, 0.08);
+}
+
+
+
+// Transición fluida para elementos que reaccionan al tema
+.card,
+.navbar,
+.modal-content,
+.table {
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }

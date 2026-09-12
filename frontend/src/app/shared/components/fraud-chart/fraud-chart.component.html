@@ -1,8 +1,8 @@
 <div class="card border-0 shadow-sm rounded-4 fraud-chart-card">
-  <div class="card-header bg-white border-0 pt-4 pb-2 px-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
+  <div class="card-header bg-body border-0 pt-4 pb-2 px-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
     <div>
       <div class="d-flex align-items-center gap-2">
-        <h5 class="fw-bold mb-0 text-dark">📈 {{ title }}</h5>
+        <h5 class="fw-bold mb-0 text-body">📈 {{ title }}</h5>
         <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1 rounded-pill small fw-bold"
               *ngIf="peakCount > 0">
           🚨 {{ peakCount }} Pico(s) Sobre Umbral
@@ -12,7 +12,7 @@
           ✓ Dentro de Límites Seguros
         </span>
       </div>
-      <small class="text-muted">
+      <small class="text-body-secondary">
         Visualización interactiva con Chart.js: curva de riesgo con detección automática de picos y línea de corte de umbral.
       </small>
     </div>
@@ -21,7 +21,7 @@
     <div class="d-flex align-items-center gap-3 small">
       <div class="d-flex align-items-center gap-1">
         <span class="legend-dot bg-primary"></span>
-        <span class="text-muted">Score de Riesgo</span>
+        <span class="text-body-secondary">Score de Riesgo</span>
       </div>
       <div class="d-flex align-items-center gap-1">
         <span class="legend-line-danger"></span>
@@ -43,23 +43,24 @@
     <!-- Barra Inferior de Métricas del Gráfico -->
     <div class="row g-2 mt-2 pt-3 border-top text-center">
       <div class="col-3">
-        <div class="text-muted small text-uppercase">TX Graficadas</div>
-        <div class="fw-bold text-dark fs-6">{{ displayedCount }}</div>
+        <div class="text-body-secondary small text-uppercase">TX Graficadas</div>
+        <div class="fw-bold text-body fs-6">{{ displayedCount }}</div>
       </div>
       <div class="col-3">
-        <div class="text-muted small text-uppercase">Picos Sobre Umbral</div>
+        <div class="text-body-secondary small text-uppercase">Picos Sobre Umbral</div>
         <div class="fw-bold fs-6" [ngClass]="peakCount > 0 ? 'text-danger' : 'text-success'">
           {{ peakCount }}
         </div>
       </div>
       <div class="col-3">
-        <div class="text-muted small text-uppercase">Score Pico Máximo</div>
-        <div class="fw-bold text-dark fs-6">{{ maxScore }} <span class="small text-muted">/ 100</span></div>
+        <div class="text-body-secondary small text-uppercase">Score Pico Máximo</div>
+        <div class="fw-bold text-body fs-6">{{ maxScore }} <span class="small text-body-secondary">/ 100</span></div>
       </div>
       <div class="col-3">
-        <div class="text-muted small text-uppercase">Score Promedio</div>
+        <div class="text-body-secondary small text-uppercase">Score Promedio</div>
         <div class="fw-bold text-primary fs-6">{{ avgDisplayedScore }} pts</div>
       </div>
     </div>
   </div>
 </div>
+

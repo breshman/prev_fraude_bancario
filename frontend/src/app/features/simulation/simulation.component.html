@@ -7,7 +7,7 @@
           ⚡ Módulo de Simulación Activa
         </span>
         <span class="badge px-3 py-2 rounded-pill fw-semibold d-flex align-items-center gap-2"
-          [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-pulse' : 'bg-light text-muted border'">
+          [ngClass]="(isLiveStreaming$ | async) ? 'bg-danger text-white live-pulse' : 'bg-body-secondary text-body-secondary border'">
           <span class="stream-dot" [class.stream-active]="isLiveStreaming$ | async"></span>
           {{ (isLiveStreaming$ | async) ? 'STREAMING EN VIVO ACTIVO' : 'STREAMING PAUSADO' }}
         </span>
@@ -16,8 +16,8 @@
           ⚠️ {{ getMetrics(simulations).breachedCount }} Alertas Disparadas
         </span>
       </div>
-      <h2 class="fw-bold mt-2 mb-1 text-dark">Simulador y Motor de Reglas de Fraude</h2>
-      <p class="text-muted mb-0">
+      <h2 class="fw-bold mt-2 mb-1 text-body">Simulador y Motor de Reglas de Fraude</h2>
+      <p class="text-body-secondary mb-0">
         Simulación de transacciones masivas y aleatorias, picos de riesgo en tiempo real y conexión directa con el
         Dashboard y Alertas.
       </p>
@@ -44,7 +44,7 @@
           <span class="me-2">⚡</span> Generar Masivo / Aleatorio
         </button>
         <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" ngbDropdownMenu>
-          <h6 class="dropdown-header text-uppercase text-muted fw-bold small">Lote Aleatorio (Picos Variados)</h6>
+          <h6 class="dropdown-header text-uppercase text-body-secondary fw-bold small">Lote Aleatorio (Picos Variados)</h6>
           <button class="dropdown-item rounded-2 py-2" (click)="onGenerateMassive(10)">
             <strong>🎲 10 Transacciones Aleatorias</strong>
           </button>
@@ -58,7 +58,7 @@
             <strong>💥 100 Transacciones Masivas (Ataque)</strong>
           </button>
           <div class="dropdown-divider"></div>
-          <h6 class="dropdown-header text-uppercase text-muted fw-bold small">Escenarios Específicos</h6>
+          <h6 class="dropdown-header text-uppercase text-body-secondary fw-bold small">Escenarios Específicos</h6>
           <button class="dropdown-item rounded-2 py-2 text-danger" (click)="onGenerateBatch(20, 'HIGH_RISK')">
             🚨 Ola de Phishing y Alto Riesgo (20 TX)
           </button>
@@ -75,14 +75,14 @@
           <span class="me-2">📊</span> Descargar en Excel
         </button>
         <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" ngbDropdownMenu>
-          <h6 class="dropdown-header text-uppercase text-muted fw-bold small">Exportación de Resultados</h6>
+          <h6 class="dropdown-header text-uppercase text-body-secondary fw-bold small">Exportación de Resultados</h6>
           <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('xls', false)">
             <strong>📗 Libro de Excel (.xls)</strong>
-            <div class="small text-muted">Con estilos, colores en alertas y celdas formateadas</div>
+            <div class="small text-body-secondary">Con estilos, colores en alertas y celdas formateadas</div>
           </button>
           <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('csv', false)">
             <strong>📄 Archivo CSV con BOM UTF-8</strong>
-            <div class="small text-muted">Compatible universalmente con cualquier software de hoja de cálculo</div>
+            <div class="small text-body-secondary">Compatible universalmente con cualquier software de hoja de cálculo</div>
           </button>
           <div class="dropdown-divider" *ngIf="getSelectedCount(simulations) > 0"></div>
           <button class="dropdown-item rounded-2 py-2 text-primary" *ngIf="getSelectedCount(simulations) > 0"
@@ -103,8 +103,8 @@
             🎯
           </div>
           <div>
-            <div class="text-muted text-uppercase fw-semibold small">Umbral Activo</div>
-            <h3 class="fw-bold mb-0 text-primary">{{ activeThreshold }} <span class="fs-6 text-muted">/ 100</span></h3>
+            <div class="text-body-secondary text-uppercase fw-semibold small">Umbral Activo</div>
+            <h3 class="fw-bold mb-0 text-primary">{{ activeThreshold }} <span class="fs-6 text-body-secondary">/ 100</span></h3>
           </div>
         </div>
       </div>
@@ -117,8 +117,8 @@
             📋
           </div>
           <div>
-            <div class="text-muted text-uppercase fw-semibold small">Total Simuladas</div>
-            <h3 class="fw-bold mb-0 text-dark">{{ getMetrics(simulations).total }}</h3>
+            <div class="text-body-secondary text-uppercase fw-semibold small">Total Simuladas</div>
+            <h3 class="fw-bold mb-0 text-body">{{ getMetrics(simulations).total }}</h3>
           </div>
         </div>
       </div>
@@ -132,10 +132,10 @@
             🚨
           </div>
           <div>
-            <div class="text-muted text-uppercase fw-semibold small">Superan Umbral (Alertas)</div>
+            <div class="text-body-secondary text-uppercase fw-semibold small">Superan Umbral (Alertas)</div>
             <h3 class="fw-bold mb-0 text-danger">
               {{ getMetrics(simulations).breachedCount }}
-              <span class="fs-6 text-muted fw-normal">({{ getMetrics(simulations).breachedPercent }}%)</span>
+              <span class="fs-6 text-body-secondary fw-normal">({{ getMetrics(simulations).breachedPercent }}%)</span>
             </h3>
           </div>
         </div>
@@ -149,8 +149,8 @@
             💰
           </div>
           <div>
-            <div class="text-muted text-uppercase fw-semibold small">Monto en Riesgo</div>
-            <h3 class="fw-bold mb-0 text-dark">S/ {{ getMetrics(simulations).totalAmountAtRisk | number:'1.2-2' }}</h3>
+            <div class="text-body-secondary text-uppercase fw-semibold small">Monto en Riesgo</div>
+            <h3 class="fw-bold mb-0 text-body">S/ {{ getMetrics(simulations).totalAmountAtRisk | number:'1.2-2' }}</h3>
           </div>
         </div>
       </div>
@@ -253,7 +253,7 @@
 
   <!-- Barra de Herramientas de Revisión Masiva -->
   <div class="card border-0 shadow-sm rounded-4 mb-4">
-    <div class="card-header bg-white border-0 pt-4 pb-3">
+    <div class="card-header bg-body border-0 pt-4 pb-3">
       <!-- Toolbar de Acciones Masivas (Aparece cuando hay filas seleccionadas) -->
       <div
         class="alert alert-primary border-0 rounded-3 py-2 px-3 mb-3 d-flex flex-wrap align-items-center justify-content-between gap-2 mass-action-bar"
@@ -293,23 +293,23 @@
         <div class="col-12 col-md-auto">
           <div class="btn-group filter-group" role="group">
             <button type="button" class="btn btn-sm" [class.btn-primary]="activeFilter === 'ALL'"
-              [class.btn-light]="activeFilter !== 'ALL'" (click)="activeFilter = 'ALL'">
+              [class.btn-outline-secondary]="activeFilter !== 'ALL'" (click)="activeFilter = 'ALL'">
               Todas ({{ simulations.length }})
             </button>
             <button type="button" class="btn btn-sm" [class.btn-danger]="activeFilter === 'BREACHED'"
-              [class.btn-light]="activeFilter !== 'BREACHED'" (click)="activeFilter = 'BREACHED'">
+              [class.btn-outline-secondary]="activeFilter !== 'BREACHED'" (click)="activeFilter = 'BREACHED'">
               🚨 Superan Umbral ({{ getMetrics(simulations).breachedCount }})
             </button>
             <button type="button" class="btn btn-sm" [class.btn-success]="activeFilter === 'APROBADA'"
-              [class.btn-light]="activeFilter !== 'APROBADA'" (click)="activeFilter = 'APROBADA'">
+              [class.btn-outline-secondary]="activeFilter !== 'APROBADA'" (click)="activeFilter = 'APROBADA'">
               Aprobadas
             </button>
             <button type="button" class="btn btn-sm" [class.btn-warning]="activeFilter === 'RETENIDA'"
-              [class.btn-light]="activeFilter !== 'RETENIDA'" (click)="activeFilter = 'RETENIDA'">
+              [class.btn-outline-secondary]="activeFilter !== 'RETENIDA'" (click)="activeFilter = 'RETENIDA'">
               Retenidas
             </button>
             <button type="button" class="btn btn-sm" [class.btn-dark]="activeFilter === 'BLOQUEADA'"
-              [class.btn-light]="activeFilter !== 'BLOQUEADA'" (click)="activeFilter = 'BLOQUEADA'">
+              [class.btn-outline-secondary]="activeFilter !== 'BLOQUEADA'" (click)="activeFilter = 'BLOQUEADA'">
               Bloqueadas
             </button>
           </div>
@@ -317,10 +317,10 @@
 
         <div class="col-12 col-md-5 col-lg-4">
           <div class="input-group input-group-sm">
-            <span class="input-group-text bg-light border-0">🔍</span>
-            <input type="text" class="form-control bg-light border-0"
+            <span class="input-group-text bg-body-tertiary border-0">🔍</span>
+            <input type="text" class="form-control bg-body-tertiary border-0"
               placeholder="Buscar por ID, Cliente, Cuenta, País..." [(ngModel)]="searchTerm">
-            <button class="btn btn-light border-0" type="button" *ngIf="searchTerm" (click)="searchTerm = ''">
+            <button class="btn btn-body-tertiary border-0" type="button" *ngIf="searchTerm" (click)="searchTerm = ''">
               ✕
             </button>
           </div>
@@ -360,31 +360,31 @@
 
               <!-- ID y Fecha -->
               <td>
-                <div class="fw-bold text-dark">{{ tx.id }}</div>
-                <small class="text-muted">{{ tx.timestamp | date:'shortTime' }} &bull; {{ tx.timestamp | date:'dd/MM/yy'
+                <div class="fw-bold text-body">{{ tx.id }}</div>
+                <small class="text-body-secondary">{{ tx.timestamp | date:'shortTime' }} &bull; {{ tx.timestamp | date:'dd/MM/yy'
                   }}</small>
               </td>
 
               <!-- Cliente y Cuenta -->
               <td>
-                <div class="fw-semibold text-dark">{{ tx.customerName }}</div>
-                <small class="text-muted font-monospace">{{ tx.accountId }}</small>
+                <div class="fw-semibold text-body">{{ tx.customerName }}</div>
+                <small class="text-body-secondary font-monospace">{{ tx.accountId }}</small>
               </td>
 
               <!-- Canal y Ubicación -->
               <td>
                 <div>
-                  <span class="badge bg-light text-dark border me-1">{{ tx.channel }}</span>
+                  <span class="badge bg-body-secondary text-body border me-1">{{ tx.channel }}</span>
                   <span class="badge bg-secondary-subtle text-secondary">{{ tx.country }}</span>
                 </div>
-                <small class="text-muted d-block text-truncate" style="max-width: 170px;" [title]="tx.device">
+                <small class="text-body-secondary d-block text-truncate" style="max-width: 170px;" [title]="tx.device">
                   {{ tx.device }}
                 </small>
               </td>
 
               <!-- Monto -->
               <td class="text-end">
-                <div class="fw-bold text-dark fs-6">S/ {{ tx.amount | number:'1.2-2' }}</div>
+                <div class="fw-bold text-body fs-6">S/ {{ tx.amount | number:'1.2-2' }}</div>
               </td>
 
               <!-- Score y Barra de Progreso -->
@@ -427,7 +427,7 @@
               <!-- Reglas Disparadas -->
               <td>
                 <div class="d-flex flex-wrap gap-1" style="max-width: 250px;">
-                  <span class="badge bg-light text-dark border text-wrap text-start small mb-1"
+                  <span class="badge bg-body-secondary text-body border text-wrap text-start small mb-1"
                     *ngFor="let reason of tx.reasons">
                     {{ reason }}
                   </span>
@@ -560,7 +560,7 @@
           </div>
         </div>
         <div class="modal-footer border-0 pt-0 pb-4 px-4">
-          <button type="button" class="btn btn-light" (click)="showSingleSimModal = false">Cancelar</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="showSingleSimModal = false">Cancelar</button>
           <button type="button" class="btn btn-primary fw-semibold px-4 shadow-sm" (click)="onSimulateSingle()">
             ⚡ Evaluar y Simular
           </button>

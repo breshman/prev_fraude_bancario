@@ -9,8 +9,10 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subscription } from 'rxjs';
 import Chart from 'chart.js/auto';
 import { SimulatedTransaction } from '../../../core/services/simulation.service';
+import { ThemeService } from '../../../core/services/theme.service';
 
 @Component({
   selector: 'app-fraud-chart',
@@ -28,6 +30,7 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;
 
   private chart: Chart | null = null;
+  private themeSub: Subscription | null = null;
 
   // Estadísticas del gráfico
   peakCount: number = 0;
@@ -35,8 +38,17 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
   avgDisplayedScore: number = 0;
   displayedCount: number = 0;
 
+  constructor(private themeService: ThemeService) {}
+
   ngAfterViewInit(): void {
     this.createOrUpdateChart();
+
+    // Reaccionar inmediatamente cuando el usuario cambie de modo claro a oscuro o viceversa
+    this.themeSub = this.themeService.currentTheme$.subscribe(() => {
+      if (this.chartCanvas) {
+        this.createOrUpdateChart();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -46,6 +58,10 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
   }
 
   ngOnDestroy(): void {
+    if (this.themeSub) {
+      this.themeSub.unsubscribe();
+      this.themeSub = null;
+    }
     if (this.chart) {
       this.chart.destroy();
       this.chart = null;
@@ -134,6 +150,10 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
       ]
     };
 
+    const isDark = this.themeService.theme === 'dark';
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(226, 232, 240, 0.7)';
+    const tickColor = isDark ? '#94a3b8' : '#64748b';
+
     if (this.chart) {
       // Actualizar datos existentes in-place sin destruir la referencia del dataset
       this.chart.data.labels = labels;
@@ -154,8 +174,21 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
         dsThreshold.label = `Línea de Umbral (${this.threshold} pts)`;
       }
 
+      // Actualizar colores de escalas para el tema activo
+      if (this.chart.options.scales) {
+        const y = this.chart.options.scales['y'] as any;
+        if (y && y.grid && y.ticks) {
+          y.grid.color = gridColor;
+          y.ticks.color = tickColor;
+        }
+        const x = this.chart.options.scales['x'] as any;
+        if (x && x.ticks) {
+          x.ticks.color = tickColor;
+        }
+      }
+
       this.chart.options.plugins = this.buildPlugins(dataset);
-      // Actualización en tiempo real fluida: evita que la línea caiga a 0 y vuelva a cargar
+      // Actualización en tiempo real fluida
       this.chart.update('none');
     } else {
       this.chart = new Chart(canvas, {
@@ -177,11 +210,11 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
               min: 0,
               max: 100,
               grid: {
-                color: 'rgba(226, 232, 240, 0.7)'
+                color: gridColor
               },
               ticks: {
                 stepSize: 25,
-                color: '#64748b',
+                color: tickColor,
                 font: {
                   weight: 'bold',
                   size: 11
@@ -194,7 +227,7 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
                 display: false
               },
               ticks: {
-                color: '#64748b',
+                color: tickColor,
                 font: {
                   size: 11
                 },
@@ -208,17 +241,18 @@ export class FraudChartComponent implements OnChanges, AfterViewInit, OnDestroy 
   }
 
   private buildPlugins(dataset: SimulatedTransaction[]): any {
+    const isDark = this.themeService.theme === 'dark';
     return {
       legend: {
         display: false
       },
       tooltip: {
-        backgroundColor: '#0f172a',
+        backgroundColor: isDark ? '#0f172a' : '#1e293b',
         titleColor: '#ffffff',
         bodyColor: '#e2e8f0',
         padding: 12,
         cornerRadius: 8,
-        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderColor: isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.1)',
         borderWidth: 1,
         callbacks: {
           title: (items: any[]) => {

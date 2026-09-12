@@ -1,27 +1,83 @@
-<div class="d-flex flex-column h-100 p-3 bg-dark text-white">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-    <span class="fs-4 fw-bold text-primary">Security Flow Bank</span>
-  </a>
-  <hr>
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item mb-2">
-      <a routerLink="/dashboard" routerLinkActive="active" class="nav-link text-white d-flex align-items-center">
-        📊 <span class="ms-2">Dashboard</span>
-      </a>
-    </li>
-    <li class="nav-item mb-2">
-      <a routerLink="/alerts" routerLinkActive="active" class="nav-link text-white d-flex align-items-center">
-        ⚠️ <span class="ms-2">Alertas</span>
-      </a>
-    </li>
-    <li class="nav-item mb-2">
-      <a routerLink="/simulation" routerLinkActive="active" class="nav-link text-white d-flex align-items-center">
-        🧪 <span class="ms-2">Simulador de Fraude</span>
-      </a>
-    </li>
-  </ul>
-  <hr>
-  <div>
-    <small class="text-muted">v1.1 - Modo Demo</small>
+<aside class="sidebar-wrapper">
+  <!-- Brand Header -->
+  <div class="sidebar-brand mb-4">
+    <a routerLink="/" class="d-flex align-items-center text-decoration-none gap-3">
+      <div class="brand-logo-icon">
+        <span>🛡️</span>
+      </div>
+      <div class="d-flex flex-column">
+        <span class="brand-title">Security Flow</span>
+        <span class="brand-subtitle">Fraud Defense AI</span>
+      </div>
+    </a>
   </div>
-</div>
+
+  <!-- Navigation Links -->
+  <nav class="sidebar-nav flex-grow-1">
+    <div class="nav-section-title">
+      Monitoreo & Control
+    </div>
+
+    <ul class="nav flex-column mb-3">
+      <li class="nav-item">
+        <a routerLink="/dashboard" routerLinkActive="active" class="sidebar-nav-link">
+          <div class="nav-icon-wrapper">
+            <span>📊</span>
+          </div>
+          <span class="nav-label flex-grow-1">Dashboard Global</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="/alerts" routerLinkActive="active" class="sidebar-nav-link">
+          <div class="nav-icon-wrapper">
+            <span>🚨</span>
+          </div>
+          <span class="nav-label flex-grow-1">Alertas de Fraude</span>
+          <span class="badge rounded-pill bg-danger-subtle text-danger border border-danger-subtle ms-auto small"
+                *ngIf="(alertCount$ | async) as count">
+            {{ count }}
+          </span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="nav-section-title">
+      Motor & Laboratorio
+    </div>
+
+    <ul class="nav flex-column mb-3">
+      <li class="nav-item">
+        <a routerLink="/simulation" routerLinkActive="active" class="sidebar-nav-link">
+          <div class="nav-icon-wrapper">
+            <span>⚡</span>
+          </div>
+          <span class="nav-label flex-grow-1">Simulador de Fraude</span>
+          <span class="badge rounded-pill bg-primary-subtle text-primary border border-primary-subtle ms-auto small"
+                *ngIf="!(isLiveStreaming$ | async)">
+            Lab
+          </span>
+          <span class="badge rounded-pill bg-danger text-white ms-auto small live-tag-blink"
+                *ngIf="isLiveStreaming$ | async">
+            LIVE
+          </span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Bottom System Status Card -->
+  <div class="status-card">
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <span class="status-dot"></span>
+      <strong class="status-title">Motor IA Activo</strong>
+    </div>
+    <div class="status-desc mb-2">
+      Monitoreo y análisis continuo en tiempo real
+    </div>
+    <div class="status-footer d-flex justify-content-between align-items-center pt-2 border-top">
+      <span>🔒 Red Bancaria</span>
+      <span class="badge bg-body-secondary text-body-secondary font-monospace">v1.2</span>
+    </div>
+  </div>
+</aside>
