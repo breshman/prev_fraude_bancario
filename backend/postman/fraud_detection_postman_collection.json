@@ -1,14 +1,19 @@
 {
 	"info": {
 		"_postman_id": "c1f7a40b-4831-4179-8d76-e837bf3d9370",
-		"name": "Sistema de Detección de Fraude Bancario API",
-		"description": "Colección completa para pruebas del microservicio de prevención y detección de fraude bancario (Spring Boot 4, PostgreSQL, Clean Architecture, Motor de Scoring y Alertas).",
+		"name": "Sistema de Detección de Fraude Bancario API & WebSockets",
+		"description": "Colección completa para pruebas del microservicio de prevención y detección de fraude bancario (Spring Boot 4, PostgreSQL, Clean Architecture, Motor de Scoring, Alertas, Casos y WebSockets en tiempo real para Angular).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"variable": [
 		{
 			"key": "baseUrl",
 			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "wsUrl",
+			"value": "ws://localhost:8080/ws-fraud",
 			"type": "string"
 		},
 		{
@@ -23,12 +28,17 @@
 		},
 		{
 			"key": "alertaId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "codigoAlerta",
 			"value": "",
 			"type": "string"
 		},
 		{
 			"key": "casoId",
-			"value": "",
+			"value": "1",
 			"type": "string"
 		}
 	],
@@ -38,6 +48,23 @@
 			"item": [
 				{
 					"name": "Verificar Estado del Backend (Health Check)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"pm.test('Estado es UP', function () {",
+									"    var json = pm.response.json();",
+									"    pm.expect(json.status).to.eql('UP');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -57,7 +84,7 @@
 								"health"
 							]
 						},
-						"description": "Verifica que el servicio esté arriba y respondiendo correctamente."
+						"description": "Verifica que el servicio esté activo y respondiendo correctamente."
 					},
 					"response": []
 				},
@@ -97,13 +124,15 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"if (pm.response.code === 200) {",
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"pm.test('Token JWT generado y guardado', function () {",
 									"    var jsonData = pm.response.json();",
-									"    if (jsonData.token) {",
-									"        pm.collectionVariables.set('authToken', jsonData.token);",
-									"        console.log('JWT Token guardado:', jsonData.token);",
-									"    }",
-									"}"
+									"    pm.expect(jsonData.token).to.be.a('string');",
+									"    pm.collectionVariables.set('authToken', jsonData.token);",
+									"    console.log('JWT Token asignado a {{authToken}}');",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -136,6 +165,54 @@
 						"description": "Autentica al analista y extrae automáticamente el JWT a la variable {{authToken}}."
 					},
 					"response": []
+				},
+				{
+					"name": "Login Administrador de Fraude",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"pm.test('Token JWT de Administrador generado', function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.token).to.be.a('string');",
+									"    pm.collectionVariables.set('authToken', jsonData.token);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombreUsuario\": \"admin_fraude\",\n  \"password\": \"Admin1234#\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autentica al administrador con privilegios totales."
+					},
+					"response": []
 				}
 			]
 		},
@@ -149,10 +226,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test('Status code is 200 or 201', function () {",
+									"pm.test('Status code is 201 Created', function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
 									"});",
-									"pm.test('Decisión es APROBADA y Score es Bajo', function () {",
+									"pm.test('Decisión es APROBADA y Score es Bajo (< 30)', function () {",
 									"    var json = pm.response.json();",
 									"    pm.expect(json.estado).to.eql('APROBADA');",
 									"    pm.expect(json.evaluacion.nivelRiesgo).to.eql('BAJO');",
@@ -193,7 +270,7 @@
 								"transacciones"
 							]
 						},
-						"description": "Escenario 11.1 de la especificación técnica: Transferencia de monto normal (S/ 250), dispositivo conocido, beneficiario habitual, horario diurno en Perú. Debe evaluarse con score < 30 y ser APROBADA."
+						"description": "Escenario 11.1 del PDF: Transferencia de monto normal (S/ 250), dispositivo conocido, beneficiario habitual, horario diurno en Perú. Se evalúa con score < 30 y resulta APROBADA."
 					},
 					"response": []
 				},
@@ -204,14 +281,15 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test('Status code is 200 or 201 (Decisión de negocio)', function () {",
+									"pm.test('Status code is 201 Created', function () {",
 									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
 									"});",
-									"pm.test('Decisión es BLOQUEAR o RETENER con Riesgo CRÍTICO', function () {",
+									"pm.test('Decisión es BLOQUEAR o RETENER con Riesgo CRÍTICO (> 70)', function () {",
 									"    var json = pm.response.json();",
 									"    pm.expect(json.evaluacion.nivelRiesgo).to.be.oneOf(['ALTO', 'CRITICO']);",
 									"    pm.expect(json.evaluacion.decision).to.be.oneOf(['BLOQUEAR', 'RETENER']);",
 									"    pm.expect(json.evaluacion.score).to.be.above(70);",
+									"    pm.collectionVariables.set('transaccionId', json.codigoTransaccion);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -245,12 +323,12 @@
 								"transacciones"
 							]
 						},
-						"description": "Escenario 11.2 del PDF: Transferencia de S/ 18,500 a las 03:12 de la madrugada desde Rusia, dispositivo nunca visto, beneficiario nuevo. Se disparan RF001, RF002, RF003, RF004, RF007 y genera Alerta Crítica."
+						"description": "Escenario 11.2 del PDF: Monto elevado hacia Rusia, IP extranjera y dispositivo no reconocido. Dispara RF001, RF002, RF003, RF004, RF007, bloquea la transacción, genera Alerta Crítica y emite notificación inmediata por WebSocket a /topic/alertas."
 					},
 					"response": []
 				},
 				{
-					"name": "3. No Happy Path B - Monto Inválido (Menor o Igual a Cero)",
+					"name": "3. No Happy Path B1 - Monto Inválido (Menor o Igual a Cero)",
 					"event": [
 						{
 							"listen": "test",
@@ -258,6 +336,11 @@
 								"exec": [
 									"pm.test('Status code is 400 Bad Request', function () {",
 									"    pm.expect(pm.response.code).to.eql(400);",
+									"});",
+									"pm.test('RFC 7807 Problem Details contiene campo monto', function () {",
+									"    var json = pm.response.json();",
+									"    pm.expect(json.status).to.eql(400);",
+									"    pm.expect(JSON.stringify(json)).to.include('monto');",
 									"});"
 								],
 								"type": "text/javascript"
@@ -292,14 +375,60 @@
 					"response": []
 				},
 				{
-					"name": "4. No Happy Path B - Cuenta Inexistente",
+					"name": "4. No Happy Path B2 - Saldo Insuficiente (Error Negocio)",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test('Status code is 404 or 422', function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([404, 422]);",
+									"pm.test('Status code is 422 Unprocessable Entity', function () {",
+									"    pm.expect(pm.response.code).to.eql(422);",
+									"});",
+									"pm.test('Mensaje de Saldo Insuficiente', function () {",
+									"    var json = pm.response.json();",
+									"    pm.expect(json.detail).to.include('Saldo insuficiente');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuentaOrigen\": \"CTA-001-445522\",\n  \"numeroCuentaDestino\": \"CTA-002-998811\",\n  \"monto\": 999999999.00,\n  \"moneda\": \"PEN\",\n  \"canal\": \"APP\",\n  \"tipoTransaccion\": \"TRANSFERENCIA\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/transacciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transacciones"
+							]
+						},
+						"description": "Valida el rechazo de la transacción cuando el monto excede el saldo de la cuenta."
+					},
+					"response": []
+				},
+				{
+					"name": "5. No Happy Path B3 - Cuenta Inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 404 Not Found', function () {",
+									"    pm.expect(pm.response.code).to.eql(404);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -339,7 +468,28 @@
 			"name": "03. Alertas Antifraude (Analista)",
 			"item": [
 				{
-					"name": "Listar Alertas de Fraude Generadas",
+					"name": "Listar Alertas de Fraude (Todas)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"pm.test('Extraer primera alerta a variables de colección', function () {",
+									"    var json = pm.response.json();",
+									"    if (json.length > 0) {",
+									"        pm.collectionVariables.set('alertaId', json[0].idAlerta);",
+									"        pm.collectionVariables.set('codigoAlerta', json[0].codigoAlerta);",
+									"        console.log('Alerta asignada:', json[0].idAlerta, json[0].codigoAlerta);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -359,7 +509,42 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/api/v1/alertas?estado=GENERADA&prioridad=CRITICA",
+							"raw": "{{baseUrl}}/api/v1/alertas",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"alertas"
+							]
+						},
+						"description": "Obtiene la bandeja completa de alertas operativas ordenadas por fecha descendente."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Alertas por Estado (GENERADA)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/alertas?estado=GENERADA",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -372,14 +557,10 @@
 								{
 									"key": "estado",
 									"value": "GENERADA"
-								},
-								{
-									"key": "prioridad",
-									"value": "CRITICA"
 								}
 							]
 						},
-						"description": "Obtiene la bandeja de alertas pendientes de atención para los analistas de seguridad."
+						"description": "Filtra únicamente las alertas nuevas sin gestionar."
 					},
 					"response": []
 				},
@@ -415,12 +596,12 @@
 								"{{alertaId}}"
 							]
 						},
-						"description": "Retorna el detalle completo de la alerta, incluyendo el desglose de reglas y puntuaciones."
+						"description": "Retorna el detalle completo de la alerta mediante su clave primaria numérica."
 					},
 					"response": []
 				},
 				{
-					"name": "Cambiar Estado de Alerta (Asignar / En Revisión)",
+					"name": "Cambiar Estado de Alerta (EN_REVISION)",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -441,7 +622,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"estado\": \"EN_REVISION\",\n  \"comentario\": \"Analista iniciando análisis de patrones de IP y dispositivo.\"\n}"
+							"raw": "{\n  \"estado\": \"EN_REVISION\",\n  \"comentario\": \"Analista iniciando análisis de patrones de IP y huella digital.\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/alertas/{{alertaId}}/estado",
@@ -456,7 +637,7 @@
 								"estado"
 							]
 						},
-						"description": "Actualiza el ciclo de vida de la alerta de fraude."
+						"description": "Actualiza el estado operativo de la alerta a EN_REVISION."
 					},
 					"response": []
 				}
@@ -466,18 +647,55 @@
 			"name": "04. Casos de Investigación Formal",
 			"item": [
 				{
+					"name": "Listar Casos de Investigación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/casos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"casos"
+							]
+						},
+						"description": "Retorna todos los casos formalmente aperturados."
+					},
+					"response": []
+				},
+				{
 					"name": "Abrir Caso Formal de Investigación",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"pm.test('Status code is 201 Created', function () {",
+									"    pm.expect(pm.response.code).to.eql(201);",
+									"});",
+									"pm.test('Caso creado exitosamente y guardado en variable {{casoId}}', function () {",
 									"    var json = pm.response.json();",
-									"    if (json.idCaso) {",
-									"        pm.collectionVariables.set('casoId', json.idCaso);",
-									"    }",
-									"}"
+									"    pm.expect(json.idCaso).to.be.a('number');",
+									"    pm.collectionVariables.set('casoId', json.idCaso);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -503,7 +721,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"codigoAlerta\": \"{{alertaId}}\",\n  \"motivoApertura\": \"Transacción sospechosa en horario no habitual con score crítico.\"\n}"
+							"raw": "{\n  \"codigoAlerta\": \"{{codigoAlerta}}\",\n  \"motivoApertura\": \"Transacción sospechosa de alta cuantía desde Rusia con dispositivo no registrado.\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/api/v1/casos",
@@ -516,7 +734,7 @@
 								"casos"
 							]
 						},
-						"description": "Abre un caso formal para investigación de fraude según la alerta originada."
+						"description": "Abre un caso formal para investigación de fraude vinculado a la alerta originada."
 					},
 					"response": []
 				},
@@ -599,6 +817,53 @@
 							]
 						},
 						"description": "Cierra formalmente el caso registrando la conclusión para el modelo analítico y auditoría."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "05. WebSockets en Tiempo Real (STOMP - Angular)",
+			"description": "### Cómo probar WebSockets en Postman:\n\n1. **Verificación de Handshake HTTP:** Ejecuta la petición `1. Verificar Endpoint SockJS Info` para comprobar que el servicio WebSocket está activo.\n2. **Conexión WebSocket Nativa en Postman:**\n   - En Postman haz clic en **New** > **WebSocket Request**.\n   - Ingresa la URL: `ws://localhost:8080/ws-fraud`\n   - Haz clic en **Connect**.\n   - Envía el frame de conexión STOMP (con un salto de línea y terminador null `^@` o byte 00):\n     ```text\n     CONNECT\n     accept-version:1.2,1.1,1.0\n     heart-beat:10000,10000\n\n     \u0000\n     ```\n   - Envía el frame de suscripción al tópico de alertas:\n     ```text\n     SUBSCRIBE\n     id:sub-0\n     destination:/topic/alertas\n\n     \u0000\n     ```\n   - Ahora, al ejecutar la petición `2. No Happy Path A - Fraude Crítico`, verás llegar el mensaje JSON instantáneamente a tu ventana de WebSocket.",
+			"item": [
+				{
+					"name": "1. Verificar Endpoint SockJS Info (HTTP)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 OK', function () {",
+									"    pm.expect(pm.response.code).to.eql(200);",
+									"});",
+									"pm.test('SockJS responde con soporte WebSocket habilitado', function () {",
+									"    var json = pm.response.json();",
+									"    pm.expect(json.websocket).to.eql(true);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/ws-fraud/info",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"ws-fraud",
+								"info"
+							]
+						},
+						"description": "Realiza la verificación de capacidades SockJS/WebSocket en el backend (retorna entropy, websocket: true, etc.)."
 					},
 					"response": []
 				}

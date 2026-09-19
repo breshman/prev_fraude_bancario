@@ -1,9 +1,11 @@
 package com.empresa.fraude.application.service;
 
+import com.empresa.fraude.adapter.out.notification.dto.AlertaWebSocketEventDto;
 import com.empresa.fraude.adapter.out.persistence.jpa.entity.AlertaFraudeEntity;
 import com.empresa.fraude.adapter.out.persistence.jpa.entity.EvaluacionFraudeEntity;
 import com.empresa.fraude.adapter.out.persistence.jpa.entity.TransaccionEntity;
 import com.empresa.fraude.adapter.out.persistence.jpa.repository.AlertaFraudeJpaRepository;
+import com.empresa.fraude.application.port.out.AlertaNotificationPort;
 import com.empresa.fraude.domain.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.UUID;
 public class AlertaFraudeService {
 
     private final AlertaFraudeJpaRepository alertaRepo;
+    private final AlertaNotificationPort notificationPort;
 
     @Transactional
     public AlertaFraudeEntity crearAlerta(TransaccionEntity tx, EvaluacionFraudeEntity evaluacion, String motivosResumen) {
@@ -34,7 +37,30 @@ public class AlertaFraudeService {
                 .fechaGeneracion(OffsetDateTime.now())
                 .build();
 
-        return alertaRepo.save(alerta);
+        AlertaFraudeEntity guardada = alertaRepo.save(alerta);
+
+        // Notificar en tiempo real al Frontend Angular mediante WebSocket STOMP
+        AlertaWebSocketEventDto evento = AlertaWebSocketEventDto.builder()
+                .idAlerta(guardada.getIdAlerta())
+                .codigoAlerta(guardada.getCodigoAlerta())
+                .tipoAlerta(guardada.getTipoAlerta())
+                .nivelPrioridad(guardada.getNivelPrioridad())
+                .estadoAlerta(guardada.getEstadoAlerta())
+                .descripcion(guardada.getDescripcion())
+                .fechaGeneracion(guardada.getFechaGeneracion())
+                .codigoTransaccion(tx.getCodigoTransaccion() != null ? tx.getCodigoTransaccion().toString() : null)
+                .montoTransaccion(tx.getMontoTransaccion())
+                .codigoMoneda(tx.getCodigoMoneda())
+                .canal(tx.getCanal() != null ? tx.getCanal().getCodigoCanal() : "UNKNOWN")
+                .numeroCuenta(tx.getCuenta() != null ? tx.getCuenta().getNumeroCuenta() : null)
+                .scoreRiesgo(evaluacion.getFraudeScore())
+                .nivelRiesgo(evaluacion.getNivelRiesgo())
+                .decisionTomada(evaluacion.getDecision())
+                .build();
+
+        notificationPort.notificarNuevaAlerta(evento);
+
+        return guardada;
     }
 
     @Transactional(readOnly = true)

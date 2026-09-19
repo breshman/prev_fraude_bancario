@@ -111,15 +111,70 @@ Una vez iniciada la aplicación (`./mvnw spring-boot:run`), puedes acceder a:
 
 ---
 
-## 5. Estado de Verificación y Diagnóstico
+---
+
+## 5. Pruebas Automatizadas con Postman
+
+Se incluye una colección lista para importar en:
+📁 `backend/postman/fraud_detection_postman_collection.json`
+
+### Contenido de la Colección:
+1. **00. Health & Diagnóstico:** `GET /api/v1/health` y `GET /v3/api-docs`.
+2. **01. Autenticación (JWT):** Login para Analista (`analista_seguridad`) y Administrador (`admin_fraude`), extrayendo automáticamente el token en `{{authToken}}`.
+3. **02. Transacciones (Scoring & Detección):**
+   - **Happy Path:** Transacción legítima aprobada (Score < 30).
+   - **No Happy Path A:** Fraude crítico bloqueado (Score > 70) con emisión de alerta WebSocket.
+   - **No Happy Path B1, B2, B3:** Manejo estandarizado de errores RFC 7807 (monto inválido, saldo insuficiente, cuenta inexistente).
+4. **03. Alertas Antifraude:** Listado, filtro por estado, consulta por ID y actualización de estado.
+5. **04. Casos de Investigación:** Apertura de caso vinculado a la alerta, registro de evidencias en bitácora y dictamen de cierre.
+6. **05. WebSockets en Tiempo Real:** Verificación HTTP de SockJS (`GET /ws-fraud/info`) y conexión STOMP.
+
+---
+
+## 6. WebSockets en Tiempo Real (STOMP para Frontend Angular)
+
+Cuando una transacción resulta en nivel de riesgo `ALTO` o `CRITICO`, el backend emite una alerta instantánea vía WebSocket para reflejarla en el dashboard de los analistas en Angular.
+
+### Parámetros de Conexión:
+- **Endpoint SockJS / WebSocket:** `http://localhost:8080/ws-fraud` (o `ws://localhost:8080/ws-fraud`)
+- **Tópico de Suscripción:** `/topic/alertas`
+- **CORS:** Habilitado para `http://localhost:4200` y desarrollo.
+
+### Cómo Probar WebSockets en Postman:
+1. Abre Postman y haz clic en **New** > **WebSocket Request**.
+2. URL: `ws://localhost:8080/ws-fraud`. Haz clic en **Connect**.
+3. Envía el frame de conexión STOMP:
+   ```text
+   CONNECT
+   accept-version:1.2,1.1,1.0
+   heart-beat:10000,10000
+
+   ^@
+   ```
+4. Envía el frame de suscripción al tópico:
+   ```text
+   SUBSCRIBE
+   id:sub-0
+   destination:/topic/alertas
+
+   ^@
+   ```
+5. En otra pestaña de Postman, ejecuta la petición **"2. No Happy Path A - Fraude Crítico"**. Verás llegar el JSON de la alerta en tiempo real en la ventana de WebSocket.
+
+---
+
+## 7. Estado de Verificación y Diagnóstico
 
 | Componente | Estado | Detalle |
 |---|---|---|
-| **Java JDK** | ✅ Operativo | Oracle JDK 21.0.2 detectado |
+| **Java JDK** | ✅ Operativo | Oracle JDK 21.0.2 |
 | **Maven Wrapper** | ✅ Operativo | Permisos `+x` otorgados y dependencias descargadas |
 | **PostgreSQL (Docker)** | ✅ Operativo | Contenedor `postgres_18_vector` en puerto `5434` |
-| **Base de Datos `fraude_db`** | ✅ Creada | Creada e inicializada |
-| **Migraciones Flyway (`V1`)** | ✅ Aplicadas | Tablas `cliente`, `transaccion`, `alerta_fraude` creadas |
-| **Swagger / OpenAPI** | ✅ Configurado | Springdoc 3.1.1 en `/swagger-ui.html` y `/v3/api-docs` |
-| **Compilación & Tests** | ✅ `BUILD SUCCESS` | Contexto de Spring Boot verificado exitosamente |
+| **Base de Datos `fraude_db`** | ✅ Creada | 18 tablas maestras y transaccionales (Flyway V2 y V3) |
+| **Motor de Reglas SOLID** | ✅ 8 Reglas | Strategy Pattern (`RF001` a `RF008`) + Scoring Engine |
+| **Seguridad & JWT** | ✅ Operativo | Spring Security con BCrypt y Bearer Tokens |
+| **WebSockets STOMP** | ✅ Operativo | Notificaciones reactivas a `/topic/alertas` |
+| **Swagger / OpenAPI** | ✅ Configurado | Springdoc 3.1.1 en `/swagger-ui.html` |
+| **Postman Collection** | ✅ Completa | Pruebas end-to-end + SockJS / WebSockets |
+| **Suite de Pruebas** | ✅ `BUILD SUCCESS` | 8/8 tests pasando al 100% (`mvnw test`) |
 
