@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "c1f7a40b-4831-4179-8d76-e837bf3d9370",
+		"name": "Sistema de Detección de Fraude Bancario API",
+		"description": "Colección completa para pruebas del microservicio de prevención y detección de fraude bancario (Spring Boot 4, PostgreSQL, Clean Architecture, Motor de Scoring y Alertas).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "transaccionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "alertaId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "casoId",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "00. Health & Diagnóstico",
+			"item": [
+				{
+					"name": "Verificar Estado del Backend (Health Check)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/health",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"health"
+							]
+						},
+						"description": "Verifica que el servicio esté arriba y respondiendo correctamente."
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar OpenAPI Specification (JSON)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/v3/api-docs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v3",
+								"api-docs"
+							]
+						},
+						"description": "Obtiene la definición OpenAPI 3 generada automáticamente por springdoc."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "01. Autenticación (Auth & JWT)",
+			"item": [
+				{
+					"name": "Login Analista de Fraude",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    if (jsonData.token) {",
+									"        pm.collectionVariables.set('authToken', jsonData.token);",
+									"        console.log('JWT Token guardado:', jsonData.token);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombreUsuario\": \"analista_seguridad\",\n  \"password\": \"Admin1234#\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Autentica al analista y extrae automáticamente el JWT a la variable {{authToken}}."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02. Transacciones (Scoring & Detección)",
+			"item": [
+				{
+					"name": "1. Happy Path - Transacción Legítima (Bajo Riesgo / Aprobada)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 or 201', function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									"pm.test('Decisión es APROBADA y Score es Bajo', function () {",
+									"    var json = pm.response.json();",
+									"    pm.expect(json.estado).to.eql('APROBADA');",
+									"    pm.expect(json.evaluacion.nivelRiesgo).to.eql('BAJO');",
+									"    pm.expect(json.evaluacion.score).to.be.below(30);",
+									"    if (json.codigoTransaccion) {",
+									"        pm.collectionVariables.set('transaccionId', json.codigoTransaccion);",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Correlation-Id",
+								"value": "corr-test-happy-001"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuentaOrigen\": \"CTA-001-445522\",\n  \"numeroCuentaDestino\": \"CTA-002-998811\",\n  \"monto\": 250.00,\n  \"moneda\": \"PEN\",\n  \"canal\": \"APP\",\n  \"tipoTransaccion\": \"TRANSFERENCIA\",\n  \"codigoPais\": \"PE\",\n  \"direccionIp\": \"190.235.12.44\",\n  \"huellaDispositivo\": \"device-fingerprint-habitual-01\",\n  \"latitud\": -12.046374,\n  \"longitud\": -77.042793\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/transacciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transacciones"
+							]
+						},
+						"description": "Escenario 11.1 de la especificación técnica: Transferencia de monto normal (S/ 250), dispositivo conocido, beneficiario habitual, horario diurno en Perú. Debe evaluarse con score < 30 y ser APROBADA."
+					},
+					"response": []
+				},
+				{
+					"name": "2. No Happy Path A - Fraude Crítico (Dispositivo Nuevo, País Atípico, Monto Alto)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 200 or 201 (Decisión de negocio)', function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									"pm.test('Decisión es BLOQUEAR o RETENER con Riesgo CRÍTICO', function () {",
+									"    var json = pm.response.json();",
+									"    pm.expect(json.evaluacion.nivelRiesgo).to.be.oneOf(['ALTO', 'CRITICO']);",
+									"    pm.expect(json.evaluacion.decision).to.be.oneOf(['BLOQUEAR', 'RETENER']);",
+									"    pm.expect(json.evaluacion.score).to.be.above(70);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Correlation-Id",
+								"value": "corr-test-fraud-002"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuentaOrigen\": \"CTA-001-445522\",\n  \"numeroCuentaDestino\": \"CTA-999-DESTINO-DESCONOCIDO\",\n  \"monto\": 18500.00,\n  \"moneda\": \"PEN\",\n  \"canal\": \"WEB\",\n  \"tipoTransaccion\": \"TRANSFERENCIA\",\n  \"codigoPais\": \"RU\",\n  \"direccionIp\": \"95.173.136.72\",\n  \"huellaDispositivo\": \"fingerprint-desconocido-moscu-99\",\n  \"latitud\": 55.755826,\n  \"longitud\": 37.617300\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/transacciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transacciones"
+							]
+						},
+						"description": "Escenario 11.2 del PDF: Transferencia de S/ 18,500 a las 03:12 de la madrugada desde Rusia, dispositivo nunca visto, beneficiario nuevo. Se disparan RF001, RF002, RF003, RF004, RF007 y genera Alerta Crítica."
+					},
+					"response": []
+				},
+				{
+					"name": "3. No Happy Path B - Monto Inválido (Menor o Igual a Cero)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 400 Bad Request', function () {",
+									"    pm.expect(pm.response.code).to.eql(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuentaOrigen\": \"CTA-001-445522\",\n  \"numeroCuentaDestino\": \"CTA-002-998811\",\n  \"monto\": -50.00,\n  \"moneda\": \"PEN\",\n  \"canal\": \"APP\",\n  \"tipoTransaccion\": \"TRANSFERENCIA\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/transacciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transacciones"
+							]
+						},
+						"description": "Valida que el monto no pueda ser negativo o cero."
+					},
+					"response": []
+				},
+				{
+					"name": "4. No Happy Path B - Cuenta Inexistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Status code is 404 or 422', function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([404, 422]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuentaOrigen\": \"CUENTA-FANTASMA-999\",\n  \"numeroCuentaDestino\": \"CTA-002-998811\",\n  \"monto\": 100.00,\n  \"moneda\": \"PEN\",\n  \"canal\": \"APP\",\n  \"tipoTransaccion\": \"TRANSFERENCIA\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/transacciones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"transacciones"
+							]
+						},
+						"description": "Valida error de negocio cuando la cuenta origen no existe en el sistema bancario."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03. Alertas Antifraude (Analista)",
+			"item": [
+				{
+					"name": "Listar Alertas de Fraude Generadas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/alertas?estado=GENERADA&prioridad=CRITICA",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"alertas"
+							],
+							"query": [
+								{
+									"key": "estado",
+									"value": "GENERADA"
+								},
+								{
+									"key": "prioridad",
+									"value": "CRITICA"
+								}
+							]
+						},
+						"description": "Obtiene la bandeja de alertas pendientes de atención para los analistas de seguridad."
+					},
+					"response": []
+				},
+				{
+					"name": "Consultar Detalle de Alerta por ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/alertas/{{alertaId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"alertas",
+								"{{alertaId}}"
+							]
+						},
+						"description": "Retorna el detalle completo de la alerta, incluyendo el desglose de reglas y puntuaciones."
+					},
+					"response": []
+				},
+				{
+					"name": "Cambiar Estado de Alerta (Asignar / En Revisión)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"estado\": \"EN_REVISION\",\n  \"comentario\": \"Analista iniciando análisis de patrones de IP y dispositivo.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/alertas/{{alertaId}}/estado",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"alertas",
+								"{{alertaId}}",
+								"estado"
+							]
+						},
+						"description": "Actualiza el ciclo de vida de la alerta de fraude."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04. Casos de Investigación Formal",
+			"item": [
+				{
+					"name": "Abrir Caso Formal de Investigación",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200 || pm.response.code === 201) {",
+									"    var json = pm.response.json();",
+									"    if (json.idCaso) {",
+									"        pm.collectionVariables.set('casoId', json.idCaso);",
+									"    }",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"codigoAlerta\": \"{{alertaId}}\",\n  \"motivoApertura\": \"Transacción sospechosa en horario no habitual con score crítico.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/casos",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"casos"
+							]
+						},
+						"description": "Abre un caso formal para investigación de fraude según la alerta originada."
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Evento en Bitácora del Caso",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"tipoEvento\": \"EVIDENCIA\",\n  \"comentario\": \"Titular contactado vía telefónica; confirma que no autorizó la operación desde el exterior.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/casos/{{casoId}}/historial",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"casos",
+								"{{casoId}}",
+								"historial"
+							]
+						},
+						"description": "Añade un registro cronológico al historial del caso para auditoría."
+					},
+					"response": []
+				},
+				{
+					"name": "Cerrar Caso con Dictamen Final (Fraude Confirmado)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"resultado\": \"FRAUDE_CONFIRMADO\",\n  \"comentarioCierre\": \"Fraude verificado con el cliente. Dispositivo y credenciales comprometidas. Cuenta asegurada preventivamente.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/casos/{{casoId}}/cerrar",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"casos",
+								"{{casoId}}",
+								"cerrar"
+							]
+						},
+						"description": "Cierra formalmente el caso registrando la conclusión para el modelo analítico y auditoría."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

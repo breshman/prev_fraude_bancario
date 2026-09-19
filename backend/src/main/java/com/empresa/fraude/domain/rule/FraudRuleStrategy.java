@@ -1,12 +1,20 @@
 package com.empresa.fraude.domain.rule;
 
-import com.empresa.fraude.domain.model.Transaccion;
-
 public interface FraudRuleStrategy {
     /**
-     * Evalúa la transacción según los criterios de la regla.
-     * @param transaccion La transacción a evaluar.
-     * @return El resultado de la evaluación.
+     * Código identificador de la regla (ej. RF001).
      */
-    RuleEvaluationResult evaluate(Transaccion transaccion);
+    String getCodigoRegla();
+
+    /**
+     * Nombre descriptivo de la regla.
+     */
+    String getNombreRegla();
+
+    /**
+     * Evalúa la transacción y sus características contextuales.
+     * @param context Contexto transaccional e histórico.
+     * @return Resultado detallado y explicable de la evaluación.
+     */
+    RuleEvaluationResult evaluate(EvaluationContext context);
 }

@@ -1,0 +1,53 @@
+package com.empresa.fraude.adapter.in.web;
+
+import com.empresa.fraude.adapter.out.persistence.jpa.entity.AlertaFraudeEntity;
+import com.empresa.fraude.application.service.AlertaFraudeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/v1/alertas")
+@RequiredArgsConstructor
+@SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Alertas Antifraude", description = "Endpoints para consulta, priorización y gestión del ciclo de vida de alertas")
+public class AlertaController {
+
+    private final AlertaFraudeService alertaService;
+
+    @GetMapping
+    @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
+    @Operation(summary = "Listar alertas de fraude", description = "Permite filtrar alertas por estado (GENERADA, ASIGNADA, EN_REVISION, etc.).")
+    public ResponseEntity<List<AlertaFraudeEntity>> listarAlertas(
+            @RequestParam(value = "estado", required = false) String estado,
+            @RequestParam(value = "prioridad", required = false) String prioridad
+    ) {
+        return ResponseEntity.ok(alertaService.listarAlertas(estado));
+    }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
+    @Operation(summary = "Consultar alerta por ID", description = "Retorna el detalle completo de la alerta.")
+    public ResponseEntity<AlertaFraudeEntity> obtenerAlerta(@PathVariable Long id) {
+        return ResponseEntity.ok(alertaService.obtenerPorId(id));
+    }
+
+    @PatchMapping("/{id}/estado")
+    @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
+    @Operation(summary = "Actualizar estado de una alerta", description = "Actualiza el estado operativo de la alerta (ej. EN_REVISION, DESCARTADA, CONFIRMADA).")
+    public ResponseEntity<AlertaFraudeEntity> actualizarEstado(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> body
+    ) {
+        String nuevoEstado = body.get("estado");
+        String comentario = body.get("comentario");
+        return ResponseEntity.ok(alertaService.actualizarEstado(id, nuevoEstado, comentario));
+    }
+}
