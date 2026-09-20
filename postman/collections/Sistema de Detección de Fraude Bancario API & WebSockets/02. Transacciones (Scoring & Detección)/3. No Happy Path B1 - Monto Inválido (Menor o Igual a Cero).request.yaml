@@ -1,0 +1,31 @@
+$kind: http-request
+name: 3. No Happy Path B1 - Monto Inválido (Menor o Igual a Cero)
+description: Valida que el monto no pueda ser negativo o cero.
+url: "{{baseUrl}}/api/v1/transacciones"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "numeroCuentaOrigen": "CTA-001-445522",
+      "numeroCuentaDestino": "CTA-002-998811",
+      "monto": -50.00,
+      "moneda": "PEN",
+      "canal": "APP",
+      "tipoTransaccion": "TRANSFERENCIA"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 400 Bad Request', function () {
+          pm.expect(pm.response.code).to.eql(400);
+      });
+      pm.test('RFC 7807 Problem Details contiene campo monto', function () {
+          var json = pm.response.json();
+          pm.expect(json.status).to.eql(400);
+          pm.expect(JSON.stringify(json)).to.include('monto');
+      });
+    language: text/javascript
+order: 3000

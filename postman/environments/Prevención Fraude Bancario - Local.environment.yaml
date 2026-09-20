@@ -1,0 +1,16 @@
+name: Prevención Fraude Bancario - Local
+values:
+  - key: baseUrl
+    value: 'http://localhost:8080'
+  - key: wsUrl
+    value: 'ws://localhost:8080/ws-fraud'
+  - key: authToken
+    value: ''
+  - key: transaccionId
+    value: ''
+  - key: alertaId
+    value: '1'
+  - key: codigoAlerta
+    value: ''
+  - key: casoId
+    value: '1'

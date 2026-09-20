@@ -1,6 +1,5 @@
 {
 	"info": {
-		"_postman_id": "c1f7a40b-4831-4179-8d76-e837bf3d9370",
 		"name": "Sistema de Detección de Fraude Bancario API & WebSockets",
 		"description": "Colección completa para pruebas del microservicio de prevención y detección de fraude bancario (Spring Boot 4, PostgreSQL, Clean Architecture, Motor de Scoring, Alertas, Casos y WebSockets en tiempo real para Angular).",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"

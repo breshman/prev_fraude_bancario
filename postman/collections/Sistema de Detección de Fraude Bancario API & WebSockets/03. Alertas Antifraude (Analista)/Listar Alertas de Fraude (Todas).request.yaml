@@ -1,0 +1,26 @@
+$kind: http-request
+description: Obtiene la bandeja completa de alertas operativas ordenadas por fecha descendente.
+url: "{{baseUrl}}/api/v1/alertas"
+method: GET
+headers:
+  Accept: application/json
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200 OK', function () {
+          pm.expect(pm.response.code).to.eql(200);
+      });
+      pm.test('Extraer primera alerta a variables de colección', function () {
+          var json = pm.response.json();
+          if (json.length > 0) {
+              pm.collectionVariables.set('alertaId', json[0].idAlerta);
+              pm.collectionVariables.set('codigoAlerta', json[0].codigoAlerta);
+              console.log('Alerta asignada:', json[0].idAlerta, json[0].codigoAlerta);
+          }
+      });
+    language: text/javascript
+order: 1000

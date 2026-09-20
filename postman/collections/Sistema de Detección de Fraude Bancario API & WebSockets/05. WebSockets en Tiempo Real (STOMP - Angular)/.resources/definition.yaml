@@ -1,0 +1,46 @@
+$kind: collection
+description: "### Cómo probar WebSockets en Postman:
+
+
+  1. **Verificación de Handshake HTTP:** Ejecuta la petición `1. Verificar Endpoint SockJS Info` para comprobar que el servicio WebSocket está activo.
+
+  2. **Conexión WebSocket Nativa en Postman:**
+
+  \   - En Postman haz clic en **New** > **WebSocket Request**.
+
+  \   - Ingresa la URL: `ws://localhost:8080/ws-fraud`
+
+  \   - Haz clic en **Connect**.
+
+  \   - Envía el frame de conexión STOMP (con un salto de línea y terminador null `^@` o byte 00):
+
+  \     ```text
+
+  \     CONNECT
+
+  \     accept-version:1.2,1.1,1.0
+
+  \     heart-beat:10000,10000
+
+
+  \     \0
+
+  \     ```
+
+  \   - Envía el frame de suscripción al tópico de alertas:
+
+  \     ```text
+
+  \     SUBSCRIBE
+
+  \     id:sub-0
+
+  \     destination:/topic/alertas
+
+
+  \     \0
+
+  \     ```
+
+  \   - Ahora, al ejecutar la petición `2. No Happy Path A - Fraude Crítico`, verás llegar el mensaje JSON instantáneamente a tu ventana de WebSocket."
+order: 6000

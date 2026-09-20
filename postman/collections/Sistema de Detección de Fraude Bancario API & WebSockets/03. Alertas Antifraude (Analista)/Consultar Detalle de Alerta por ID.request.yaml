@@ -1,0 +1,11 @@
+$kind: http-request
+description: Retorna el detalle completo de la alerta mediante su clave primaria numérica.
+url: "{{baseUrl}}/api/v1/alertas/{{alertaId}}"
+method: GET
+headers:
+  Accept: application/json
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+order: 3000

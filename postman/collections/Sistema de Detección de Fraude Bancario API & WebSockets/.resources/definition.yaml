@@ -1,0 +1,10 @@
+$kind: collection
+description: Colección completa para pruebas del microservicio de prevención y detección de fraude bancario (Spring Boot 4, PostgreSQL, Clean Architecture, Motor de Scoring, Alertas, Casos y WebSockets en tiempo real para Angular).
+variables:
+  baseUrl: http://localhost:8080
+  wsUrl: ws://localhost:8080/ws-fraud
+  authToken: ""
+  transaccionId: ""
+  alertaId: "1"
+  codigoAlerta: ""
+  casoId: "1"

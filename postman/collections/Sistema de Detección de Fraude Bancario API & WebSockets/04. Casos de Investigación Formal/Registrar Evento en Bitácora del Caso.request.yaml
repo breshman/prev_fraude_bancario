@@ -1,0 +1,18 @@
+$kind: http-request
+description: Añade un registro cronológico al historial del caso para auditoría.
+url: "{{baseUrl}}/api/v1/casos/{{casoId}}/historial"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "tipoEvento": "EVIDENCIA",
+      "comentario": "Titular contactado vía telefónica; confirma que no autorizó la operación desde el exterior."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+order: 3000

@@ -1,0 +1,41 @@
+$kind: http-request
+name: 1. Happy Path - Transacción Legítima (Bajo Riesgo / Aprobada)
+description: "Escenario 11.1 del PDF: Transferencia de monto normal (S/ 250), dispositivo conocido, beneficiario habitual, horario diurno en Perú. Se evalúa con score < 30 y resulta APROBADA."
+url: "{{baseUrl}}/api/v1/transacciones"
+method: POST
+headers:
+  Content-Type: application/json
+  X-Correlation-Id: corr-test-happy-001
+body:
+  type: json
+  content: |-
+    {
+      "numeroCuentaOrigen": "CTA-001-445522",
+      "numeroCuentaDestino": "CTA-002-998811",
+      "monto": 250000.00,
+      "moneda": "USD",
+      "canal": "APP",
+      "tipoTransaccion": "TRANSFERENCIA",
+      "codigoPais": "ES",
+      "direccionIp": "190.235.12.44",
+      "huellaDispositivo": "device-fingerprint-habitual-01",
+      "latitud": -12.046374,
+      "longitud": -77.042793
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201 Created', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+      });
+      pm.test('Decisión es APROBADA y Score es Bajo (< 30)', function () {
+          var json = pm.response.json();
+          pm.expect(json.estado).to.eql('APROBADA');
+          pm.expect(json.evaluacion.nivelRiesgo).to.eql('BAJO');
+          pm.expect(json.evaluacion.score).to.be.below(30);
+          if (json.codigoTransaccion) {
+              pm.collectionVariables.set('transaccionId', json.codigoTransaccion);
+          }
+      });
+    language: text/javascript
+order: 1000

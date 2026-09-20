@@ -1,0 +1,7 @@
+$kind: http-request
+description: Obtiene la definición OpenAPI 3 generada automáticamente por springdoc.
+url: "{{baseUrl}}/v3/api-docs"
+method: GET
+headers:
+  Accept: application/json
+order: 2000

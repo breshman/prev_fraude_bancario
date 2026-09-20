@@ -1,0 +1,39 @@
+$kind: http-request
+name: 2. No Happy Path A - Fraude Crítico (Dispositivo Nuevo, País Atípico, Monto Alto)
+description: "Escenario 11.2 del PDF: Monto elevado hacia Rusia, IP extranjera y dispositivo no reconocido. Dispara RF001, RF002, RF003, RF004, RF007, bloquea la transacción, genera Alerta Crítica y emite notificación inmediata por WebSocket a /topic/alertas."
+url: "{{baseUrl}}/api/v1/transacciones"
+method: POST
+headers:
+  Content-Type: application/json
+  X-Correlation-Id: corr-test-fraud-002
+body:
+  type: json
+  content: |-
+    {
+      "numeroCuentaOrigen": "CTA-001-445522",
+      "numeroCuentaDestino": "CTA-999-DESTINO-DESCONOCIDO",
+      "monto": 18500.00,
+      "moneda": "PEN",
+      "canal": "WEB",
+      "tipoTransaccion": "TRANSFERENCIA",
+      "codigoPais": "RU",
+      "direccionIp": "95.173.136.72",
+      "huellaDispositivo": "fingerprint-desconocido-moscu-99",
+      "latitud": 55.755826,
+      "longitud": 37.617300
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201 Created', function () {
+          pm.expect(pm.response.code).to.be.oneOf([200, 201]);
+      });
+      pm.test('Decisión es BLOQUEAR o RETENER con Riesgo CRÍTICO (> 70)', function () {
+          var json = pm.response.json();
+          pm.expect(json.evaluacion.nivelRiesgo).to.be.oneOf(['ALTO', 'CRITICO']);
+          pm.expect(json.evaluacion.decision).to.be.oneOf(['BLOQUEAR', 'RETENER']);
+          pm.expect(json.evaluacion.score).to.be.above(70);
+          pm.collectionVariables.set('transaccionId', json.codigoTransaccion);
+      });
+    language: text/javascript
+order: 2000

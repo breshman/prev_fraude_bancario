@@ -1,0 +1,18 @@
+$kind: http-request
+description: Cierra formalmente el caso registrando la conclusión para el modelo analítico y auditoría.
+url: "{{baseUrl}}/api/v1/casos/{{casoId}}/cerrar"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "resultado": "FRAUDE_CONFIRMADO",
+      "comentarioCierre": "Fraude verificado con el cliente. Dispositivo y credenciales comprometidas. Cuenta asegurada preventivamente."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+order: 4000

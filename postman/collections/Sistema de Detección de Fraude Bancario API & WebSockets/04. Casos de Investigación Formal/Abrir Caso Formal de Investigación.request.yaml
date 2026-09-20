@@ -1,0 +1,31 @@
+$kind: http-request
+name: Abrir Caso Formal de Investigación
+description: Abre un caso formal para investigación de fraude vinculado a la alerta originada.
+url: "{{baseUrl}}/api/v1/casos"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "codigoAlerta": "{{codigoAlerta}}",
+      "motivoApertura": "Transacción sospechosa de alta cuantía desde Rusia con dispositivo no registrado."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201 Created', function () {
+          pm.expect(pm.response.code).to.eql(201);
+      });
+      pm.test('Caso creado exitosamente y guardado en variable {{casoId}}', function () {
+          var json = pm.response.json();
+          pm.expect(json.idCaso).to.be.a('number');
+          pm.collectionVariables.set('casoId', json.idCaso);
+      });
+    language: text/javascript
+order: 2000

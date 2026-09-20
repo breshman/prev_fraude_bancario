@@ -1,0 +1,13 @@
+$kind: http-request
+description: Filtra únicamente las alertas nuevas sin gestionar.
+url: "{{baseUrl}}/api/v1/alertas?estado=GENERADA"
+method: GET
+headers:
+  Accept: application/json
+queryParams:
+  estado: GENERADA
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+order: 2000

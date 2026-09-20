@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: cdd39fe7-a764-4d8e-8738-4ca678659721
+
+cloudResources:
+  collections:
+    ../postman/collections/Sistema de Detección de Fraude Bancario API & WebSockets: 9dcff782-c87e-4012-a866-3d7739474e36
+
+# All resources in the `postman/` folder are automatically registered in Local View.
+# Point to additional files outside the `postman/` folder to register them individually. Example:
+#localResources:
+#  collections:
+#    - ../tests/E2E Test Collection/

@@ -1,0 +1,18 @@
+$kind: http-request
+description: Actualiza el estado operativo de la alerta a EN_REVISION.
+url: "{{baseUrl}}/api/v1/alertas/{{alertaId}}/estado"
+method: PATCH
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "estado": "EN_REVISION",
+      "comentario": "Analista iniciando análisis de patrones de IP y huella digital."
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{authToken}}"
+order: 4000

@@ -1,0 +1,29 @@
+$kind: http-request
+description: Valida el rechazo de la transacción cuando el monto excede el saldo de la cuenta.
+url: "{{baseUrl}}/api/v1/transacciones"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "numeroCuentaOrigen": "CTA-001-445522",
+      "numeroCuentaDestino": "CTA-002-998811",
+      "monto": 999999999.00,
+      "moneda": "PEN",
+      "canal": "APP",
+      "tipoTransaccion": "TRANSFERENCIA"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 422 Unprocessable Entity', function () {
+          pm.expect(pm.response.code).to.eql(422);
+      });
+      pm.test('Mensaje de Saldo Insuficiente', function () {
+          var json = pm.response.json();
+          pm.expect(json.detail).to.include('Saldo insuficiente');
+      });
+    language: text/javascript
+order: 4000

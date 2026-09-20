@@ -1,0 +1,18 @@
+$kind: http-request
+description: "Realiza la verificación de capacidades SockJS/WebSocket en el backend (retorna entropy, websocket: true, etc.)."
+url: "{{baseUrl}}/ws-fraud/info"
+method: GET
+headers:
+  Accept: application/json
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200 OK', function () {
+          pm.expect(pm.response.code).to.eql(200);
+      });
+      pm.test('SockJS responde con soporte WebSocket habilitado', function () {
+          var json = pm.response.json();
+          pm.expect(json.websocket).to.eql(true);
+      });
+    language: text/javascript
+order: 1000

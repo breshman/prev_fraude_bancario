@@ -1,0 +1,27 @@
+$kind: http-request
+name: Login Administrador de Fraude
+description: Autentica al administrador con privilegios totales.
+url: "{{baseUrl}}/api/v1/auth/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "nombreUsuario": "admin_fraude",
+      "password": "Admin1234#"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200 OK', function () {
+          pm.expect(pm.response.code).to.eql(200);
+      });
+      pm.test('Token JWT de Administrador generado', function () {
+          var jsonData = pm.response.json();
+          pm.expect(jsonData.token).to.be.a('string');
+          pm.collectionVariables.set('authToken', jsonData.token);
+      });
+    language: text/javascript
+order: 2000
