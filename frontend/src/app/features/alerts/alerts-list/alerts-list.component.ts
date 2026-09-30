@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbAccordionModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
-import { FraudMockService, FraudAlert } from '../../../core/services/fraud-mock.service';
+import { FraudService, FraudAlert } from '../../../core/services/fraud.service';
 import { SimulationService } from '../../../core/services/simulation.service';
 import { Observable } from 'rxjs';
 
@@ -24,12 +24,13 @@ export class AlertsListComponent implements OnInit {
   toastType: 'success' | 'warning' | 'info' = 'info';
 
   constructor(
-    public fraudService: FraudMockService,
+    public fraudService: FraudService,
     public simulationService: SimulationService
   ) {}
 
   ngOnInit(): void {
     this.alerts$ = this.fraudService.getRecentAlerts();
+    this.fraudService.cargarAlertasDesdeBackend().subscribe();
   }
 
   getFilteredAlerts(alerts: FraudAlert[]): FraudAlert[] {
@@ -74,7 +75,10 @@ export class AlertsListComponent implements OnInit {
   }
 
   onRefresh(): void {
-    this.showToast('Bandeja de alertas sincronizada en tiempo real.', 'info');
+    this.fraudService.cargarAlertasDesdeBackend().subscribe({
+      next: () => this.showToast('Bandeja de alertas sincronizada con la base de datos.', 'info'),
+      error: () => this.showToast('Error al sincronizar con el servidor.', 'warning')
+    });
   }
 
   showToast(msg: string, type: 'success' | 'warning' | 'info' = 'info'): void {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
-import { FraudMockService, DashboardMetrics, FraudAlert } from '../../../core/services/fraud-mock.service';
+import { FraudService } from '../../../core/services/fraud.service';
+import { DashboardMetrics, FraudAlert } from '../../../core/models/fraud-alert.model';
 import { SimulationService, SimulatedTransaction } from '../../../core/services/simulation.service';
 import { FraudChartComponent } from '../../../shared/components/fraud-chart/fraud-chart.component';
 
@@ -24,11 +25,14 @@ export class DashboardComponent implements OnInit {
   selectedTxDetails: SimulatedTransaction | null = null;
 
   constructor(
-    public fraudService: FraudMockService,
+    public fraudService: FraudService,
     public simulationService: SimulationService
   ) {}
 
   ngOnInit(): void {
+    this.fraudService.cargarAlertasDesdeBackend().subscribe();
+    this.simulationService.cargarTransaccionesDesdeBackend().subscribe();
+
     this.metrics$ = this.fraudService.getDashboardMetrics();
     this.recentAlerts$ = this.fraudService.getRecentAlerts();
     this.simulations$ = this.simulationService.simulations$;

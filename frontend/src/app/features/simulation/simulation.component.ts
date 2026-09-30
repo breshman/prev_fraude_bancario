@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbTooltipModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { SimulationService, SimulatedTransaction, SimulationAlertNotice } from '../../core/services/simulation.service';
-import { FraudMockService } from '../../core/services/fraud-mock.service';
+import { FraudService } from '../../core/services/fraud.service';
 import { FraudChartComponent } from '../../shared/components/fraud-chart/fraud-chart.component';
 
 @Component({
@@ -53,7 +53,7 @@ export class SimulationComponent implements OnInit {
 
   constructor(
     public simulationService: SimulationService,
-    public fraudMockService: FraudMockService
+    public fraudService: FraudService
   ) {}
 
   ngOnInit(): void {

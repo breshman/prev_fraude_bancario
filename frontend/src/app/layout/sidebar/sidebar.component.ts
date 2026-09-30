@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FraudMockService } from '../../core/services/fraud-mock.service';
+import { FraudService } from '../../core/services/fraud.service';
 import { SimulationService } from '../../core/services/simulation.service';
+import { AuthService } from '../../core/services/auth.service';
 import { map } from 'rxjs';
 
 @Component({
@@ -13,8 +14,9 @@ import { map } from 'rxjs';
   styleUrl: './sidebar.component.scss'
 })
 export class SidebarComponent {
-  private fraudService = inject(FraudMockService);
+  private fraudService = inject(FraudService);
   private simulationService = inject(SimulationService);
+  public authService = inject(AuthService);
 
   // Conteo reactivo de alertas pendientes / nuevas
   alertCount$ = this.fraudService.getRecentAlerts().pipe(
@@ -23,6 +25,10 @@ export class SidebarComponent {
 
   // Estado de streaming en vivo
   isLiveStreaming$ = this.simulationService.isLiveStreaming$;
+
+  logout(): void {
+    this.authService.logout();
+  }
 }
 
 

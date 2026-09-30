@@ -1,150 +1,757 @@
 {
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\mvnw": {
-    "mtime": 1788234086.0,
-    "hash": "ab50dd89da7da2346b28003352eeeeeb"
+  ".vscode/settings.json": {
+    "mtime": 1789784763.5040796,
+    "ast_hash": "c1d228011df346fb592265221517f7ec",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\FraudeApplication.java": {
-    "mtime": 1788234086.0,
-    "hash": "ec4e24614eff792e976cfc85b4505ff8"
+  "backend/mvnw": {
+    "mtime": 1788221555.397528,
+    "ast_hash": "ab50dd89da7da2346b28003352eeeeeb",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\domain\\model\\AlertaFraude.java": {
-    "mtime": 1788216164.4254005,
-    "hash": "758632a0b415f769aa9b167f5fe911da"
+  "backend/pom.xml": {
+    "mtime": 1789785149.2068942,
+    "ast_hash": "291ea229341011ea0de7ba363d147eca",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\domain\\model\\Cliente.java": {
-    "mtime": 1788216160.3851762,
-    "hash": "ecafb47b873a55338df58bc0f1d2bb57"
+  "backend/postman/fraud_detection_environment.json": {
+    "mtime": 1789785989.8589325,
+    "ast_hash": "59f2a742604a47da3036115f4e15b0ae",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\java\\com\\empresa\\fraude\\domain\\model\\Transaccion.java": {
-    "mtime": 1788216162.4119048,
-    "hash": "8b8dba2b83ff1c4d65d3ca17404353b1"
+  "backend/postman/fraud_detection_postman_collection.json": {
+    "mtime": 1789785983.2018304,
+    "ast_hash": "e5a2c4167a8af073223930ab57afe9a6",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\resources\\db\\migration\\V1__init.sql": {
-    "mtime": 1788216146.9224753,
-    "hash": "c4be5376b9d6f0007a4e9f7521fc157e"
+  "backend/src/main/java/com/empresa/fraude/FraudeApplication.java": {
+    "mtime": 1788221555.3990858,
+    "ast_hash": "ec4e24614eff792e976cfc85b4505ff8",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\test\\java\\com\\empresa\\fraude\\FraudeApplicationTests.java": {
-    "mtime": 1788234086.0,
-    "hash": "8e3e8a960522b57fe0547c33290420b0"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/AlertaController.java": {
+    "mtime": 1789783999.547688,
+    "ast_hash": "f8cf8b125cc456740d0bddd38f1f37ef",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\main.ts": {
-    "mtime": 1788180967.0011916,
-    "hash": "b5c1d106e573fea21ef1ad9e4360e77a"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/AuthController.java": {
+    "mtime": 1789783968.078291,
+    "ast_hash": "066f5e61d2b0ac27bbb3c4e6832a6bb8",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.component.spec.ts": {
-    "mtime": 1788180966.9818323,
-    "hash": "59a2498d8ba2c6570bf1065606724cae"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/CasoController.java": {
+    "mtime": 1789784014.8687441,
+    "ast_hash": "7808daabfe2bc71c123b9bb05cb8e29a",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.component.ts": {
-    "mtime": 1788180966.9818323,
-    "hash": "f2028e5f87c7960d10a220120d4a671a"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/GlobalExceptionHandler.java": {
+    "mtime": 1789783956.0624344,
+    "ast_hash": "0c149a07c723d2577c0cde4fe45565d3",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.config.ts": {
-    "mtime": 1788180966.9818323,
-    "hash": "b3783e1fb2e6298f7fdaeb3874308fd3"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/HealthCheckController.java": {
+    "mtime": 1789782060.627717,
+    "ast_hash": "7647ca480c21e18f8aa4afec0e02bde4",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.routes.ts": {
-    "mtime": 1788180966.9835775,
-    "hash": "c1bf81d846c3a732d9de32d0a710a128"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/TransaccionController.java": {
+    "mtime": 1790734838.0037646,
+    "ast_hash": "837bdb64e4b1793675e6c92c8981fcae",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\core\\services\\fraud-mock.service.spec.ts": {
-    "mtime": 1788180966.9835775,
-    "hash": "187490d4bdc1b01582ea74e8f52982ce"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/dto/LoginRequest.java": {
+    "mtime": 1789783902.9240713,
+    "ast_hash": "a58135abdbfc5a142cef4511d8f97384",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\core\\services\\fraud-mock.service.ts": {
-    "mtime": 1788180966.9835775,
-    "hash": "864363ead59db554523b3918e662ed93"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/dto/LoginResponse.java": {
+    "mtime": 1789783914.258672,
+    "ast_hash": "82e8773bca6a186e6841f838f0452b7d",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\alerts\\alerts-list\\alerts-list.component.spec.ts": {
-    "mtime": 1788180966.9889855,
-    "hash": "0fff2c8ef5fcea68bbd2338add148cdc"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/dto/TransaccionRequest.java": {
+    "mtime": 1789783666.56595,
+    "ast_hash": "a406f00fc3369e28da4c9ec7335725d1",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\alerts\\alerts-list\\alerts-list.component.ts": {
-    "mtime": 1788182082.2859597,
-    "hash": "f9d307191288831bcc41d2979743ab70"
+  "backend/src/main/java/com/empresa/fraude/adapter/in/web/dto/TransaccionResponse.java": {
+    "mtime": 1790735176.682119,
+    "ast_hash": "6b418f0e6a2af3902deef094bcbb9270",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\dashboard\\dashboard\\dashboard.component.spec.ts": {
-    "mtime": 1788180966.993833,
-    "hash": "586924c39aed83d2433ffdfb493abbf4"
+  "backend/src/main/java/com/empresa/fraude/application/service/AlertaFraudeService.java": {
+    "mtime": 1789785229.1992679,
+    "ast_hash": "ce66cf8776fa73d4f5f1e8b2bf30d183",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\dashboard\\dashboard\\dashboard.component.ts": {
-    "mtime": 1788182017.429096,
-    "hash": "f693979272c62ba73c48af5d00a1042a"
+  "backend/src/main/java/com/empresa/fraude/application/service/AuthService.java": {
+    "mtime": 1789783928.5879817,
+    "ast_hash": "056de801055d7637b0673396d520b2d9",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\main-layout\\main-layout.component.spec.ts": {
-    "mtime": 1788180966.9985085,
-    "hash": "0524a94bbd34848b986876bdfce51b8a"
+  "backend/src/main/java/com/empresa/fraude/application/service/CasoFraudeService.java": {
+    "mtime": 1789783735.5791843,
+    "ast_hash": "69453d0f26a5b28ed3cc04b4fb93281e",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\main-layout\\main-layout.component.ts": {
-    "mtime": 1788180966.9985085,
-    "hash": "cadbc41c4af1c53bae30b06e026e7626"
+  "backend/src/main/java/com/empresa/fraude/application/service/EvaluacionFraudeService.java": {
+    "mtime": 1790735303.2119248,
+    "ast_hash": "81a861fbd08c90b0273aace0df0118aa",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\navbar\\navbar.component.spec.ts": {
-    "mtime": 1788180966.999186,
-    "hash": "268b83184c388bfd5e950093b9146c30"
+  "backend/src/main/java/com/empresa/fraude/application/service/FeatureService.java": {
+    "mtime": 1789783590.6729898,
+    "ast_hash": "22aeff094d67bbded7f6cb7a86fbf8a1",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\navbar\\navbar.component.ts": {
-    "mtime": 1788180967.0011916,
-    "hash": "0144618b197a8b9cb659fcdf1978e387"
+  "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java": {
+    "mtime": 1790735316.097439,
+    "ast_hash": "8e6bfa582cd2291089b1848f1d551b49",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\sidebar\\sidebar.component.spec.ts": {
-    "mtime": 1788180967.0011916,
-    "hash": "74c62329087c1d75f1f07a0bd16e76ca"
+  "backend/src/main/java/com/empresa/fraude/config/DataInitializer.java": {
+    "mtime": 1789784197.687387,
+    "ast_hash": "67bea33b52eab3f60ead13bd429d0696",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\sidebar\\sidebar.component.ts": {
-    "mtime": 1788180967.0011916,
-    "hash": "62feff1c8aaf424545205fdd30f9a892"
+  "backend/src/main/java/com/empresa/fraude/config/OpenApiConfig.java": {
+    "mtime": 1789781935.0062435,
+    "ast_hash": "9c4cb854a6617bf56d2ba16a93e6d583",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\main_instructions.md": {
-    "mtime": 1788180967.0031972,
-    "hash": "0c853e545fddefdb8d27794d65aa63ba"
+  "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java": {
+    "mtime": 1789785199.8701599,
+    "ast_hash": "b4545ba24c6e9c06379252a646173322",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\backend_instructions.md": {
-    "mtime": 1788180966.9706972,
-    "hash": "d02c634009d8ed00c0b28aee497d0f5e"
+  "backend/src/main/java/com/empresa/fraude/config/WebSocketConfig.java": {
+    "mtime": 1789785188.3346443,
+    "ast_hash": "2a6595c510a2f4f55e182d059abafa1b",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\HELP.md": {
-    "mtime": 1788234086.0,
-    "hash": "b4bf00fbc7d55ea68bb7760f38194f68"
+  "backend/src/main/java/com/empresa/fraude/config/security/CustomUserDetailsService.java": {
+    "mtime": 1789783877.560759,
+    "ast_hash": "27ce753ae8e692eeb1962c7f97bd0d95",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\backend\\src\\main\\resources\\application.yml": {
-    "mtime": 1788216144.895322,
-    "hash": "22eb309c5009e5d2685e79197dd697b7"
+  "backend/src/main/java/com/empresa/fraude/config/security/JwtAuthenticationFilter.java": {
+    "mtime": 1789783892.2371569,
+    "ast_hash": "ae66a8608157495823fbd6e553b4bcd9",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\frontend_instructions.md": {
-    "mtime": 1788180966.9756374,
-    "hash": "d186aada2984fecb30bbcd0a579609d1"
+  "backend/src/main/java/com/empresa/fraude/config/security/JwtService.java": {
+    "mtime": 1789783866.6285489,
+    "ast_hash": "c9c42ad21645e91ee718627554dde49b",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\README.md": {
-    "mtime": 1788180966.9738255,
-    "hash": "0fc69c6b83e4618619075e15b5e88c4b"
+  "backend/src/main/java/com/empresa/fraude/domain/exception/BusinessException.java": {
+    "mtime": 1789783601.4815743,
+    "ast_hash": "82bda886a4191816dde6a36003643fff",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\index.html": {
-    "mtime": 1788180967.0011916,
-    "hash": "ff81e1e33011abb66bf0061d4a2f8fa4"
+  "backend/src/main/java/com/empresa/fraude/domain/exception/CuentaNoHabilitadaException.java": {
+    "mtime": 1789783636.1220555,
+    "ast_hash": "d813e60cc2efd5037d1e8cf6e87b68d5",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\app.component.html": {
-    "mtime": 1788180966.9818323,
-    "hash": "31729744a5a7cb0909b01bce2a386e41"
+  "backend/src/main/java/com/empresa/fraude/domain/exception/CuentaNotFoundException.java": {
+    "mtime": 1789783612.5685277,
+    "ast_hash": "ce6802e7f3e9a48b37f3d619be9d6b85",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\alerts\\alerts-list\\alerts-list.component.html": {
-    "mtime": 1788182094.048274,
-    "hash": "9abf03afae954a5cd2c1d9becc3640a6"
+  "backend/src/main/java/com/empresa/fraude/domain/exception/MontoInvalidoException.java": {
+    "mtime": 1789783622.8830576,
+    "ast_hash": "3189a6c5cdc75dd41d5610d3edb84ba5",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\features\\dashboard\\dashboard\\dashboard.component.html": {
-    "mtime": 1788182026.7662852,
-    "hash": "2e03cc14823b21a8e051f3a02af444d8"
+  "backend/src/main/java/com/empresa/fraude/domain/exception/ResourceNotFoundException.java": {
+    "mtime": 1789783650.0619793,
+    "ast_hash": "d89ae3a52ed9fda798d44fdf672a2059",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\main-layout\\main-layout.component.html": {
-    "mtime": 1788180966.993833,
-    "hash": "e2f9da5e7ca99348c87137beefe6614a"
+  "backend/src/main/java/com/empresa/fraude/domain/model/AlertaFraude.java": {
+    "mtime": 1788221555.401771,
+    "ast_hash": "758632a0b415f769aa9b167f5fe911da",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\navbar\\navbar.component.html": {
-    "mtime": 1788180966.999186,
-    "hash": "1bd270b88b06402204e3bd8a82aa61f9"
+  "backend/src/main/java/com/empresa/fraude/domain/model/Cliente.java": {
+    "mtime": 1788221555.4021108,
+    "ast_hash": "ecafb47b873a55338df58bc0f1d2bb57",
+    "semantic_hash": ""
   },
-  "D:\\Documentos\\Proyectos\\java\\prev_fraude_bancario\\frontend\\src\\app\\layout\\sidebar\\sidebar.component.html": {
-    "mtime": 1788180967.0011916,
-    "hash": "919ffbff7f7e721d4a1d3b517afd2b91"
+  "backend/src/main/java/com/empresa/fraude/domain/model/Transaccion.java": {
+    "mtime": 1788221555.4023743,
+    "ast_hash": "8b8dba2b83ff1c4d65d3ca17404353b1",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/EvaluacionResultado.java": {
+    "mtime": 1789783498.1034765,
+    "ast_hash": "010c7da6fd61979bb6869ec938e19b0a",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/EvaluationContext.java": {
+    "mtime": 1789783335.1293113,
+    "ast_hash": "c5a011afde6b733f8240c67241bc685e",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/FraudRuleStrategy.java": {
+    "mtime": 1789783363.4770947,
+    "ast_hash": "4fc05be43d10d8aa6fd8473d5ec62441",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/FraudScoringEngine.java": {
+    "mtime": 1789783511.5919697,
+    "ast_hash": "2ca8ec52d6e5c32aa974a5cc3d74028c",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/RuleEvaluationResult.java": {
+    "mtime": 1789783348.178854,
+    "ast_hash": "7f5c427c9411557cfff0a88cb3b0a1fd",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF001_MontoInusualRule.java": {
+    "mtime": 1789783376.6541226,
+    "ast_hash": "ad3ed081cf9e0429ce654581f2b2fb3f",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF002_DispositivoNuevoRule.java": {
+    "mtime": 1789783387.9227543,
+    "ast_hash": "818215ea1ab7f0d62db60a7e83e5ed1c",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF003_IpNuevaRule.java": {
+    "mtime": 1789783402.2922797,
+    "ast_hash": "2612b276070b429a85fcee55a7973949",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF004_PaisNuevoRule.java": {
+    "mtime": 1789783415.6106873,
+    "ast_hash": "408cdcb265b830c79fef66c1883bc411",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF005_HorarioInusualRule.java": {
+    "mtime": 1789783426.5415382,
+    "ast_hash": "b528dfc8c7c78e362b876de2d52fb05f",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF006_AltaFrecuenciaRule.java": {
+    "mtime": 1789783437.1042142,
+    "ast_hash": "6924b5860b71ef9c8aa4619fb541218c",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF007_ViajeImposibleRule.java": {
+    "mtime": 1789783447.6947534,
+    "ast_hash": "e75c007fde2a70606b550995eb95dd86",
+    "semantic_hash": ""
+  },
+  "backend/src/main/java/com/empresa/fraude/domain/rule/impl/RF008_BeneficiarioNuevoMontoAltoRule.java": {
+    "mtime": 1789783462.4989326,
+    "ast_hash": "60275a921975b167dff791266dd60263",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/db/migration/V1__init.sql": {
+    "mtime": 1788221555.4046426,
+    "ast_hash": "c4be5376b9d6f0007a4e9f7521fc157e",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/db/migration/V2__full_schema.sql": {
+    "mtime": 1789782821.6764736,
+    "ast_hash": "18748aea11ae2cd879f03dd1ea518320",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/db/migration/V3__seed_data.sql": {
+    "mtime": 1789782839.4877946,
+    "ast_hash": "c6efc3f707ba64c20902716df931099a",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/db/migration/V4__char_to_varchar.sql": {
+    "mtime": 1789783253.274541,
+    "ast_hash": "17ba5bed9460f51a2f057d9d30ab588f",
+    "semantic_hash": ""
+  },
+  "backend/src/test/java/com/empresa/fraude/FraudeApplicationTests.java": {
+    "mtime": 1789782034.4553823,
+    "ast_hash": "8e3e8a960522b57fe0547c33290420b0",
+    "semantic_hash": ""
+  },
+  "backend/src/test/java/com/empresa/fraude/TransaccionFlowIntegrationTest.java": {
+    "mtime": 1789784387.5248356,
+    "ast_hash": "4c31acd9c05c6639345053661a5e2b0d",
+    "semantic_hash": ""
+  },
+  "backend/src/test/java/com/empresa/fraude/domain/rule/FraudScoringEngineTest.java": {
+    "mtime": 1789783546.3728821,
+    "ast_hash": "77ac52cf1fcee2f81bdbd6d065bbc0c2",
+    "semantic_hash": ""
+  },
+  "frontend/.vscode/extensions.json": {
+    "mtime": 1788141878.0654714,
+    "ast_hash": "d3b118b41884c371c18cbd55e392eb07",
+    "semantic_hash": ""
+  },
+  "frontend/.vscode/launch.json": {
+    "mtime": 1788141878.0659697,
+    "ast_hash": "c6799d2f7ae6f5d7a740d1023654bb8d",
+    "semantic_hash": ""
+  },
+  "frontend/.vscode/tasks.json": {
+    "mtime": 1788141878.0663123,
+    "ast_hash": "5a70b3d3763f6628c8083d7b033b98b8",
+    "semantic_hash": ""
+  },
+  "frontend/angular.json": {
+    "mtime": 1790734266.7224689,
+    "ast_hash": "222ef658d3c340cf340b9c77cb0939d2",
+    "semantic_hash": ""
+  },
+  "frontend/package.json": {
+    "mtime": 1788915092.0242217,
+    "ast_hash": "2de2dec097d74b453b460a1163a16433",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/app.component.spec.ts": {
+    "mtime": 1788141878.0678837,
+    "ast_hash": "74d3335f74248f2a4a83bc24702e9582",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/app.component.ts": {
+    "mtime": 1789002908.7291837,
+    "ast_hash": "f4f927e90c6aed1c34451e7b2f90535e",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/app.config.ts": {
+    "mtime": 1790733843.305674,
+    "ast_hash": "56199be6e7893267c1e8beed80c2192f",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/app.routes.ts": {
+    "mtime": 1790733955.7560792,
+    "ast_hash": "0a5f96fc74f49682cd27c2405b1d99b9",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/guards/auth.guard.ts": {
+    "mtime": 1790733907.4933586,
+    "ast_hash": "e1949e64acc45ed456215948ed179fdc",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/interceptors/jwt.interceptor.ts": {
+    "mtime": 1790733836.45247,
+    "ast_hash": "a712842d014df407e68a9493ba3e8c0a",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/models/auth.model.ts": {
+    "mtime": 1790733884.3652802,
+    "ast_hash": "9454f3524ef8e9aee21872cf55de998c",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/models/case.model.ts": {
+    "mtime": 1790734376.7387989,
+    "ast_hash": "02c83b7a1337a3369bbbdc88f6edef17",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/models/fraud-alert.model.ts": {
+    "mtime": 1790734187.6068835,
+    "ast_hash": "909291630d8159be4e7b4228f3ca894e",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/models/transaction.model.ts": {
+    "mtime": 1790735204.2914813,
+    "ast_hash": "b068e806bf4ab75c3d2aacc2d60dd5eb",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/models/websocket-event.model.ts": {
+    "mtime": 1790734354.3287103,
+    "ast_hash": "d4e82bd23dccc9a155820079366ab580",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/auth.service.ts": {
+    "mtime": 1790733892.467643,
+    "ast_hash": "b5a11bdda188a9d2ab569660dc3717b1",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/case.service.ts": {
+    "mtime": 1790734384.6100307,
+    "ast_hash": "631a1afb0e371b8406d4be14d10725f1",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/fraud.service.ts": {
+    "mtime": 1790735248.104283,
+    "ast_hash": "2767a66d4633fdaf51d9038a2490ccaa",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/health.service.ts": {
+    "mtime": 1790733850.0776684,
+    "ast_hash": "2bcc96784ef68c755486df86e0a807ad",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/simulation.service.ts": {
+    "mtime": 1790735258.7191887,
+    "ast_hash": "72c993003fa99618e88ebd3291ac0735",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/theme.service.ts": {
+    "mtime": 1789178037.555043,
+    "ast_hash": "375f38e2ce443b1a0afb1ec8db1a77a8",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/core/services/websocket.service.ts": {
+    "mtime": 1790734365.0267792,
+    "ast_hash": "f3078132fd6ed019c7e3f58fee39d8f6",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/alerts/alerts-list/alerts-list.component.spec.ts": {
+    "mtime": 1788143308.7663646,
+    "ast_hash": "f30f12557ed7efd6c1e7413524be770d",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/alerts/alerts-list/alerts-list.component.ts": {
+    "mtime": 1790735084.7047384,
+    "ast_hash": "c8ce3680da80af08ae8536bf15881ef3",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/auth/login/login.component.ts": {
+    "mtime": 1790733920.5562391,
+    "ast_hash": "292b7ee352ea155df8691b837c7bb881",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/dashboard/dashboard/dashboard.component.spec.ts": {
+    "mtime": 1788143307.3845527,
+    "ast_hash": "0a720cde7bee54b12a793794d5a53fcf",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/dashboard/dashboard/dashboard.component.ts": {
+    "mtime": 1790735019.8325741,
+    "ast_hash": "84b025be07b9519e375e0a9f1b39940b",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/simulation/simulation.component.ts": {
+    "mtime": 1790735098.8860192,
+    "ast_hash": "20cd828cfcda165ae6a0195db0e6c599",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/main-layout/main-layout.component.spec.ts": {
+    "mtime": 1788143303.3424356,
+    "ast_hash": "0d85591fc6a1318473684ef06fe9ee8c",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/main-layout/main-layout.component.ts": {
+    "mtime": 1788143467.0420606,
+    "ast_hash": "c451e918227ab83137159803312079cc",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/navbar/navbar.component.spec.ts": {
+    "mtime": 1788143304.7098172,
+    "ast_hash": "8a6c1fabff9ee5286fa11fdbb749974d",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/navbar/navbar.component.ts": {
+    "mtime": 1790733989.6385088,
+    "ast_hash": "f1584cea171dbe028bd974eb25978953",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/sidebar/sidebar.component.spec.ts": {
+    "mtime": 1788143306.0802863,
+    "ast_hash": "f2fd84e87db586dc3958b0777c410c40",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/sidebar/sidebar.component.ts": {
+    "mtime": 1790735089.8827431,
+    "ast_hash": "c4b5d8fffae5c74eb27661834ca7b718",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/shared/components/fraud-chart/fraud-chart.component.ts": {
+    "mtime": 1789178279.0150354,
+    "ast_hash": "adcc57b190a5875fc412774384034b59",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/shared/utils/excel-export.util.ts": {
+    "mtime": 1788915092.0401518,
+    "ast_hash": "8c86506293216f71c55e6e7c1285c8c5",
+    "semantic_hash": ""
+  },
+  "frontend/src/environments/environment.prod.ts": {
+    "mtime": 1790733823.5889843,
+    "ast_hash": "b529252e7cf58d96720964ae11059d8d",
+    "semantic_hash": ""
+  },
+  "frontend/src/environments/environment.ts": {
+    "mtime": 1790733816.3574822,
+    "ast_hash": "f3f36cfccb7d33b315dd1cd186c9136c",
+    "semantic_hash": ""
+  },
+  "frontend/src/main.ts": {
+    "mtime": 1788141878.0666373,
+    "ast_hash": "c986c915181c0d91d6ea1af9fc003131",
+    "semantic_hash": ""
+  },
+  "frontend/tsconfig.app.json": {
+    "mtime": 1788141878.0644743,
+    "ast_hash": "5e4359f76ba3214222e943bbef1a2e03",
+    "semantic_hash": ""
+  },
+  "frontend/tsconfig.json": {
+    "mtime": 1788141878.0641458,
+    "ast_hash": "64cc45ff2b7dc220b2fb18a2e8d96ce8",
+    "semantic_hash": ""
+  },
+  "frontend/tsconfig.spec.json": {
+    "mtime": 1788141878.064874,
+    "ast_hash": "3bbab7796b2ab5af73dcc4b5f9064535",
+    "semantic_hash": ""
+  },
+  "skills-lock.json": {
+    "mtime": 1789177267.9984045,
+    "ast_hash": "f1bb27859f945ac9cccc0fcf395cd1d9",
+    "semantic_hash": ""
+  },
+  ".agents/skills/grill-me/SKILL.md": {
+    "mtime": 1789177267.9762619,
+    "ast_hash": "51ba9306293963bb76680d5e41525aea",
+    "semantic_hash": ""
+  },
+  ".agents/skills/grill-me/agents/openai.yaml": {
+    "mtime": 1789177267.9765298,
+    "ast_hash": "aff7b6f7b10220e3b4537c42a2d08917",
+    "semantic_hash": ""
+  },
+  ".postman/resources.yaml": {
+    "mtime": 1789825859.9318767,
+    "ast_hash": "98c38a9ac8750bea7bede939015a5371",
+    "semantic_hash": ""
+  },
+  "INTEGRATION_PLAN.md": {
+    "mtime": 1790734477.6802373,
+    "ast_hash": "c3e32e736ff1899e5ffc25221caea882",
+    "semantic_hash": ""
+  },
+  "backend/IMPLEMENTATION_PLAN.md": {
+    "mtime": 1789785265.583059,
+    "ast_hash": "c02d2d473d61e0e228452c7791b0c148",
+    "semantic_hash": ""
+  },
+  "backend/README.md": {
+    "mtime": 1789785470.038716,
+    "ast_hash": "90fd1ad937036865113e36bada82c551",
+    "semantic_hash": ""
+  },
+  "backend/backend_instructions.md": {
+    "mtime": 1788221555.3971825,
+    "ast_hash": "9c7c70ef5fd2e441701f965c7b961d61",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/application.yml": {
+    "mtime": 1789781956.2874415,
+    "ast_hash": "5ee906fdf7c78b9cfd2139555c620594",
+    "semantic_hash": ""
+  },
+  "frontend/README.md": {
+    "mtime": 1788915092.018017,
+    "ast_hash": "c8b98e76f116059577dca1c2626b88d7",
+    "semantic_hash": ""
+  },
+  "frontend/frontend_instructions.md": {
+    "mtime": 1788141567.6106055,
+    "ast_hash": "ca62e0ece4013162a85fe37803d7be96",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/app.component.html": {
+    "mtime": 1788143442.4586093,
+    "ast_hash": "92b5943b800a66a310a32614ee6e4e97",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/alerts/alerts-list/alerts-list.component.html": {
+    "mtime": 1789178147.7481453,
+    "ast_hash": "b62e4239cd8d758cb474a111eadfb9ec",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/auth/login/login.component.html": {
+    "mtime": 1790733935.9619253,
+    "ast_hash": "43057cc47c217fd835a3439500522bd8",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/dashboard/dashboard/dashboard.component.html": {
+    "mtime": 1789179690.2403648,
+    "ast_hash": "e4476661ca2be09aab7d8a573976dd8a",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/features/simulation/simulation.component.html": {
+    "mtime": 1789178228.0122561,
+    "ast_hash": "61187bb456a7ead42f4f087c2a14dd17",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/main-layout/main-layout.component.html": {
+    "mtime": 1789179025.0297232,
+    "ast_hash": "08e2953a6f62ab71b86369598d5063a6",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/navbar/navbar.component.html": {
+    "mtime": 1790733983.2643628,
+    "ast_hash": "e58b9dabdfc8774fb812389b61670a68",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/layout/sidebar/sidebar.component.html": {
+    "mtime": 1790734017.8812447,
+    "ast_hash": "1235d5cf96f039fe1e2f8bc43ec56e2f",
+    "semantic_hash": ""
+  },
+  "frontend/src/app/shared/components/fraud-chart/fraud-chart.component.html": {
+    "mtime": 1789178240.2482753,
+    "ast_hash": "a25955e7fdc1dd0c1874e3580692131e",
+    "semantic_hash": ""
+  },
+  "frontend/src/index.html": {
+    "mtime": 1789181529.001779,
+    "ast_hash": "65c5c96dd92e9eda762c11bde8ccac86",
+    "semantic_hash": ""
+  },
+  "main_instructions.md": {
+    "mtime": 1788141148.7148612,
+    "ast_hash": "2eed07ad9d43e0177877b4fb70210e47",
+    "semantic_hash": ""
+  },
+  "postman/collections/New Collection/.resources/definition.yaml": {
+    "mtime": 1789825821.3041394,
+    "ast_hash": "522de03f762ea98e1b1472e51692051d",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/.resources/definition.yaml": {
+    "mtime": 1789825859.905315,
+    "ast_hash": "d21b1bcd2215fa74762eb0b374f16a02",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/00. Health & Diagn\u00f3stico/.resources/definition.yaml": {
+    "mtime": 1789825859.907131,
+    "ast_hash": "c59ed1f45f68b7dd9596539734483f56",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/00. Health & Diagn\u00f3stico/Consultar OpenAPI Specification (JSON).request.yaml": {
+    "mtime": 1789825859.9060726,
+    "ast_hash": "4ca5ddd1072f50ee41eb01002557f4a6",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/00. Health & Diagn\u00f3stico/Verificar Estado del Backend (Health Check).request.yaml": {
+    "mtime": 1789825859.9064543,
+    "ast_hash": "3a8fd87acb74960651be6b8702e71cc8",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/01. Autenticaci\u00f3n (Auth & JWT)/.resources/definition.yaml": {
+    "mtime": 1789825859.9071064,
+    "ast_hash": "2a2ec0593fbd53c20a6ee12aafa353c5",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/01. Autenticaci\u00f3n (Auth & JWT)/Login Administrador de Fraude.request.yaml": {
+    "mtime": 1789826097.9908843,
+    "ast_hash": "0e9c0b4b80379ff9567fa352a2da5501",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/01. Autenticaci\u00f3n (Auth & JWT)/Login Analista de Fraude.request.yaml": {
+    "mtime": 1789826109.7661793,
+    "ast_hash": "68a158c7a8f8289031adf54b05122155",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/02. Transacciones (Scoring & Detecci\u00f3n)/.resources/definition.yaml": {
+    "mtime": 1789825859.9055178,
+    "ast_hash": "428408c476f8b64f8f5d4052733d1f27",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/02. Transacciones (Scoring & Detecci\u00f3n)/1. Happy Path - Transacci\u00f3n Leg\u00edtima (Bajo Riesgo - Aprobada).request.yaml": {
+    "mtime": 1789826250.0438974,
+    "ast_hash": "a5a4a041dcada0c9183797dc275d149a",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/02. Transacciones (Scoring & Detecci\u00f3n)/2. No Happy Path A - Fraude Cr\u00edtico (Dispositivo Nuevo, Pa\u00eds A.request.yaml": {
+    "mtime": 1789826247.6676888,
+    "ast_hash": "ae142727ebabae416c4d39e611cdce3f",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/02. Transacciones (Scoring & Detecci\u00f3n)/3. No Happy Path B1 - Monto Inv\u00e1lido (Menor o Igual a Cero).request.yaml": {
+    "mtime": 1789826285.0545819,
+    "ast_hash": "c50935b1ec8052133b056711a4a3650a",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/02. Transacciones (Scoring & Detecci\u00f3n)/4. No Happy Path B2 - Saldo Insuficiente (Error Negocio).request.yaml": {
+    "mtime": 1789865747.3163593,
+    "ast_hash": "14f37ab648e1db84181d677d248bbd31",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/02. Transacciones (Scoring & Detecci\u00f3n)/5. No Happy Path B3 - Cuenta Inexistente.request.yaml": {
+    "mtime": 1789825859.9063842,
+    "ast_hash": "e0c085145ea8d0a6f60f8cb96a5a9bee",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/03. Alertas Antifraude (Analista)/.resources/definition.yaml": {
+    "mtime": 1789825859.9054587,
+    "ast_hash": "b18f3b805290e5753140389a96b25a31",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/03. Alertas Antifraude (Analista)/Cambiar Estado de Alerta (EN_REVISION).request.yaml": {
+    "mtime": 1789865750.541855,
+    "ast_hash": "061349cf971dceeffd0c27305fb14b0e",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/03. Alertas Antifraude (Analista)/Consultar Detalle de Alerta por ID.request.yaml": {
+    "mtime": 1789825859.906382,
+    "ast_hash": "750ea72a17b685d882153cc06afa8bae",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/03. Alertas Antifraude (Analista)/Filtrar Alertas por Estado (GENERADA).request.yaml": {
+    "mtime": 1789825859.9064147,
+    "ast_hash": "8f161dd5ccd25d74788b03608a78877b",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/03. Alertas Antifraude (Analista)/Listar Alertas de Fraude (Todas).request.yaml": {
+    "mtime": 1789825859.906301,
+    "ast_hash": "b093ac09d87b56efdfaae56b3c8d057f",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/04. Casos de Investigaci\u00f3n Formal/.resources/definition.yaml": {
+    "mtime": 1789825859.9065237,
+    "ast_hash": "2fe92c7ec5d7ac211136d41859fcdb83",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/04. Casos de Investigaci\u00f3n Formal/Abrir Caso Formal de Investigaci\u00f3n.request.yaml": {
+    "mtime": 1789826991.2394328,
+    "ast_hash": "89e0999efc9452405cbad0a43a872a53",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/04. Casos de Investigaci\u00f3n Formal/Cerrar Caso con Dictamen Final (Fraude Confirmado).request.yaml": {
+    "mtime": 1789825859.9053707,
+    "ast_hash": "8d2b8c3c2f7dfa8003a397b5cfa9ac06",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/04. Casos de Investigaci\u00f3n Formal/Listar Casos de Investigaci\u00f3n.request.yaml": {
+    "mtime": 1789825859.9051707,
+    "ast_hash": "eddf1596c54930011436654ddad2273a",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/04. Casos de Investigaci\u00f3n Formal/Registrar Evento en Bit\u00e1cora del Caso.request.yaml": {
+    "mtime": 1789825859.9053564,
+    "ast_hash": "76076d49286b0689865d205c82a255b1",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/05. WebSockets en Tiempo Real (STOMP - Angular)/.resources/definition.yaml": {
+    "mtime": 1789825859.9065316,
+    "ast_hash": "f081c4539ce115fe19b296e4ef6aec0f",
+    "semantic_hash": ""
+  },
+  "postman/collections/Sistema de Detecci\u00f3n de Fraude Bancario API & WebSockets/05. WebSockets en Tiempo Real (STOMP - Angular)/1. Verificar Endpoint SockJS Info (HTTP).request.yaml": {
+    "mtime": 1789825859.9052258,
+    "ast_hash": "09a7dcca19b33322409d7e3371f423b6",
+    "semantic_hash": ""
+  },
+  "postman/environments/Prevenci\u00f3n Fraude Bancario - Local.environment.yaml": {
+    "mtime": 1789825859.7265851,
+    "ast_hash": "f30a9b704d121e666d3ce67916483a59",
+    "semantic_hash": ""
+  },
+  "postman/globals/workspace.globals.yaml": {
+    "mtime": 1789785748.368353,
+    "ast_hash": "1f31f0e4d6a7b594d17c1e596c93528c",
+    "semantic_hash": ""
+  },
+  "frontend/public/logo-banco.png": {
+    "mtime": 1789181528.999916,
+    "ast_hash": "40548296f85d42df9d31ae9ebac8020b",
+    "semantic_hash": ""
   }
 }

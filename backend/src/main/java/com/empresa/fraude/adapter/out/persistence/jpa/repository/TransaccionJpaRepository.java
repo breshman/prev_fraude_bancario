@@ -14,4 +14,5 @@ public interface TransaccionJpaRepository extends JpaRepository<TransaccionEntit
     Optional<TransaccionEntity> findByCodigoTransaccion(UUID codigoTransaccion);
     List<TransaccionEntity> findByCuentaIdCuentaAndFechaHoraTransaccionAfter(Long idCuenta, OffsetDateTime fecha);
     long countByCuentaClienteIdClienteAndFechaHoraTransaccionAfter(Long idCliente, OffsetDateTime fecha);
+    List<TransaccionEntity> findAllByOrderByFechaHoraTransaccionDesc();
 }

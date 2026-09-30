@@ -35,4 +35,19 @@ public class TransaccionController {
         TransaccionResponse response = transaccionService.procesarTransaccion(request, correlationId);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @GetMapping
+    @Operation(summary = "Listar transacciones registradas", description = "Retorna el historial completo de transacciones evaluadas almacenadas en la base de datos.")
+    public ResponseEntity<java.util.List<TransaccionResponse>> listarTransacciones() {
+        return ResponseEntity.ok(transaccionService.listarTransacciones());
+    }
+
+    @PostMapping("/simular-lote")
+    @Operation(summary = "Simular lote de transacciones en el backend", description = "Genera y evalúa un lote de transacciones reales en el servidor usando las cuentas y reglas de la base de datos.")
+    public ResponseEntity<java.util.List<TransaccionResponse>> simularLote(
+            @RequestParam(value = "cantidad", defaultValue = "10") int cantidad,
+            @RequestParam(value = "escenario", defaultValue = "MIXED") String escenario
+    ) {
+        return ResponseEntity.ok(transaccionService.simularLote(cantidad, escenario));
+    }
 }

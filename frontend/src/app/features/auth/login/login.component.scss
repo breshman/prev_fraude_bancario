@@ -1,0 +1,64 @@
+.login-container {
+  position: relative;
+  background-color: var(--bs-body-bg);
+  overflow: hidden;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--app-card-bg);
+  border: 1px solid var(--app-card-border) !important;
+  backdrop-filter: blur(16px);
+  z-index: 10;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.35) !important;
+}
+
+.brand-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: rgba(37, 99, 235, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  box-shadow: 0 0 25px rgba(37, 99, 235, 0.25);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.orb-1 {
+  width: 450px;
+  height: 450px;
+  background: #2563eb;
+  top: -150px;
+  left: -150px;
+}
+
+.orb-2 {
+  width: 400px;
+  height: 400px;
+  background: #06b6d4;
+  bottom: -150px;
+  right: -150px;
+}
+
+.demo-btn {
+  font-size: 0.78rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  }
+}

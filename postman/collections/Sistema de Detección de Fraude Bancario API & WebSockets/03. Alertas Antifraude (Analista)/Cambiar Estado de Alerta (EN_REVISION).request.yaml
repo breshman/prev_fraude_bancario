@@ -1,11 +1,12 @@
 $kind: http-request
+name: Cambiar Estado de Alerta (EN_REVISION)
 description: Actualiza el estado operativo de la alerta a EN_REVISION.
 url: "{{baseUrl}}/api/v1/alertas/{{alertaId}}/estado"
 method: PATCH
 headers:
   Content-Type: application/json
 body:
-  type: text
+  type: json
   content: |-
     {
       "estado": "EN_REVISION",

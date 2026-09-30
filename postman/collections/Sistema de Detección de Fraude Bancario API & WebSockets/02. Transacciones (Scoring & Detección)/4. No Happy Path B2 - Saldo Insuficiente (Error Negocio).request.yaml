@@ -1,11 +1,12 @@
 $kind: http-request
+name: 4. No Happy Path B2 - Saldo Insuficiente (Error Negocio)
 description: Valida el rechazo de la transacción cuando el monto excede el saldo de la cuenta.
 url: "{{baseUrl}}/api/v1/transacciones"
 method: POST
 headers:
   Content-Type: application/json
 body:
-  type: text
+  type: json
   content: |-
     {
       "numeroCuentaOrigen": "CTA-001-445522",

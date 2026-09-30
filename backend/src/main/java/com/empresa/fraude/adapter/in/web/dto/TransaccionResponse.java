@@ -33,6 +33,18 @@ public class TransaccionResponse {
     @Schema(description = "Fecha y hora del registro de la transacción")
     private OffsetDateTime fechaRegistro;
 
+    @Schema(description = "Monto de la transacción", example = "1500.00")
+    private BigDecimal monto;
+
+    @Schema(description = "Código de moneda", example = "PEN")
+    private String moneda;
+
+    @Schema(description = "Canal de la transacción", example = "ONLINE")
+    private String canal;
+
+    @Schema(description = "Número de cuenta de origen", example = "CTA-001-445522")
+    private String numeroCuentaOrigen;
+
     @Data
     @Builder
     @NoArgsConstructor

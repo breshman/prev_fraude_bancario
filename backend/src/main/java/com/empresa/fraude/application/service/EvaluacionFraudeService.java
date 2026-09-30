@@ -120,6 +120,9 @@ public class EvaluacionFraudeService {
             alertaService.crearAlerta(tx, guardada, motivosAlerta.toString());
         }
 
+        String cuentaOrigen = tx.getCuenta() != null ? tx.getCuenta().getNumeroCuenta() : null;
+        String canalStr = tx.getCanal() != null ? tx.getCanal().getCodigoCanal() : "ONLINE";
+
         return TransaccionResponse.builder()
                 .codigoTransaccion(tx.getCodigoTransaccion())
                 .estado(estadoFinal)
@@ -131,6 +134,10 @@ public class EvaluacionFraudeService {
                         .build())
                 .correlationId(correlationId)
                 .fechaRegistro(tx.getFechaRegistro())
+                .monto(tx.getMontoTransaccion())
+                .moneda(tx.getCodigoMoneda())
+                .canal(canalStr)
+                .numeroCuentaOrigen(cuentaOrigen)
                 .build();
     }
 }
