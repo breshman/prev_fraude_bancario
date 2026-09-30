@@ -2305,7 +2305,7 @@
       "label": ".listarTransacciones()",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L120",
+      "source_location": "L131",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_application_service_transaccionservice_transaccionservice_listartransacciones",
       "community": 2,
@@ -2316,7 +2316,7 @@
       "label": ".simularLote()",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L153",
+      "source_location": "L164",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_application_service_transaccionservice_transaccionservice_simularlote",
       "community": 2,
@@ -2503,7 +2503,7 @@
       "label": "SecurityConfig",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L22",
+      "source_location": "L29",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
       "community": 23,
@@ -2569,7 +2569,7 @@
       "label": ".securityFilterChain()",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L31",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_securityfilterchain",
       "community": 23,
@@ -2586,6 +2586,17 @@
       "community": 23,
       "community_name": "SecurityConfig.java",
       "norm_label": "httpsecurity"
+    },
+    {
+      "label": "AuthenticationProvider",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "authenticationprovider",
+      "community": 23,
+      "community_name": "SecurityConfig.java",
+      "norm_label": "authenticationprovider"
     },
     {
       "label": "SecurityFilterChain",
@@ -2610,10 +2621,32 @@
       "norm_label": "bean"
     },
     {
+      "label": ".corsConfigurationSource()",
+      "file_type": "code",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_corsconfigurationsource",
+      "community": 23,
+      "community_name": "SecurityConfig.java",
+      "norm_label": ".corsconfigurationsource()"
+    },
+    {
+      "label": "CorsConfigurationSource",
+      "file_type": "code",
+      "source_file": "",
+      "source_location": "",
+      "_origin": "ast",
+      "id": "corsconfigurationsource",
+      "community": 23,
+      "community_name": "SecurityConfig.java",
+      "norm_label": "corsconfigurationsource"
+    },
+    {
       "label": ".authenticationProvider()",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L58",
+      "source_location": "L82",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationprovider",
       "community": 23,
@@ -2621,21 +2654,21 @@
       "norm_label": ".authenticationprovider()"
     },
     {
-      "label": "AuthenticationProvider",
+      "label": "PasswordEncoder",
       "file_type": "code",
       "source_file": "",
       "source_location": "",
       "_origin": "ast",
-      "id": "authenticationprovider",
+      "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_passwordencoder",
       "community": 23,
       "community_name": "SecurityConfig.java",
-      "norm_label": "authenticationprovider"
+      "norm_label": "passwordencoder"
     },
     {
       "label": ".authenticationManager()",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L65",
+      "source_location": "L89",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationmanager",
       "community": 23,
@@ -2668,23 +2701,12 @@
       "label": ".passwordEncoder()",
       "file_type": "code",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L70",
+      "source_location": "L94",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_passwordencoder",
       "community": 23,
       "community_name": "SecurityConfig.java",
       "norm_label": ".passwordencoder()"
-    },
-    {
-      "label": "PasswordEncoder",
-      "file_type": "code",
-      "source_file": "",
-      "source_location": "",
-      "_origin": "ast",
-      "id": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_passwordencoder",
-      "community": 23,
-      "community_name": "SecurityConfig.java",
-      "norm_label": "passwordencoder"
     },
     {
       "label": "WebSocketConfig.java",
@@ -3188,8 +3210,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_businessexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "businessexception.java"
     },
     {
@@ -3199,8 +3221,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_businessexception_businessexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "businessexception"
     },
     {
@@ -3210,8 +3232,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "getter",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "getter"
     },
     {
@@ -3221,8 +3243,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_businessexception_businessexception_businessexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": ".businessexception()"
     },
     {
@@ -3232,8 +3254,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_cuentanohabilitadaexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "cuentanohabilitadaexception.java"
     },
     {
@@ -3243,8 +3265,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_cuentanohabilitadaexception_cuentanohabilitadaexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "cuentanohabilitadaexception"
     },
     {
@@ -3254,8 +3276,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_cuentanohabilitadaexception_cuentanohabilitadaexception_cuentanohabilitadaexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": ".cuentanohabilitadaexception()"
     },
     {
@@ -3265,8 +3287,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_cuentanotfoundexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "cuentanotfoundexception.java"
     },
     {
@@ -3276,8 +3298,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_cuentanotfoundexception_cuentanotfoundexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "cuentanotfoundexception"
     },
     {
@@ -3287,8 +3309,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_cuentanotfoundexception_cuentanotfoundexception_cuentanotfoundexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": ".cuentanotfoundexception()"
     },
     {
@@ -3298,8 +3320,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_montoinvalidoexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "montoinvalidoexception.java"
     },
     {
@@ -3309,8 +3331,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_montoinvalidoexception_montoinvalidoexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": "montoinvalidoexception"
     },
     {
@@ -3320,8 +3342,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "backend_src_main_java_com_empresa_fraude_domain_exception_montoinvalidoexception_montoinvalidoexception_montoinvalidoexception",
-      "community": 13,
-      "community_name": "TransaccionService",
+      "community": 2,
+      "community_name": "sidebar.component.ts",
       "norm_label": ".montoinvalidoexception()"
     },
     {
@@ -5883,8 +5905,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_app_component_spec",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "app.component.spec.ts"
     },
     {
@@ -5894,8 +5916,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_app_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "app.component.ts"
     },
     {
@@ -5905,8 +5927,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "frontend_src_app_app_component_appcomponent",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "appcomponent"
     },
     {
@@ -5916,8 +5938,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_app_component_ts_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "component"
     },
     {
@@ -5927,8 +5949,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_app_config",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "app.config.ts"
     },
     {
@@ -5938,8 +5960,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "frontend_src_app_app_config_appconfig",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "appconfig"
     },
     {
@@ -5949,8 +5971,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_app_routes",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": "app.routes.ts"
     },
     {
@@ -5960,8 +5982,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "frontend_src_app_app_routes_routes",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "routes"
     },
     {
@@ -5971,8 +5993,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_core_guards_auth_guard",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": "auth.guard.ts"
     },
     {
@@ -5982,8 +6004,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "frontend_src_app_core_guards_auth_guard_authguard",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": "authguard()"
     },
     {
@@ -5993,8 +6015,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_core_interceptors_jwt_interceptor",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "jwt.interceptor.ts"
     },
     {
@@ -6004,8 +6026,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "frontend_src_app_core_interceptors_jwt_interceptor_jwtinterceptor",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "jwtinterceptor()"
     },
     {
@@ -6708,8 +6730,8 @@
       "source_location": "L31",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationalertnotice",
-      "community": 0,
-      "community_name": "FraudMockService",
+      "community": 20,
+      "community_name": "SimulationComponent",
       "norm_label": "simulationalertnotice"
     },
     {
@@ -6741,8 +6763,8 @@
       "source_location": "L54",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_constructor",
-      "community": 0,
-      "community_name": "FraudMockService",
+      "community": 22,
+      "community_name": "SimulationService",
       "norm_label": ".constructor()"
     },
     {
@@ -6818,8 +6840,8 @@
       "source_location": "L86",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_cargartransaccionesdesdebackend",
-      "community": 0,
-      "community_name": "FraudMockService",
+      "community": 22,
+      "community_name": "SimulationService",
       "norm_label": ".cargartransaccionesdesdebackend()"
     },
     {
@@ -6851,8 +6873,8 @@
       "source_location": "L232",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_generatemassiverandom",
-      "community": 48,
-      "community_name": ".setThreshold",
+      "community": 3,
+      "community_name": "app.config.ts",
       "norm_label": ".generatemassiverandom()"
     },
     {
@@ -6862,8 +6884,8 @@
       "source_location": "L239",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_generatebatch",
-      "community": 48,
-      "community_name": ".setThreshold",
+      "community": 3,
+      "community_name": "app.config.ts",
       "norm_label": ".generatebatch()"
     },
     {
@@ -6917,8 +6939,8 @@
       "source_location": "L322",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_dismissalertnotice",
-      "community": 22,
-      "community_name": "SimulationService",
+      "community": 20,
+      "community_name": "SimulationComponent",
       "norm_label": ".dismissalertnotice()"
     },
     {
@@ -7038,8 +7060,8 @@
       "source_location": "L386",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_bulkdelete",
-      "community": 3,
-      "community_name": "app.config.ts",
+      "community": 22,
+      "community_name": "SimulationService",
       "norm_label": ".bulkdelete()"
     },
     {
@@ -7049,8 +7071,8 @@
       "source_location": "L392",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_simulation_service_simulationservice_bulkdeleteselected",
-      "community": 3,
-      "community_name": "app.config.ts",
+      "community": 22,
+      "community_name": "SimulationService",
       "norm_label": ".bulkdeleteselected()"
     },
     {
@@ -7115,8 +7137,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": "theme.service.ts"
     },
     {
@@ -7126,8 +7148,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_apptheme",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": "apptheme"
     },
     {
@@ -7137,8 +7159,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": "themeservice"
     },
     {
@@ -7148,8 +7170,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_ts_injectable",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": "injectable"
     },
     {
@@ -7159,8 +7181,8 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice_constructor",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".constructor()"
     },
     {
@@ -7170,8 +7192,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice_theme",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".theme()"
     },
     {
@@ -7181,8 +7203,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice_toggletheme",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".toggletheme()"
     },
     {
@@ -7192,8 +7214,8 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice_settheme",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".settheme()"
     },
     {
@@ -7203,8 +7225,8 @@
       "source_location": "L59",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice_initializetheme",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".initializetheme()"
     },
     {
@@ -7214,8 +7236,8 @@
       "source_location": "L92",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_theme_service_themeservice_applythemetodom",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".applythemetodom()"
     },
     {
@@ -7236,8 +7258,8 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": "websocketservice"
     },
     {
@@ -7247,8 +7269,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_ts_injectable",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": "injectable"
     },
     {
@@ -7258,8 +7280,8 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_constructor",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".constructor()"
     },
     {
@@ -7269,8 +7291,8 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_connect",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".connect()"
     },
     {
@@ -7280,8 +7302,8 @@
       "source_location": "L61",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_disconnect",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".disconnect()"
     },
     {
@@ -7291,8 +7313,8 @@
       "source_location": "L74",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_sendstompconnect",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".sendstompconnect()"
     },
     {
@@ -7302,8 +7324,8 @@
       "source_location": "L80",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_subscribetoalerts",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".subscribetoalerts()"
     },
     {
@@ -7313,8 +7335,8 @@
       "source_location": "L88",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_handlestompmessage",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".handlestompmessage()"
     },
     {
@@ -7324,8 +7346,8 @@
       "source_location": "L115",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_forwardtofraudservice",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".forwardtofraudservice()"
     },
     {
@@ -7335,8 +7357,8 @@
       "source_location": "L138",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_schedulereconnect",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".schedulereconnect()"
     },
     {
@@ -7346,8 +7368,8 @@
       "source_location": "L146",
       "_origin": "ast",
       "id": "frontend_src_app_core_services_websocket_service_websocketservice_ngondestroy",
-      "community": 29,
-      "community_name": "WebSocketService",
+      "community": 0,
+      "community_name": "FraudMockService",
       "norm_label": ".ngondestroy()"
     },
     {
@@ -7489,8 +7511,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_features_auth_login_login_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": "login.component.ts"
     },
     {
@@ -7500,8 +7522,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "frontend_src_app_features_auth_login_login_component_logincomponent",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": "logincomponent"
     },
     {
@@ -7511,8 +7533,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_features_auth_login_login_component_ts_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": "component"
     },
     {
@@ -7522,8 +7544,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "frontend_src_app_features_auth_login_login_component_logincomponent_ngoninit",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": ".ngoninit()"
     },
     {
@@ -7533,8 +7555,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "frontend_src_app_features_auth_login_login_component_logincomponent_onsubmit",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": ".onsubmit()"
     },
     {
@@ -7544,8 +7566,8 @@
       "source_location": "L66",
       "_origin": "ast",
       "id": "frontend_src_app_features_auth_login_login_component_logincomponent_filldemo",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 40,
+      "community_name": "app.routes.ts",
       "norm_label": ".filldemo()"
     },
     {
@@ -7621,8 +7643,8 @@
       "source_location": "L43",
       "_origin": "ast",
       "id": "frontend_src_app_features_dashboard_dashboard_dashboard_component_dashboardcomponent_ontriggerquicksimulation",
-      "community": 0,
-      "community_name": "FraudMockService",
+      "community": 3,
+      "community_name": "app.config.ts",
       "norm_label": ".ontriggerquicksimulation()"
     },
     {
@@ -7709,8 +7731,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_features_simulation_simulation_component",
-      "community": 0,
-      "community_name": "FraudMockService",
+      "community": 20,
+      "community_name": "SimulationComponent",
       "norm_label": "simulation.component.ts"
     },
     {
@@ -7797,8 +7819,8 @@
       "source_location": "L104",
       "_origin": "ast",
       "id": "frontend_src_app_features_simulation_simulation_component_simulationcomponent_ongeneratemassive",
-      "community": 48,
-      "community_name": ".setThreshold",
+      "community": 3,
+      "community_name": "app.config.ts",
       "norm_label": ".ongeneratemassive()"
     },
     {
@@ -7808,8 +7830,8 @@
       "source_location": "L109",
       "_origin": "ast",
       "id": "frontend_src_app_features_simulation_simulation_component_simulationcomponent_ongeneratebatch",
-      "community": 20,
-      "community_name": "SimulationComponent",
+      "community": 3,
+      "community_name": "app.config.ts",
       "norm_label": ".ongeneratebatch()"
     },
     {
@@ -7940,8 +7962,8 @@
       "source_location": "L188",
       "_origin": "ast",
       "id": "frontend_src_app_features_simulation_simulation_component_simulationcomponent_onbulkdelete",
-      "community": 3,
-      "community_name": "app.config.ts",
+      "community": 22,
+      "community_name": "SimulationService",
       "norm_label": ".onbulkdelete()"
     },
     {
@@ -8006,8 +8028,8 @@
       "source_location": "L237",
       "_origin": "ast",
       "id": "frontend_src_app_features_simulation_simulation_component_simulationcomponent_dismissalertnotice",
-      "community": 22,
-      "community_name": "SimulationService",
+      "community": 20,
+      "community_name": "SimulationComponent",
       "norm_label": ".dismissalertnotice()"
     },
     {
@@ -8028,8 +8050,8 @@
       "source_location": "L245",
       "_origin": "ast",
       "id": "frontend_src_app_features_simulation_simulation_component_simulationcomponent_getscenariolabel",
-      "community": 20,
-      "community_name": "SimulationComponent",
+      "community": 3,
+      "community_name": "app.config.ts",
       "norm_label": ".getscenariolabel()"
     },
     {
@@ -8039,8 +8061,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_layout_main_layout_main_layout_component_spec",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "main-layout.component.spec.ts"
     },
     {
@@ -8050,8 +8072,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_layout_main_layout_main_layout_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "main-layout.component.ts"
     },
     {
@@ -8061,8 +8083,8 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "frontend_src_app_layout_main_layout_main_layout_component_mainlayoutcomponent",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "mainlayoutcomponent"
     },
     {
@@ -8072,8 +8094,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_layout_main_layout_main_layout_component_ts_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "component"
     },
     {
@@ -8083,8 +8105,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component_spec",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": "navbar.component.spec.ts"
     },
     {
@@ -8094,8 +8116,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": "navbar.component.ts"
     },
     {
@@ -8105,8 +8127,8 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component_navbarcomponent",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": "navbarcomponent"
     },
     {
@@ -8116,8 +8138,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component_ts_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": "component"
     },
     {
@@ -8127,8 +8149,8 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component_navbarcomponent_toggletheme",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": ".toggletheme()"
     },
     {
@@ -8138,8 +8160,8 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component_navbarcomponent_logout",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": ".logout()"
     },
     {
@@ -8149,8 +8171,8 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "frontend_src_app_layout_navbar_navbar_component_navbarcomponent_getinitials",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 41,
+      "community_name": "navbar.component.ts",
       "norm_label": ".getinitials()"
     },
     {
@@ -8160,8 +8182,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_layout_sidebar_sidebar_component_spec",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "sidebar.component.spec.ts"
     },
     {
@@ -8171,8 +8193,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_layout_sidebar_sidebar_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "sidebar.component.ts"
     },
     {
@@ -8182,8 +8204,8 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "frontend_src_app_layout_sidebar_sidebar_component_sidebarcomponent",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "sidebarcomponent"
     },
     {
@@ -8193,8 +8215,8 @@
       "source_location": "",
       "_origin": "ast",
       "id": "frontend_src_app_layout_sidebar_sidebar_component_ts_component",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": "component"
     },
     {
@@ -8204,8 +8226,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "frontend_src_app_layout_sidebar_sidebar_component_sidebarcomponent_logout",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 52,
+      "community_name": "sidebar.component.ts",
       "norm_label": ".logout()"
     },
     {
@@ -8215,8 +8237,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_app_shared_components_fraud_chart_fraud_chart_component",
-      "community": 0,
-      "community_name": "FraudMockService",
+      "community": 20,
+      "community_name": "SimulationComponent",
       "norm_label": "fraud-chart.component.ts"
     },
     {
@@ -8270,8 +8292,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "frontend_src_app_shared_components_fraud_chart_fraud_chart_component_fraudchartcomponent_constructor",
-      "community": 42,
-      "community_name": "FraudChartComponent",
+      "community": 47,
+      "community_name": "ThemeService",
       "norm_label": ".constructor()"
     },
     {
@@ -8479,8 +8501,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "frontend_src_main",
-      "community": 25,
-      "community_name": "AuthService",
+      "community": 29,
+      "community_name": "WebSocketService",
       "norm_label": "main.ts"
     },
     {
@@ -8495,180 +8517,268 @@
       "norm_label": "skill.md"
     },
     {
-      "label": "INTEGRATION_PLAN.md",
+      "label": "EXPOSICION_PROYECTO.md",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
+      "source_file": "EXPOSICION_PROYECTO.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "integration_plan",
+      "id": "exposicion_proyecto",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "integration_plan.md"
+      "norm_label": "exposicion_proyecto.md"
     },
     {
-      "label": "\ud83d\udccb Plan de Integraci\u00f3n: Backend (Spring Boot) & Frontend (Angular)",
+      "label": "\ud83d\udee1\ufe0f Security Flow Bank: Sistema Integral de Prevenci\u00f3n y Detecci\u00f3n de Fraude Bancario en Tiempo Real",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
+      "source_file": "EXPOSICION_PROYECTO.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
+      "id": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "\ud83d\udccb plan de integracion: backend (spring boot) & frontend (angular)"
+      "norm_label": "\ud83d\udee1\ufe0f security flow bank: sistema integral de prevencion y deteccion de fraude bancario en tiempo real"
     },
     {
-      "label": "Sistema de Prevenci\u00f3n y Detecci\u00f3n de Fraude Bancario",
+      "label": "\ud83d\udcd1 Tabla de Contenidos",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L2",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L10",
       "_origin": "ast",
-      "id": "integration_plan_sistema_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario",
+      "id": "exposicion_proyecto_tabla_de_contenidos",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "sistema de prevencion y deteccion de fraude bancario"
+      "norm_label": "\ud83d\udcd1 tabla de contenidos"
     },
     {
-      "label": "\ud83d\udccc Puntero de Estado y Continuaci\u00f3n",
+      "label": "1. Resumen Ejecutivo y Prop\u00f3sito del Proyecto",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L9",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L23",
       "_origin": "ast",
-      "id": "integration_plan_puntero_de_estado_y_continuaci\u00f3n",
+      "id": "exposicion_proyecto_1_resumen_ejecutivo_y_prop\u00f3sito_del_proyecto",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "\ud83d\udccc puntero de estado y continuacion"
+      "norm_label": "1. resumen ejecutivo y proposito del proyecto"
     },
     {
-      "label": "\ud83e\udded Diagn\u00f3stico Topol\u00f3gico con Graphify",
+      "label": "2. El Problema de Negocio vs. La Soluci\u00f3n Security Flow",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L18",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L31",
       "_origin": "ast",
-      "id": "integration_plan_diagn\u00f3stico_topol\u00f3gico_con_graphify",
+      "id": "exposicion_proyecto_2_el_problema_de_negocio_vs_la_soluci\u00f3n_security_flow",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "\ud83e\udded diagnostico topologico con graphify"
+      "norm_label": "2. el problema de negocio vs. la solucion security flow"
     },
     {
-      "label": "Resultados Topol\u00f3gicos de Graphify:",
+      "label": "3. Arquitectura del Sistema (Arquitectura Hexagonal & E2E)",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L32",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L52",
       "_origin": "ast",
-      "id": "integration_plan_resultados_topol\u00f3gicos_de_graphify",
+      "id": "exposicion_proyecto_3_arquitectura_del_sistema_arquitectura_hexagonal_e2e",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "resultados topologicos de graphify:"
+      "norm_label": "3. arquitectura del sistema (arquitectura hexagonal & e2e)"
     },
     {
-      "label": "\ud83d\uddfa\ufe0f Mapa de Mapeo: Colecci\u00f3n Postman \u2194 Frontend Angular",
+      "label": "Diagrama Arquitect\u00f3nico Integral",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L40",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L56",
       "_origin": "ast",
-      "id": "integration_plan_mapa_de_mapeo_colecci\u00f3n_postman_frontend_angular",
+      "id": "exposicion_proyecto_diagrama_arquitect\u00f3nico_integral",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "\ud83d\uddfa\ufe0f mapa de mapeo: coleccion postman \u2194 frontend angular"
+      "norm_label": "diagrama arquitectonico integral"
     },
     {
-      "label": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "label": "Principios Arquitect\u00f3nicos Destacados:",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L53",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L103",
       "_origin": "ast",
-      "id": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
+      "id": "exposicion_proyecto_principios_arquitect\u00f3nicos_destacados",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "\ud83d\udccb lista maestra de fases y tareas de integracion"
+      "norm_label": "principios arquitectonicos destacados:"
     },
     {
-      "label": "FASE 1: Preparaci\u00f3n de Entornos y Configuraci\u00f3n Base HTTP (COMPLETADA)",
+      "label": "4. Motor de Reglas Antifraude y Algoritmo de Scoring",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L55",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L110",
       "_origin": "ast",
-      "id": "integration_plan_fase_1_preparaci\u00f3n_de_entornos_y_configuraci\u00f3n_base_http_completada",
+      "id": "exposicion_proyecto_4_motor_de_reglas_antifraude_y_algoritmo_de_scoring",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 1: preparacion de entornos y configuracion base http (completada)"
+      "norm_label": "4. motor de reglas antifraude y algoritmo de scoring"
     },
     {
-      "label": "FASE 2: Autenticaci\u00f3n, Seguridad y Creaci\u00f3n de la P\u00e1gina de Login (COMPLETADA)",
+      "label": "Matriz de Decisi\u00f3n Automatizada:",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L63",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L125",
       "_origin": "ast",
-      "id": "integration_plan_fase_2_autenticaci\u00f3n_seguridad_y_creaci\u00f3n_de_la_p\u00e1gina_de_login_completada",
+      "id": "exposicion_proyecto_matriz_de_decisi\u00f3n_automatizada",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 2: autenticacion, seguridad y creacion de la pagina de login (completada)"
+      "norm_label": "matriz de decision automatizada:"
     },
     {
-      "label": "FASE 3: Transacciones y Simulaci\u00f3n con Scoring Real (Backend Core) (COMPLETADA)",
+      "label": "5. Bondades y Ventajas Competitivas del Sistema",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L86",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L141",
       "_origin": "ast",
-      "id": "integration_plan_fase_3_transacciones_y_simulaci\u00f3n_con_scoring_real_backend_core_completada",
+      "id": "exposicion_proyecto_5_bondades_y_ventajas_competitivas_del_sistema",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 3: transacciones y simulacion con scoring real (backend core) (completada)"
+      "norm_label": "5. bondades y ventajas competitivas del sistema"
     },
     {
-      "label": "FASE 4: Alertas Antifraude y M\u00e9tricas del Dashboard (REST API) (COMPLETADA)",
+      "label": "\u26a1 1. Notificaciones en Tiempo Real Absoluto (Zero-Polling)",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L96",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L143",
       "_origin": "ast",
-      "id": "integration_plan_fase_4_alertas_antifraude_y_m\u00e9tricas_del_dashboard_rest_api_completada",
+      "id": "exposicion_proyecto_1_notificaciones_en_tiempo_real_absoluto_zero_polling",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 4: alertas antifraude y metricas del dashboard (rest api) (completada)"
+      "norm_label": "\u26a1 1. notificaciones en tiempo real absoluto (zero-polling)"
     },
     {
-      "label": "FASE 5: Notificaciones Reactivas en Vivo (WebSockets STOMP) (COMPLETADA)",
+      "label": "\ud83e\uddea 2. Simulador de Estr\u00e9s Financiero (Lab de Ciberdefensa)",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L108",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L147",
       "_origin": "ast",
-      "id": "integration_plan_fase_5_notificaciones_reactivas_en_vivo_websockets_stomp_completada",
+      "id": "exposicion_proyecto_2_simulador_de_estr\u00e9s_financiero_lab_de_ciberdefensa",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 5: notificaciones reactivas en vivo (websockets stomp) (completada)"
+      "norm_label": "\ud83e\uddea 2. simulador de estres financiero (lab de ciberdefensa)"
     },
     {
-      "label": "FASE 6: Casos de Investigaci\u00f3n Formal y Auditor\u00eda (Postman Carpeta 04) (COMPLETADA)",
+      "label": "\ud83d\udcca 3. Centro de Mando Operativo y Auditor\u00eda Legal",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L120",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L155",
       "_origin": "ast",
-      "id": "integration_plan_fase_6_casos_de_investigaci\u00f3n_formal_y_auditor\u00eda_postman_carpeta_04_completada",
+      "id": "exposicion_proyecto_3_centro_de_mando_operativo_y_auditor\u00eda_legal",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 6: casos de investigacion formal y auditoria (postman carpeta 04) (completada)"
+      "norm_label": "\ud83d\udcca 3. centro de mando operativo y auditoria legal"
     },
     {
-      "label": "FASE 7: Pruebas Integradas E2E, Verificaci\u00f3n Postman y Depuraci\u00f3n del Grafo (COMPLETADA)",
+      "label": "\ud83d\udd10 4. Conexi\u00f3n 100% Aut\u00e9ntica (Cero Mocks)",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L131",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L160",
       "_origin": "ast",
-      "id": "integration_plan_fase_7_pruebas_integradas_e2e_verificaci\u00f3n_postman_y_depuraci\u00f3n_del_grafo_completada",
+      "id": "exposicion_proyecto_4_conexi\u00f3n_100_aut\u00e9ntica_cero_mocks",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "fase 7: pruebas integradas e2e, verificacion postman y depuracion del grafo (completada)"
+      "norm_label": "\ud83d\udd10 4. conexion 100% autentica (cero mocks)"
     },
     {
-      "label": "\ud83d\udee0\ufe0f Gu\u00eda R\u00e1pida para Continuar la Ejecuci\u00f3n",
+      "label": "6. M\u00f3dulos Principales de la Soluci\u00f3n",
       "file_type": "document",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L139",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L165",
       "_origin": "ast",
-      "id": "integration_plan_gu\u00eda_r\u00e1pida_para_continuar_la_ejecuci\u00f3n",
+      "id": "exposicion_proyecto_6_m\u00f3dulos_principales_de_la_soluci\u00f3n",
       "community": 26,
       "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
-      "norm_label": "\ud83d\udee0\ufe0f guia rapida para continuar la ejecucion"
+      "norm_label": "6. modulos principales de la solucion"
+    },
+    {
+      "label": "7. Seguridad, Auditor\u00eda y Cumplimiento Normativo",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L188",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_7_seguridad_auditor\u00eda_y_cumplimiento_normativo",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "7. seguridad, auditoria y cumplimiento normativo"
+    },
+    {
+      "label": "8. Stack Tecnol\u00f3gico Integral",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L199",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_8_stack_tecnol\u00f3gico_integral",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "8. stack tecnologico integral"
+    },
+    {
+      "label": "9. Gui\u00f3n de Demostraci\u00f3n en Vivo (Demo Pitch)",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L217",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "9. guion de demostracion en vivo (demo pitch)"
+    },
+    {
+      "label": "Paso 1: Introducci\u00f3n y Login Seguro (1 min)",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L221",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_paso_1_introducci\u00f3n_y_login_seguro_1_min",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "paso 1: introduccion y login seguro (1 min)"
+    },
+    {
+      "label": "Paso 2: Dashboard y Telemetr\u00eda en Vivo (1 min)",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L226",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_paso_2_dashboard_y_telemetr\u00eda_en_vivo_1_min",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "paso 2: dashboard y telemetria en vivo (1 min)"
+    },
+    {
+      "label": "Paso 3: Disparo de Alerta en Tiempo Real con WebSockets (1.5 min)",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L230",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_paso_3_disparo_de_alerta_en_tiempo_real_con_websockets_1_5_min",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "paso 3: disparo de alerta en tiempo real con websockets (1.5 min)"
+    },
+    {
+      "label": "Paso 4: Pruebas de Carga y Simulaci\u00f3n por Lotes (1 min)",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L237",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_paso_4_pruebas_de_carga_y_simulaci\u00f3n_por_lotes_1_min",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "paso 4: pruebas de carga y simulacion por lotes (1 min)"
+    },
+    {
+      "label": "Paso 5: Gesti\u00f3n Operativa y Auditor\u00eda (0.5 min)",
+      "file_type": "document",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L242",
+      "_origin": "ast",
+      "id": "exposicion_proyecto_paso_5_gesti\u00f3n_operativa_y_auditor\u00eda_0_5_min",
+      "community": 26,
+      "community_name": "\ud83d\udccb Lista Maestra de Fases y Tareas de Integraci\u00f3n",
+      "norm_label": "paso 5: gestion operativa y auditoria (0.5 min)"
     },
     {
       "label": "IMPLEMENTATION_PLAN.md",
@@ -9071,9 +9181,9 @@
       "file_type": "code",
       "source_file": "frontend/src/app/app.component.spec.ts",
       "source_location": "L12",
-      "community": 25,
+      "community": 29,
       "norm_label": "fixture",
-      "community_name": "AuthService",
+      "community_name": "WebSocketService",
       "id": "frontend_src_app_app_component_spec_fixture"
     },
     {
@@ -9081,9 +9191,9 @@
       "file_type": "code",
       "source_file": "frontend/src/app/app.component.spec.ts",
       "source_location": "L26",
-      "community": 25,
+      "community": 29,
       "norm_label": "compiled",
-      "community_name": "AuthService",
+      "community_name": "WebSocketService",
       "id": "frontend_src_app_app_component_spec_compiled"
     },
     {
@@ -12932,7 +13042,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L120",
+      "source_location": "L131",
       "weight": 1.0,
       "context": "generic_arg",
       "_origin": "ast",
@@ -12956,7 +13066,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L153",
+      "source_location": "L164",
       "weight": 1.0,
       "context": "generic_arg",
       "_origin": "ast",
@@ -14419,7 +14529,7 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L117",
+      "source_location": "L128",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_application_service_transaccionservice_transaccionservice_procesartransaccion",
@@ -14785,7 +14895,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L120",
+      "source_location": "L131",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_application_service_transaccionservice_transaccionservice",
@@ -14807,7 +14917,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L153",
+      "source_location": "L164",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_application_service_transaccionservice_transaccionservice",
@@ -14927,7 +15037,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L203",
+      "source_location": "L214",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_application_service_transaccionservice_transaccionservice_simularlote",
@@ -14962,7 +15072,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L120",
+      "source_location": "L131",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -14974,7 +15084,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java",
-      "source_location": "L153",
+      "source_location": "L164",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15341,11 +15451,23 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig",
       "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig",
+      "target": "corsconfigurationsource",
       "confidence_score": 1.0
     },
     {
@@ -15400,7 +15522,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L28",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -15412,7 +15534,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15424,7 +15546,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15436,7 +15558,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L29",
+      "source_location": "L36",
       "weight": 1.0,
       "context": "field",
       "_origin": "ast",
@@ -15448,7 +15570,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L65",
+      "source_location": "L89",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
@@ -15459,7 +15581,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L58",
+      "source_location": "L82",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
@@ -15470,7 +15592,18 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L70",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
+      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_corsconfigurationsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L94",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
@@ -15481,7 +15614,7 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L31",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig",
@@ -15492,7 +15625,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15504,7 +15637,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L22",
+      "source_location": "L29",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15516,7 +15649,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L31",
+      "source_location": "L38",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_securityfilterchain",
+      "target": "authenticationprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L38",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15525,22 +15670,10 @@
       "confidence_score": 1.0
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L36",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_securityfilterchain",
-      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationprovider",
-      "confidence_score": 1.0
-    },
-    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L31",
+      "source_location": "L38",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15552,7 +15685,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L31",
+      "source_location": "L38",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
@@ -15564,7 +15697,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L65",
+      "source_location": "L82",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationprovider",
+      "target": "authenticationprovider",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L89",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15576,7 +15721,7 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L58",
+      "source_location": "L82",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15588,7 +15733,19 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L70",
+      "source_location": "L67",
+      "weight": 1.0,
+      "context": "attribute",
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_corsconfigurationsource",
+      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_bean",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L94",
       "weight": 1.0,
       "context": "attribute",
       "_origin": "ast",
@@ -15600,31 +15757,43 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L58",
+      "source_location": "L67",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
-      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationprovider",
-      "target": "authenticationprovider",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L61",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationprovider",
-      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_passwordencoder",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_corsconfigurationsource",
+      "target": "corsconfigurationsource",
       "confidence_score": 1.0
     },
     {
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L65",
+      "source_location": "L82",
+      "weight": 1.0,
+      "context": "parameter_type",
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationprovider",
+      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_passwordencoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L94",
+      "weight": 1.0,
+      "context": "return_type",
+      "_origin": "ast",
+      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_passwordencoder",
+      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_passwordencoder",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
+      "source_location": "L89",
       "weight": 1.0,
       "context": "parameter_type",
       "_origin": "ast",
@@ -15636,24 +15805,12 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L65",
+      "source_location": "L89",
       "weight": 1.0,
       "context": "return_type",
       "_origin": "ast",
       "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_authenticationmanager",
       "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_authenticationmanager",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java",
-      "source_location": "L70",
-      "weight": 1.0,
-      "context": "return_type",
-      "_origin": "ast",
-      "source": "backend_src_main_java_com_empresa_fraude_config_securityconfig_securityconfig_passwordencoder",
-      "target": "backend_src_main_java_com_empresa_fraude_config_securityconfig_java_passwordencoder",
       "confidence_score": 1.0
     },
     {
@@ -26500,166 +26657,254 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
+      "source_file": "EXPOSICION_PROYECTO.md",
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan",
-      "target": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
+      "source": "exposicion_proyecto",
+      "target": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L18",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
-      "target": "integration_plan_diagn\u00f3stico_topol\u00f3gico_con_graphify",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_1_resumen_ejecutivo_y_prop\u00f3sito_del_proyecto",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L139",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
-      "target": "integration_plan_gu\u00eda_r\u00e1pida_para_continuar_la_ejecuci\u00f3n",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_2_el_problema_de_negocio_vs_la_soluci\u00f3n_security_flow",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L53",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
-      "target": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_3_arquitectura_del_sistema_arquitectura_hexagonal_e2e",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L40",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L110",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
-      "target": "integration_plan_mapa_de_mapeo_colecci\u00f3n_postman_frontend_angular",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_4_motor_de_reglas_antifraude_y_algoritmo_de_scoring",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L9",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L141",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
-      "target": "integration_plan_puntero_de_estado_y_continuaci\u00f3n",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_5_bondades_y_ventajas_competitivas_del_sistema",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L2",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L165",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_plan_de_integraci\u00f3n_backend_spring_boot_frontend_angular",
-      "target": "integration_plan_sistema_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_6_m\u00f3dulos_principales_de_la_soluci\u00f3n",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L32",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L188",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_diagn\u00f3stico_topol\u00f3gico_con_graphify",
-      "target": "integration_plan_resultados_topol\u00f3gicos_de_graphify",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_7_seguridad_auditor\u00eda_y_cumplimiento_normativo",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L55",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L199",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_1_preparaci\u00f3n_de_entornos_y_configuraci\u00f3n_base_http_completada",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_8_stack_tecnol\u00f3gico_integral",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L63",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L217",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_2_autenticaci\u00f3n_seguridad_y_creaci\u00f3n_de_la_p\u00e1gina_de_login_completada",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L86",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_3_transacciones_y_simulaci\u00f3n_con_scoring_real_backend_core_completada",
+      "source": "exposicion_proyecto_security_flow_bank_sistema_integral_de_prevenci\u00f3n_y_detecci\u00f3n_de_fraude_bancario_en_tiempo_real",
+      "target": "exposicion_proyecto_tabla_de_contenidos",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L96",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_4_alertas_antifraude_y_m\u00e9tricas_del_dashboard_rest_api_completada",
+      "source": "exposicion_proyecto_3_arquitectura_del_sistema_arquitectura_hexagonal_e2e",
+      "target": "exposicion_proyecto_diagrama_arquitect\u00f3nico_integral",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L108",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L103",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_5_notificaciones_reactivas_en_vivo_websockets_stomp_completada",
+      "source": "exposicion_proyecto_3_arquitectura_del_sistema_arquitectura_hexagonal_e2e",
+      "target": "exposicion_proyecto_principios_arquitect\u00f3nicos_destacados",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L120",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L125",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_6_casos_de_investigaci\u00f3n_formal_y_auditor\u00eda_postman_carpeta_04_completada",
+      "source": "exposicion_proyecto_4_motor_de_reglas_antifraude_y_algoritmo_de_scoring",
+      "target": "exposicion_proyecto_matriz_de_decisi\u00f3n_automatizada",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "INTEGRATION_PLAN.md",
-      "source_location": "L131",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L143",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "integration_plan_lista_maestra_de_fases_y_tareas_de_integraci\u00f3n",
-      "target": "integration_plan_fase_7_pruebas_integradas_e2e_verificaci\u00f3n_postman_y_depuraci\u00f3n_del_grafo_completada",
+      "source": "exposicion_proyecto_5_bondades_y_ventajas_competitivas_del_sistema",
+      "target": "exposicion_proyecto_1_notificaciones_en_tiempo_real_absoluto_zero_polling",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L147",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_5_bondades_y_ventajas_competitivas_del_sistema",
+      "target": "exposicion_proyecto_2_simulador_de_estr\u00e9s_financiero_lab_de_ciberdefensa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L155",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_5_bondades_y_ventajas_competitivas_del_sistema",
+      "target": "exposicion_proyecto_3_centro_de_mando_operativo_y_auditor\u00eda_legal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L160",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_5_bondades_y_ventajas_competitivas_del_sistema",
+      "target": "exposicion_proyecto_4_conexi\u00f3n_100_aut\u00e9ntica_cero_mocks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L221",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
+      "target": "exposicion_proyecto_paso_1_introducci\u00f3n_y_login_seguro_1_min",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L226",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
+      "target": "exposicion_proyecto_paso_2_dashboard_y_telemetr\u00eda_en_vivo_1_min",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L230",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
+      "target": "exposicion_proyecto_paso_3_disparo_de_alerta_en_tiempo_real_con_websockets_1_5_min",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L237",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
+      "target": "exposicion_proyecto_paso_4_pruebas_de_carga_y_simulaci\u00f3n_por_lotes_1_min",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXPOSICION_PROYECTO.md",
+      "source_location": "L242",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "exposicion_proyecto_9_gui\u00f3n_de_demostraci\u00f3n_en_vivo_demo_pitch",
+      "target": "exposicion_proyecto_paso_5_gesti\u00f3n_operativa_y_auditor\u00eda_0_5_min",
       "confidence_score": 1.0
     },
     {
@@ -27388,5 +27633,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "baee05a8d62e640cf561cd0ff1b965bcd41be139"
+  "built_at_commit": "f531443011f0d42385fc250569f07c23f202cd04"
 }

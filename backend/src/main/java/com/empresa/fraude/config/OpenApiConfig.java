@@ -18,9 +18,9 @@ public class OpenApiConfig {
         final String securitySchemeName = "bearerAuth";
         return new OpenAPI()
                 .info(new Info()
-                        .title("Sistema de Detección de Fraude Bancario API")
+                        .title("Security Flow Bank - API de Prevención de Fraude Bancario")
                         .version("1.0.0")
-                        .description("API REST para evaluación de transacciones financieras, motor de reglas de scoring de fraude y gestión de alertas en tiempo real.")
+                        .description("API REST de Security Flow Bank para evaluación de transacciones financieras, motor de reglas de scoring de fraude y gestión de alertas en tiempo real.")
                         .contact(new Contact()
                                 .name("Equipo de Ciberseguridad y Prevención de Fraude")
                                 .email("seguridad@empresa.com"))

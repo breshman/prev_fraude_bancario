@@ -27,7 +27,7 @@ export class ExcelExportUtil {
   /**
    * Genera y descarga un archivo Excel (.xls) con estilos visuales y formato bancario.
    */
-  static exportToExcel(data: SimulationExportData[], filename: string = 'Simulaciones_Fraude_BCR'): void {
+  static exportToExcel(data: SimulationExportData[], filename: string = 'Simulaciones_Fraude_SecurityFlow'): void {
     const timestampStr = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
     const fullFilename = `${filename}_${timestampStr}.xls`;
 
@@ -39,7 +39,7 @@ export class ExcelExportUtil {
   /**
    * Genera y descarga un archivo CSV compatible con Excel (BOM UTF-8, separador punto y coma).
    */
-  static exportToCsv(data: SimulationExportData[], filename: string = 'Simulaciones_Fraude_BCR'): void {
+  static exportToCsv(data: SimulationExportData[], filename: string = 'Simulaciones_Fraude_SecurityFlow'): void {
     const timestampStr = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
     const fullFilename = `${filename}_${timestampStr}.csv`;
 
@@ -216,7 +216,7 @@ export class ExcelExportUtil {
    <Interior ss:Color="#FEE2E2" ss:Pattern="Solid"/>
   </Style>
  </Styles>
- <Worksheet ss:Name="Simulaciones Fraude BCR">
+ <Worksheet ss:Name="Simulaciones Fraude Security Flow">
   <Table ss:DefaultRowHeight="20">
    <Column ss:Width="110"/>
    <Column ss:Width="130"/>

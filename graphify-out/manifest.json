@@ -1,9 +1,4 @@
 {
-  ".vscode/settings.json": {
-    "mtime": 1789784763.5040796,
-    "ast_hash": "c1d228011df346fb592265221517f7ec",
-    "semantic_hash": ""
-  },
   "backend/mvnw": {
     "mtime": 1788221555.397528,
     "ast_hash": "ab50dd89da7da2346b28003352eeeeeb",
@@ -12,16 +7,6 @@
   "backend/pom.xml": {
     "mtime": 1789785149.2068942,
     "ast_hash": "291ea229341011ea0de7ba363d147eca",
-    "semantic_hash": ""
-  },
-  "backend/postman/fraud_detection_environment.json": {
-    "mtime": 1789785989.8589325,
-    "ast_hash": "59f2a742604a47da3036115f4e15b0ae",
-    "semantic_hash": ""
-  },
-  "backend/postman/fraud_detection_postman_collection.json": {
-    "mtime": 1789785983.2018304,
-    "ast_hash": "e5a2c4167a8af073223930ab57afe9a6",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/FraudeApplication.java": {
@@ -105,8 +90,8 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/application/service/TransaccionService.java": {
-    "mtime": 1790735316.097439,
-    "ast_hash": "8e6bfa582cd2291089b1848f1d551b49",
+    "mtime": 1790736169.7121387,
+    "ast_hash": "8b266cfc68f7f0c063b0a3f6b00b7bf7",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/config/DataInitializer.java": {
@@ -115,13 +100,13 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/config/OpenApiConfig.java": {
-    "mtime": 1789781935.0062435,
-    "ast_hash": "9c4cb854a6617bf56d2ba16a93e6d583",
+    "mtime": 1790738251.9459112,
+    "ast_hash": "a3f27ddfb5772249ebb0917be1e0a996",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/config/SecurityConfig.java": {
-    "mtime": 1789785199.8701599,
-    "ast_hash": "b4545ba24c6e9c06379252a646173322",
+    "mtime": 1790735647.004308,
+    "ast_hash": "246f71140c6167011b062600547a8998",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/config/WebSocketConfig.java": {
@@ -284,21 +269,6 @@
     "ast_hash": "77ac52cf1fcee2f81bdbd6d065bbc0c2",
     "semantic_hash": ""
   },
-  "frontend/.vscode/extensions.json": {
-    "mtime": 1788141878.0654714,
-    "ast_hash": "d3b118b41884c371c18cbd55e392eb07",
-    "semantic_hash": ""
-  },
-  "frontend/.vscode/launch.json": {
-    "mtime": 1788141878.0659697,
-    "ast_hash": "c6799d2f7ae6f5d7a740d1023654bb8d",
-    "semantic_hash": ""
-  },
-  "frontend/.vscode/tasks.json": {
-    "mtime": 1788141878.0663123,
-    "ast_hash": "5a70b3d3763f6628c8083d7b033b98b8",
-    "semantic_hash": ""
-  },
   "frontend/angular.json": {
     "mtime": 1790734266.7224689,
     "ast_hash": "222ef658d3c340cf340b9c77cb0939d2",
@@ -385,8 +355,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/core/services/simulation.service.ts": {
-    "mtime": 1790735258.7191887,
-    "ast_hash": "72c993003fa99618e88ebd3291ac0735",
+    "mtime": 1790736182.8589861,
+    "ast_hash": "ad8fea5880accaa38480fca99519daf8",
     "semantic_hash": ""
   },
   "frontend/src/app/core/services/theme.service.ts": {
@@ -465,8 +435,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/shared/utils/excel-export.util.ts": {
-    "mtime": 1788915092.0401518,
-    "ast_hash": "8c86506293216f71c55e6e7c1285c8c5",
+    "mtime": 1790738168.815451,
+    "ast_hash": "282a26bc18afaff9bee2f00a14aa00ac",
     "semantic_hash": ""
   },
   "frontend/src/environments/environment.prod.ts": {
@@ -519,11 +489,6 @@
     "ast_hash": "98c38a9ac8750bea7bede939015a5371",
     "semantic_hash": ""
   },
-  "INTEGRATION_PLAN.md": {
-    "mtime": 1790734477.6802373,
-    "ast_hash": "c3e32e736ff1899e5ffc25221caea882",
-    "semantic_hash": ""
-  },
   "backend/IMPLEMENTATION_PLAN.md": {
     "mtime": 1789785265.583059,
     "ast_hash": "c02d2d473d61e0e228452c7791b0c148",
@@ -565,8 +530,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/features/auth/login/login.component.html": {
-    "mtime": 1790733935.9619253,
-    "ast_hash": "43057cc47c217fd835a3439500522bd8",
+    "mtime": 1790738136.277138,
+    "ast_hash": "726f85620e8c78b6ac8549782ada0a61",
     "semantic_hash": ""
   },
   "frontend/src/app/features/dashboard/dashboard/dashboard.component.html": {
@@ -590,8 +555,8 @@
     "semantic_hash": ""
   },
   "frontend/src/app/layout/sidebar/sidebar.component.html": {
-    "mtime": 1790734017.8812447,
-    "ast_hash": "1235d5cf96f039fe1e2f8bc43ec56e2f",
+    "mtime": 1790736720.998539,
+    "ast_hash": "b35fec212ee7b9b11ca406b6c6c75c5c",
     "semantic_hash": ""
   },
   "frontend/src/app/shared/components/fraud-chart/fraud-chart.component.html": {
@@ -752,6 +717,16 @@
   "frontend/public/logo-banco.png": {
     "mtime": 1789181528.999916,
     "ast_hash": "40548296f85d42df9d31ae9ebac8020b",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/db/migration/V5__fix_sequences.sql": {
+    "mtime": 1790736272.274614,
+    "ast_hash": "a2e5d7fe4ffef85ef4dbc9e6f8e6524e",
+    "semantic_hash": ""
+  },
+  "EXPOSICION_PROYECTO.md": {
+    "mtime": 1790738219.0175116,
+    "ast_hash": "6ed8b5267fbe91e8a13e0e74b7a715bb",
     "semantic_hash": ""
   }
 }
