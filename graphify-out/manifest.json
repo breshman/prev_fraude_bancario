@@ -5,8 +5,8 @@
     "semantic_hash": ""
   },
   "backend/pom.xml": {
-    "mtime": 1789785149.2068942,
-    "ast_hash": "291ea229341011ea0de7ba363d147eca",
+    "mtime": 1790739067.21485,
+    "ast_hash": "5dd55095ae2ad2bb7f3ae7c5981b0c70",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/FraudeApplication.java": {
@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/adapter/in/web/AlertaController.java": {
-    "mtime": 1789783999.547688,
-    "ast_hash": "f8cf8b125cc456740d0bddd38f1f37ef",
+    "mtime": 1790739127.0730836,
+    "ast_hash": "d0c9c6f996b09c256c4e3a09857a889d",
     "semantic_hash": ""
   },
   "backend/src/main/java/com/empresa/fraude/adapter/in/web/AuthController.java": {
@@ -727,6 +727,11 @@
   "EXPOSICION_PROYECTO.md": {
     "mtime": 1790738219.0175116,
     "ast_hash": "6ed8b5267fbe91e8a13e0e74b7a715bb",
+    "semantic_hash": ""
+  },
+  "backend/src/main/resources/templates/email/alerta_fraude_email.html": {
+    "mtime": 1790739082.0706275,
+    "ast_hash": "cb375eea2d8e483ca5f579659c34395b",
     "semantic_hash": ""
   }
 }

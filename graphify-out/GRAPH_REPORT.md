@@ -1,16 +1,16 @@
 # Graph Report - prev_fraude_bancario  (2026-09-29)
 
 ## Corpus Check
-- 104 files · ~39,198 words
+- 104 files · ~40,053 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 870 nodes · 1553 edges · 53 communities (47 shown, 6 thin omitted)
-- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 36 edges (avg confidence: 0.8)
+- 874 nodes · 1567 edges · 50 communities (44 shown, 6 thin omitted)
+- Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f5314430`
+- Built from commit: `49ac1b48`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -55,15 +55,12 @@
 - development
 - app.routes.ts
 - navbar.component.ts
-- FraudChartComponent
 - frontend
 - angular.json
 - OpenApiConfig.java
 - architect
-- ThemeService
 - environment.prod.ts
 - com.empresa:fraude
-- sidebar.component.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `SimulationService` - 43 edges
@@ -78,8 +75,6 @@
 10. `DashboardComponent` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `authGuard()` --indirect_call--> `AuthService`  [INFERRED]
-  frontend/src/app/core/guards/auth.guard.ts → frontend/src/app/core/services/auth.service.ts
 - `EvaluacionFraudeService` --references--> `AlertaFraudeService`  [EXTRACTED]
   backend/src/main/java/com/empresa/fraude/application/service/EvaluacionFraudeService.java → backend/src/main/java/com/empresa/fraude/application/service/AlertaFraudeService.java
 - `TransaccionFlowIntegrationTest` --references--> `AlertaFraudeService`  [EXTRACTED]
@@ -88,15 +83,17 @@
   backend/src/main/java/com/empresa/fraude/application/service/AuthService.java → backend/src/main/java/com/empresa/fraude/config/security/JwtService.java
 - `TransaccionFlowIntegrationTest` --references--> `AuthService`  [EXTRACTED]
   backend/src/test/java/com/empresa/fraude/TransaccionFlowIntegrationTest.java → backend/src/main/java/com/empresa/fraude/application/service/AuthService.java
+- `EvaluacionFraudeService` --references--> `FraudScoringEngine`  [EXTRACTED]
+  backend/src/main/java/com/empresa/fraude/application/service/EvaluacionFraudeService.java → backend/src/main/java/com/empresa/fraude/domain/rule/FraudScoringEngine.java
 
 ## Import Cycles
 - None detected.
 
-## Communities (53 total, 6 thin omitted)
+## Communities (50 total, 6 thin omitted)
 
 ### Community 0 - "FraudMockService"
 Cohesion: 0.07
-Nodes (18): AlertaBackendEntity, DashboardMetrics, EstadoAlerta, FraudAlert, NivelPrioridad, AlertaWebSocketEventDto, FraudService, Injectable (+10 more)
+Nodes (21): AlertaBackendEntity, DashboardMetrics, EstadoAlerta, FraudAlert, NivelPrioridad, AlertaWebSocketEventDto, FraudService, Injectable (+13 more)
 
 ### Community 1 - "Guía de Uso y Ejecución - Backend: Sistema de Detección de Fraude Bancario"
 Cohesion: 0.06
@@ -143,8 +140,8 @@ Cohesion: 0.35
 Nodes (8): GlobalExceptionHandler, HttpServletRequest, ResponseEntity, BadCredentialsException, ExceptionHandler, HttpStatus, MethodArgumentNotValidException, RestControllerAdvice
 
 ### Community 14 - "CasoFraudeService"
-Cohesion: 0.10
-Nodes (29): CasoController, CasoFraudeEntity, GetMapping, HistorialCasoEntity, Operation, PatchMapping, PostMapping, PreAuthorize (+21 more)
+Cohesion: 0.11
+Nodes (28): CasoController, CasoFraudeEntity, GetMapping, HistorialCasoEntity, Operation, PatchMapping, PostMapping, PreAuthorize (+20 more)
 
 ### Community 15 - "TransaccionResponse"
 Cohesion: 0.10
@@ -155,8 +152,8 @@ Cohesion: 0.06
 Nodes (32): @angular/cli, @angular/compiler-cli, @angular-devkit/build-angular, devDependencies, @angular/cli, @angular/compiler-cli, @angular-devkit/build-angular, jasmine-core (+24 more)
 
 ### Community 17 - "AlertaFraudeService"
-Cohesion: 0.14
-Nodes (21): AlertaNotificationPort, AlertaController, AlertaFraudeEntity, GetMapping, Operation, PatchMapping, PreAuthorize, RequestMapping (+13 more)
+Cohesion: 0.12
+Nodes (24): AlertaEmailNotificationPort, AlertaNotificationPort, AlertaController, AlertaFraudeEntity, GetMapping, Operation, PatchMapping, PostMapping (+16 more)
 
 ### Community 18 - "AuthController.java"
 Cohesion: 0.12
@@ -167,8 +164,8 @@ Cohesion: 0.07
 Nodes (27): @angular/common, @angular/compiler, @angular/core, @angular/forms, @angular/platform-browser, @angular/platform-browser-dynamic, @angular/router, bootstrap (+19 more)
 
 ### Community 20 - "SimulationComponent"
-Cohesion: 0.15
-Nodes (4): SimulatedTransaction, SimulationAlertNotice, SimulationComponent, Component
+Cohesion: 0.17
+Nodes (3): SimulatedTransaction, SimulationComponent, Component
 
 ### Community 21 - "JwtService"
 Cohesion: 0.16
@@ -183,8 +180,8 @@ Cohesion: 0.12
 Nodes (16): 1. Arquitectura Hexagonal / Clean Architecture, 2. Principios SOLID, 3. Patrones de Diseño Clave, Estado de Ejecución y Plan Paso a Paso, FASE 1: Setup & Conectividad (COMPLETADA), FASE 2: Modelo de Datos Relacional y Migraciones Flyway (COMPLETADA), FASE 3: Motor de Reglas y Scoring (Strategy Pattern & SOLID) (COMPLETADA), FASE 4: Servicios de Aplicación y Casos de Uso (Application Layer) (COMPLETADA) (+8 more)
 
 ### Community 25 - "AuthService"
-Cohesion: 0.22
-Nodes (5): LoginRequest, LoginResponse, UsuarioAuth, AuthService, Injectable
+Cohesion: 0.13
+Nodes (8): authGuard(), LoginRequest, LoginResponse, UsuarioAuth, AuthService, Injectable, LoginComponent, Component
 
 ### Community 26 - "📋 Lista Maestra de Fases y Tareas de Integración"
 Cohesion: 0.08
@@ -234,17 +231,9 @@ Nodes (9): build, builder, configurations, defaultConfiguration, production, bud
 Cohesion: 0.22
 Nodes (9): serve, development, buildTarget, extractLicenses, optimization, sourceMap, builder, configurations (+1 more)
 
-### Community 40 - "app.routes.ts"
-Cohesion: 0.28
-Nodes (3): authGuard(), LoginComponent, Component
-
 ### Community 41 - "navbar.component.ts"
-Cohesion: 0.25
-Nodes (3): AppTheme, NavbarComponent, Component
-
-### Community 42 - "FraudChartComponent"
-Cohesion: 0.31
-Nodes (4): FraudChartComponent, Component, Input, ViewChild
+Cohesion: 0.10
+Nodes (9): AppTheme, ThemeService, Injectable, NavbarComponent, Component, FraudChartComponent, Component, Input (+1 more)
 
 ### Community 43 - "frontend"
 Cohesion: 0.25
@@ -262,10 +251,6 @@ Nodes (4): Bean, Configuration, OpenApiConfig, OpenAPI
 Cohesion: 0.40
 Nodes (5): extract-i18n, test, builder, architect, builder
 
-### Community 52 - "sidebar.component.ts"
-Cohesion: 0.31
-Nodes (4): MainLayoutComponent, Component, SidebarComponent, Component
-
 ## Knowledge Gaps
 - **137 isolated node(s):** `com.empresa:fraude`, `$schema`, `version`, `newProjectRoot`, `projectType` (+132 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -275,15 +260,15 @@ Nodes (4): MainLayoutComponent, Component, SidebarComponent, Component
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `EvaluacionFraudeService` connect `TransaccionResponse` to `AlertaFraudeService`, `sidebar.component.ts`, `EvaluationContext`?**
-  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
 - **Why does `AuthService` connect `AuthController.java` to `JwtService`, `CasoFraudeService`?**
   _High betweenness centrality (0.045) - this node is a cross-community bridge._
 - **Why does `AlertaFraudeService` connect `AlertaFraudeService` to `CasoFraudeService`, `TransaccionResponse`?**
-  _High betweenness centrality (0.036) - this node is a cross-community bridge._
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
 - **What connects `com.empresa:fraude`, `$schema`, `version` to the rest of the system?**
   _137 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `FraudMockService` be split into smaller, more focused modules?**
-  _Cohesion score 0.06540825285338016 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06583850931677018 - nodes in this community are weakly interconnected._
 - **Should `Guía de Uso y Ejecución - Backend: Sistema de Detección de Fraude Bancario` be split into smaller, more focused modules?**
   _Cohesion score 0.0625 - nodes in this community are weakly interconnected._
 - **Should `sidebar.component.ts` be split into smaller, more focused modules?**

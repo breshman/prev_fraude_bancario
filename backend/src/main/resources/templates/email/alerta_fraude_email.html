@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerta de Fraude Bancario</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f5f9;
+      color: #1e293b;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+    }
+    .email-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #ffffff;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .email-header h1 {
+      margin: 0;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+    .email-header p {
+      margin: 6px 0 0 0;
+      font-size: 13px;
+      color: #93c5fd;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 14px;
+    }
+    .badge-critical {
+      background-color: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #f87171;
+    }
+    .badge-high {
+      background-color: #ffedd5;
+      color: #c2410c;
+      border: 1px solid #fb923c;
+    }
+    .badge-medium {
+      background-color: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fcd34d;
+    }
+    .badge-low {
+      background-color: #e0f2fe;
+      color: #0369a1;
+      border: 1px solid #7dd3fc;
+    }
+    .email-body {
+      padding: 28px 24px;
+    }
+    .alert-summary {
+      background-color: #f8fafc;
+      border-left: 4px solid #ef4444;
+      padding: 14px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 24px;
+    }
+    .alert-summary p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #334155;
+    }
+    .details-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+    .details-table tr {
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .details-table td {
+      padding: 12px 6px;
+      font-size: 14px;
+    }
+    .details-table .label {
+      color: #64748b;
+      font-weight: 500;
+      width: 40%;
+    }
+    .details-table .value {
+      color: #0f172a;
+      font-weight: 600;
+      text-align: right;
+    }
+    .cta-container {
+      text-align: center;
+      margin: 28px 0 10px 0;
+    }
+    .btn-action {
+      background-color: #2563eb;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-block;
+      box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+    }
+    .email-footer {
+      background-color: #f8fafc;
+      padding: 18px 24px;
+      text-align: center;
+      font-size: 12px;
+      color: #94a3b8;
+      border-top: 1px solid #e2e8f0;
+    }
+    .email-footer p {
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <!-- Header -->
+    <div class="email-header">
+      <h1>Security Flow Bank</h1>
+      <p>Centro de Operaciones de Ciberseguridad &amp; Antifraude</p>
+      
+      <!-- Badge de Prioridad Dinámico -->
+      <span th:class="'badge ' + (${nivelPrioridad} == 'CRITICA' ? 'badge-critical' : (${nivelPrioridad} == 'ALTA' ? 'badge-high' : (${nivelPrioridad} == 'MEDIA' ? 'badge-medium' : 'badge-low')))"
+            th:text="'Prioridad: ' + ${nivelPrioridad}">
+        Prioridad: CRÍTICA
+      </span>
+    </div>
+
+    <!-- Body -->
+    <div class="email-body">
+      <div class="alert-summary">
+        <p>
+          <strong>⚠️ Alerta Detectada:</strong>
+          <span th:text="${descripcion}">Se detectó una transacción atípica con score de riesgo elevado por encima del umbral permitido.</span>
+        </p>
+      </div>
+
+      <table class="details-table">
+        <tr>
+          <td class="label">Código de Alerta:</td>
+          <td class="value"><code th:text="${codigoAlerta}">ALRT-998811</code></td>
+        </tr>
+        <tr>
+          <td class="label">Código Transacción:</td>
+          <td class="value"><code th:text="${codigoTransaccion}">TX-554422</code></td>
+        </tr>
+        <tr>
+          <td class="label">Cuenta Origen:</td>
+          <td class="value" th:text="${numeroCuenta}">CTA-001-445522</td>
+        </tr>
+        <tr>
+          <td class="label">Monto de Operación:</td>
+          <td class="value" th:text="${moneda} + ' ' + ${#numbers.formatDecimal(monto, 1, 'COMMA', 2, 'POINT')}">PEN 14,850.00</td>
+        </tr>
+        <tr>
+          <td class="label">Canal / Medio:</td>
+          <td class="value" th:text="${canal}">WEB (Banca por Internet)</td>
+        </tr>
+        <tr>
+          <td class="label">Score Antifraude Calculado:</td>
+          <td class="value" style="color: #dc2626;" th:text="${score} + ' / 100 pts'">92 / 100 pts</td>
+        </tr>
+        <tr>
+          <td class="label">Fecha y Hora de Detección:</td>
+          <td class="value" th:text="${fechaHora}">2026-09-30 03:30:00</td>
+        </tr>
+      </table>
+
+      <div class="cta-container">
+        <a th:href="${portalUrl}" class="btn-action">
+          Acceder a la Consola de Investigación &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="email-footer">
+      <p>&copy; 2026 Security Flow Bank - División de Prevención de Fraude y Riesgos.</p>
+      <p>Este es un mensaje automático emitido por el motor de scoring en tiempo real. Por favor no responda a este correo.</p>
+    </div>
+  </div>
+</body>
+</html>

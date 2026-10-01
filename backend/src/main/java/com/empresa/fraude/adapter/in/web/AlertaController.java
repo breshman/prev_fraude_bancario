@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+import com.empresa.fraude.application.port.out.AlertaEmailNotificationPort;
+import org.springframework.http.MediaType;
+import java.math.BigDecimal;
+
 @RestController
 @RequestMapping("/api/v1/alertas")
 @RequiredArgsConstructor
@@ -21,6 +25,7 @@ import java.util.Map;
 public class AlertaController {
 
     private final AlertaFraudeService alertaService;
+    private final AlertaEmailNotificationPort emailNotificationPort;
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
@@ -49,5 +54,76 @@ public class AlertaController {
         String nuevoEstado = body.get("estado");
         String comentario = body.get("comentario");
         return ResponseEntity.ok(alertaService.actualizarEstado(id, nuevoEstado, comentario));
+    }
+
+    @GetMapping(value = "/{id}/preview-email", produces = MediaType.TEXT_HTML_VALUE)
+    @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
+    @Operation(summary = "Previsualizar plantilla Thymeleaf de email para la alerta", description = "Genera y retorna el HTML renderizado por Thymeleaf con los datos reales de la alerta.")
+    public ResponseEntity<String> previewEmail(@PathVariable Long id) {
+        AlertaFraudeEntity alerta = alertaService.obtenerPorId(id);
+
+        BigDecimal monto = alerta.getTransaccion() != null ? alerta.getTransaccion().getMontoTransaccion() : new BigDecimal("14850.00");
+        String moneda = alerta.getTransaccion() != null ? alerta.getTransaccion().getCodigoMoneda() : "PEN";
+        String canal = alerta.getTransaccion() != null && alerta.getTransaccion().getCanal() != null ? alerta.getTransaccion().getCanal().getNombreCanal() : "Banca por Internet Web";
+        String cuenta = alerta.getTransaccion() != null && alerta.getTransaccion().getCuenta() != null ? alerta.getTransaccion().getCuenta().getNumeroCuenta() : "CTA-001-445522";
+        BigDecimal score = alerta.getEvaluacion() != null ? alerta.getEvaluacion().getFraudeScore() : new BigDecimal("92.00");
+
+        var model = new AlertaEmailNotificationPort.EmailAlertaModel(
+                "analista@securityflow.com",
+                alerta.getCodigoAlerta().toString(),
+                alerta.getTransaccion() != null ? alerta.getTransaccion().getCodigoTransaccion().toString() : "TX-DEMO-001",
+                alerta.getNivelPrioridad(),
+                alerta.getDescripcion(),
+                cuenta,
+                monto,
+                moneda,
+                canal,
+                score,
+                alerta.getFechaGeneracion(),
+                "http://localhost:4200/alerts"
+        );
+
+        return ResponseEntity.ok(emailNotificationPort.renderizarHtmlAlerta(model));
+    }
+
+    @PostMapping("/{id}/simular-email")
+    @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
+    @Operation(summary = "Simular despacho de email con Thymeleaf", description = "Ejecuta el renderizado de Thymeleaf y simula el envío del correo electrónico.")
+    public ResponseEntity<Map<String, Object>> simularEmail(
+            @PathVariable Long id,
+            @RequestParam(defaultValue = "analista@securityflow.com") String destinatario
+    ) {
+        AlertaFraudeEntity alerta = alertaService.obtenerPorId(id);
+
+        BigDecimal monto = alerta.getTransaccion() != null ? alerta.getTransaccion().getMontoTransaccion() : new BigDecimal("14850.00");
+        String moneda = alerta.getTransaccion() != null ? alerta.getTransaccion().getCodigoMoneda() : "PEN";
+        String canal = alerta.getTransaccion() != null && alerta.getTransaccion().getCanal() != null ? alerta.getTransaccion().getCanal().getNombreCanal() : "Banca por Internet Web";
+        String cuenta = alerta.getTransaccion() != null && alerta.getTransaccion().getCuenta() != null ? alerta.getTransaccion().getCuenta().getNumeroCuenta() : "CTA-001-445522";
+        BigDecimal score = alerta.getEvaluacion() != null ? alerta.getEvaluacion().getFraudeScore() : new BigDecimal("92.00");
+
+        var model = new AlertaEmailNotificationPort.EmailAlertaModel(
+                destinatario,
+                alerta.getCodigoAlerta().toString(),
+                alerta.getTransaccion() != null ? alerta.getTransaccion().getCodigoTransaccion().toString() : "TX-DEMO-001",
+                alerta.getNivelPrioridad(),
+                alerta.getDescripcion(),
+                cuenta,
+                monto,
+                moneda,
+                canal,
+                score,
+                alerta.getFechaGeneracion(),
+                "http://localhost:4200/alerts"
+        );
+
+        emailNotificationPort.enviarEmailAlerta(model);
+
+        return ResponseEntity.ok(Map.of(
+                "status", "ENVIADO_SIMULADO",
+                "template", "templates/email/alerta_fraude_email.html",
+                "motor", "Thymeleaf 3",
+                "destinatario", destinatario,
+                "codigoAlerta", alerta.getCodigoAlerta()
+        ));
     }
 }
