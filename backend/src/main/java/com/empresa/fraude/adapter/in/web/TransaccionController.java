@@ -56,8 +56,7 @@ public class TransaccionController {
     @Operation(summary = "Simular lote de transacciones en el backend", description = "Genera y evalúa un lote de transacciones reales en el servidor usando las cuentas y reglas de la base de datos.")
     public ResponseEntity<java.util.List<TransaccionResponse>> simularLote(
             @RequestParam(value = "cantidad", defaultValue = "10") @Min(value = 1, message = "La cantidad mínima a simular es 1") @Max(value = 1000, message = "La cantidad máxima a simular es 1000") int cantidad,
-            @RequestParam(value = "escenario", defaultValue = "MIXED") String escenario
-    ) {
+            @RequestParam(value = "escenario", defaultValue = "MIXED") String escenario) {
         return ResponseEntity.ok(transaccionService.simularLote(cantidad, escenario));
     }
 }
