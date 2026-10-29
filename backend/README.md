@@ -16,7 +16,6 @@ Este microservicio está construido con **Spring Boot 4 / Java 17+**, implementa
 
 El backend se conecta por defecto a la instancia PostgreSQL configurada en tu Docker:
 
-- **Contenedor Docker:** `postgres_18_vector`
 - **Host:** `localhost`
 - **Puerto:** `5434`
 - **Base de Datos:** `fraude_db`

@@ -1,6 +1,8 @@
 # Graphify caches and ephemeral artifacts
+*/graphify-out/cache/
+*/graphify-out/2026-*/
 graphify-out/cache/
-graphify-out/.graphify_*
+
 graphify-out/2026-*/
 
 # OS generated files

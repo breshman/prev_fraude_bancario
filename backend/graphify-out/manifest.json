@@ -1,0 +1,347 @@
+{
+  "mvnw": {
+    "mtime": 1788221555.397528,
+    "ast_hash": "ab50dd89da7da2346b28003352eeeeeb",
+    "semantic_hash": "ab50dd89da7da2346b28003352eeeeeb"
+  },
+  "pom.xml": {
+    "mtime": 1790739067.21485,
+    "ast_hash": "5dd55095ae2ad2bb7f3ae7c5981b0c70",
+    "semantic_hash": "5dd55095ae2ad2bb7f3ae7c5981b0c70"
+  },
+  "src/main/java/com/empresa/fraude/FraudeApplication.java": {
+    "mtime": 1788221555.3990858,
+    "ast_hash": "ec4e24614eff792e976cfc85b4505ff8",
+    "semantic_hash": "ec4e24614eff792e976cfc85b4505ff8"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/AlertaController.java": {
+    "mtime": 1793234723.8325253,
+    "ast_hash": "245fee346884595b2dd69d33eabe3920",
+    "semantic_hash": "245fee346884595b2dd69d33eabe3920"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/AuthController.java": {
+    "mtime": 1789783968.078291,
+    "ast_hash": "066f5e61d2b0ac27bbb3c4e6832a6bb8",
+    "semantic_hash": "066f5e61d2b0ac27bbb3c4e6832a6bb8"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/CasoController.java": {
+    "mtime": 1793234691.8579779,
+    "ast_hash": "2df462acd53b603f08f61eda869d3a6a",
+    "semantic_hash": "2df462acd53b603f08f61eda869d3a6a"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/GlobalExceptionHandler.java": {
+    "mtime": 1793234833.8902845,
+    "ast_hash": "c52500373d054cd94c0e172223baa0e3",
+    "semantic_hash": "c52500373d054cd94c0e172223baa0e3"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/HealthCheckController.java": {
+    "mtime": 1789782060.627717,
+    "ast_hash": "7647ca480c21e18f8aa4afec0e02bde4",
+    "semantic_hash": "7647ca480c21e18f8aa4afec0e02bde4"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/TransaccionController.java": {
+    "mtime": 1793234673.424896,
+    "ast_hash": "d20e4afd0c80760e2a5582cb244b242b",
+    "semantic_hash": "d20e4afd0c80760e2a5582cb244b242b"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/LoginRequest.java": {
+    "mtime": 1789783902.9240713,
+    "ast_hash": "a58135abdbfc5a142cef4511d8f97384",
+    "semantic_hash": "a58135abdbfc5a142cef4511d8f97384"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/LoginResponse.java": {
+    "mtime": 1789783914.258672,
+    "ast_hash": "82e8773bca6a186e6841f838f0452b7d",
+    "semantic_hash": "82e8773bca6a186e6841f838f0452b7d"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/TransaccionRequest.java": {
+    "mtime": 1793234643.5703402,
+    "ast_hash": "10de865513f3bb7d081f2d6271935c06",
+    "semantic_hash": "10de865513f3bb7d081f2d6271935c06"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/TransaccionResponse.java": {
+    "mtime": 1790735176.682119,
+    "ast_hash": "6b418f0e6a2af3902deef094bcbb9270",
+    "semantic_hash": "6b418f0e6a2af3902deef094bcbb9270"
+  },
+  "src/main/java/com/empresa/fraude/application/service/AlertaFraudeService.java": {
+    "mtime": 1789785229.1992679,
+    "ast_hash": "ce66cf8776fa73d4f5f1e8b2bf30d183",
+    "semantic_hash": "ce66cf8776fa73d4f5f1e8b2bf30d183"
+  },
+  "src/main/java/com/empresa/fraude/application/service/AuthService.java": {
+    "mtime": 1789783928.5879817,
+    "ast_hash": "056de801055d7637b0673396d520b2d9",
+    "semantic_hash": "056de801055d7637b0673396d520b2d9"
+  },
+  "src/main/java/com/empresa/fraude/application/service/CasoFraudeService.java": {
+    "mtime": 1789783735.5791843,
+    "ast_hash": "69453d0f26a5b28ed3cc04b4fb93281e",
+    "semantic_hash": "69453d0f26a5b28ed3cc04b4fb93281e"
+  },
+  "src/main/java/com/empresa/fraude/application/service/EvaluacionFraudeService.java": {
+    "mtime": 1790735303.2119248,
+    "ast_hash": "81a861fbd08c90b0273aace0df0118aa",
+    "semantic_hash": "81a861fbd08c90b0273aace0df0118aa"
+  },
+  "src/main/java/com/empresa/fraude/application/service/FeatureService.java": {
+    "mtime": 1789783590.6729898,
+    "ast_hash": "22aeff094d67bbded7f6cb7a86fbf8a1",
+    "semantic_hash": "22aeff094d67bbded7f6cb7a86fbf8a1"
+  },
+  "src/main/java/com/empresa/fraude/application/service/TransaccionService.java": {
+    "mtime": 1790736169.7121387,
+    "ast_hash": "8b266cfc68f7f0c063b0a3f6b00b7bf7",
+    "semantic_hash": "8b266cfc68f7f0c063b0a3f6b00b7bf7"
+  },
+  "src/main/java/com/empresa/fraude/config/DataInitializer.java": {
+    "mtime": 1789784197.687387,
+    "ast_hash": "67bea33b52eab3f60ead13bd429d0696",
+    "semantic_hash": "67bea33b52eab3f60ead13bd429d0696"
+  },
+  "src/main/java/com/empresa/fraude/config/OpenApiConfig.java": {
+    "mtime": 1790738251.9459112,
+    "ast_hash": "a3f27ddfb5772249ebb0917be1e0a996",
+    "semantic_hash": "a3f27ddfb5772249ebb0917be1e0a996"
+  },
+  "src/main/java/com/empresa/fraude/config/SecurityConfig.java": {
+    "mtime": 1790735647.004308,
+    "ast_hash": "246f71140c6167011b062600547a8998",
+    "semantic_hash": "246f71140c6167011b062600547a8998"
+  },
+  "src/main/java/com/empresa/fraude/config/WebSocketConfig.java": {
+    "mtime": 1789785188.3346443,
+    "ast_hash": "2a6595c510a2f4f55e182d059abafa1b",
+    "semantic_hash": "2a6595c510a2f4f55e182d059abafa1b"
+  },
+  "src/main/java/com/empresa/fraude/config/security/CustomUserDetailsService.java": {
+    "mtime": 1789783877.560759,
+    "ast_hash": "27ce753ae8e692eeb1962c7f97bd0d95",
+    "semantic_hash": "27ce753ae8e692eeb1962c7f97bd0d95"
+  },
+  "src/main/java/com/empresa/fraude/config/security/JwtAuthenticationFilter.java": {
+    "mtime": 1789783892.2371569,
+    "ast_hash": "ae66a8608157495823fbd6e553b4bcd9",
+    "semantic_hash": "ae66a8608157495823fbd6e553b4bcd9"
+  },
+  "src/main/java/com/empresa/fraude/config/security/JwtService.java": {
+    "mtime": 1789783866.6285489,
+    "ast_hash": "c9c42ad21645e91ee718627554dde49b",
+    "semantic_hash": "c9c42ad21645e91ee718627554dde49b"
+  },
+  "src/main/java/com/empresa/fraude/domain/exception/BusinessException.java": {
+    "mtime": 1789783601.4815743,
+    "ast_hash": "82bda886a4191816dde6a36003643fff",
+    "semantic_hash": "82bda886a4191816dde6a36003643fff"
+  },
+  "src/main/java/com/empresa/fraude/domain/exception/CuentaNoHabilitadaException.java": {
+    "mtime": 1789783636.1220555,
+    "ast_hash": "d813e60cc2efd5037d1e8cf6e87b68d5",
+    "semantic_hash": "d813e60cc2efd5037d1e8cf6e87b68d5"
+  },
+  "src/main/java/com/empresa/fraude/domain/exception/CuentaNotFoundException.java": {
+    "mtime": 1789783612.5685277,
+    "ast_hash": "ce6802e7f3e9a48b37f3d619be9d6b85",
+    "semantic_hash": "ce6802e7f3e9a48b37f3d619be9d6b85"
+  },
+  "src/main/java/com/empresa/fraude/domain/exception/MontoInvalidoException.java": {
+    "mtime": 1789783622.8830576,
+    "ast_hash": "3189a6c5cdc75dd41d5610d3edb84ba5",
+    "semantic_hash": "3189a6c5cdc75dd41d5610d3edb84ba5"
+  },
+  "src/main/java/com/empresa/fraude/domain/exception/ResourceNotFoundException.java": {
+    "mtime": 1789783650.0619793,
+    "ast_hash": "d89ae3a52ed9fda798d44fdf672a2059",
+    "semantic_hash": "d89ae3a52ed9fda798d44fdf672a2059"
+  },
+  "src/main/java/com/empresa/fraude/domain/model/AlertaFraude.java": {
+    "mtime": 1788221555.401771,
+    "ast_hash": "758632a0b415f769aa9b167f5fe911da",
+    "semantic_hash": "758632a0b415f769aa9b167f5fe911da"
+  },
+  "src/main/java/com/empresa/fraude/domain/model/Cliente.java": {
+    "mtime": 1788221555.4021108,
+    "ast_hash": "ecafb47b873a55338df58bc0f1d2bb57",
+    "semantic_hash": "ecafb47b873a55338df58bc0f1d2bb57"
+  },
+  "src/main/java/com/empresa/fraude/domain/model/Transaccion.java": {
+    "mtime": 1788221555.4023743,
+    "ast_hash": "8b8dba2b83ff1c4d65d3ca17404353b1",
+    "semantic_hash": "8b8dba2b83ff1c4d65d3ca17404353b1"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/EvaluacionResultado.java": {
+    "mtime": 1789783498.1034765,
+    "ast_hash": "010c7da6fd61979bb6869ec938e19b0a",
+    "semantic_hash": "010c7da6fd61979bb6869ec938e19b0a"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/EvaluationContext.java": {
+    "mtime": 1789783335.1293113,
+    "ast_hash": "c5a011afde6b733f8240c67241bc685e",
+    "semantic_hash": "c5a011afde6b733f8240c67241bc685e"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/FraudRuleStrategy.java": {
+    "mtime": 1789783363.4770947,
+    "ast_hash": "4fc05be43d10d8aa6fd8473d5ec62441",
+    "semantic_hash": "4fc05be43d10d8aa6fd8473d5ec62441"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/FraudScoringEngine.java": {
+    "mtime": 1789783511.5919697,
+    "ast_hash": "2ca8ec52d6e5c32aa974a5cc3d74028c",
+    "semantic_hash": "2ca8ec52d6e5c32aa974a5cc3d74028c"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/RuleEvaluationResult.java": {
+    "mtime": 1789783348.178854,
+    "ast_hash": "7f5c427c9411557cfff0a88cb3b0a1fd",
+    "semantic_hash": "7f5c427c9411557cfff0a88cb3b0a1fd"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF001_MontoInusualRule.java": {
+    "mtime": 1789783376.6541226,
+    "ast_hash": "ad3ed081cf9e0429ce654581f2b2fb3f",
+    "semantic_hash": "ad3ed081cf9e0429ce654581f2b2fb3f"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF002_DispositivoNuevoRule.java": {
+    "mtime": 1789783387.9227543,
+    "ast_hash": "818215ea1ab7f0d62db60a7e83e5ed1c",
+    "semantic_hash": "818215ea1ab7f0d62db60a7e83e5ed1c"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF003_IpNuevaRule.java": {
+    "mtime": 1789783402.2922797,
+    "ast_hash": "2612b276070b429a85fcee55a7973949",
+    "semantic_hash": "2612b276070b429a85fcee55a7973949"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF004_PaisNuevoRule.java": {
+    "mtime": 1789783415.6106873,
+    "ast_hash": "408cdcb265b830c79fef66c1883bc411",
+    "semantic_hash": "408cdcb265b830c79fef66c1883bc411"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF005_HorarioInusualRule.java": {
+    "mtime": 1789783426.5415382,
+    "ast_hash": "b528dfc8c7c78e362b876de2d52fb05f",
+    "semantic_hash": "b528dfc8c7c78e362b876de2d52fb05f"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF006_AltaFrecuenciaRule.java": {
+    "mtime": 1789783437.1042142,
+    "ast_hash": "6924b5860b71ef9c8aa4619fb541218c",
+    "semantic_hash": "6924b5860b71ef9c8aa4619fb541218c"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF007_ViajeImposibleRule.java": {
+    "mtime": 1789783447.6947534,
+    "ast_hash": "e75c007fde2a70606b550995eb95dd86",
+    "semantic_hash": "e75c007fde2a70606b550995eb95dd86"
+  },
+  "src/main/java/com/empresa/fraude/domain/rule/impl/RF008_BeneficiarioNuevoMontoAltoRule.java": {
+    "mtime": 1789783462.4989326,
+    "ast_hash": "60275a921975b167dff791266dd60263",
+    "semantic_hash": "60275a921975b167dff791266dd60263"
+  },
+  "src/main/resources/db/migration/V1__init.sql": {
+    "mtime": 1788221555.4046426,
+    "ast_hash": "c4be5376b9d6f0007a4e9f7521fc157e",
+    "semantic_hash": "c4be5376b9d6f0007a4e9f7521fc157e"
+  },
+  "src/main/resources/db/migration/V2__full_schema.sql": {
+    "mtime": 1789782821.6764736,
+    "ast_hash": "18748aea11ae2cd879f03dd1ea518320",
+    "semantic_hash": "18748aea11ae2cd879f03dd1ea518320"
+  },
+  "src/main/resources/db/migration/V3__seed_data.sql": {
+    "mtime": 1789782839.4877946,
+    "ast_hash": "c6efc3f707ba64c20902716df931099a",
+    "semantic_hash": "c6efc3f707ba64c20902716df931099a"
+  },
+  "src/main/resources/db/migration/V4__char_to_varchar.sql": {
+    "mtime": 1789783253.274541,
+    "ast_hash": "17ba5bed9460f51a2f057d9d30ab588f",
+    "semantic_hash": "17ba5bed9460f51a2f057d9d30ab588f"
+  },
+  "src/main/resources/db/migration/V5__fix_sequences.sql": {
+    "mtime": 1790736272.274614,
+    "ast_hash": "a2e5d7fe4ffef85ef4dbc9e6f8e6524e",
+    "semantic_hash": "a2e5d7fe4ffef85ef4dbc9e6f8e6524e"
+  },
+  "src/test/java/com/empresa/fraude/FraudeApplicationTests.java": {
+    "mtime": 1789782034.4553823,
+    "ast_hash": "8e3e8a960522b57fe0547c33290420b0",
+    "semantic_hash": "8e3e8a960522b57fe0547c33290420b0"
+  },
+  "src/test/java/com/empresa/fraude/TransaccionFlowIntegrationTest.java": {
+    "mtime": 1789784387.5248356,
+    "ast_hash": "4c31acd9c05c6639345053661a5e2b0d",
+    "semantic_hash": "4c31acd9c05c6639345053661a5e2b0d"
+  },
+  "src/test/java/com/empresa/fraude/domain/rule/FraudScoringEngineTest.java": {
+    "mtime": 1789783546.3728821,
+    "ast_hash": "77ac52cf1fcee2f81bdbd6d065bbc0c2",
+    "semantic_hash": "77ac52cf1fcee2f81bdbd6d065bbc0c2"
+  },
+  "README.md": {
+    "mtime": 1793233916.957575,
+    "ast_hash": "6d486615d6bac319795bd69c457eeac1",
+    "semantic_hash": "6d486615d6bac319795bd69c457eeac1"
+  },
+  "src/main/resources/application.yml": {
+    "mtime": 1789781956.2874415,
+    "ast_hash": "5ee906fdf7c78b9cfd2139555c620594",
+    "semantic_hash": "5ee906fdf7c78b9cfd2139555c620594"
+  },
+  "src/main/resources/templates/email/alerta_fraude_email.html": {
+    "mtime": 1790739082.0706275,
+    "ast_hash": "cb375eea2d8e483ca5f579659c34395b",
+    "semantic_hash": "cb375eea2d8e483ca5f579659c34395b"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/AbrirCasoRequest.java": {
+    "mtime": 1793234615.119639,
+    "ast_hash": "29f86f8432e14312c3b25262c268d49d",
+    "semantic_hash": "29f86f8432e14312c3b25262c268d49d"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/ActualizarEstadoAlertaRequest.java": {
+    "mtime": 1793234633.1228082,
+    "ast_hash": "e2de3d88e87468462d3863a1a83a7386",
+    "semantic_hash": "e2de3d88e87468462d3863a1a83a7386"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/AgregarEventoCasoRequest.java": {
+    "mtime": 1793234621.0148175,
+    "ast_hash": "de6ee2a4c51803d3a6aad911dba15115",
+    "semantic_hash": "de6ee2a4c51803d3a6aad911dba15115"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/dto/CerrarCasoRequest.java": {
+    "mtime": 1793234626.932715,
+    "ast_hash": "0cc17210b163cc89b2037c5e2213d529",
+    "semantic_hash": "0cc17210b163cc89b2037c5e2213d529"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/validator/CanalValidator.java": {
+    "mtime": 1793234582.0342736,
+    "ast_hash": "0bbb088f634f6156b9c87319c029fd35",
+    "semantic_hash": "0bbb088f634f6156b9c87319c029fd35"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/validator/MonedaValidator.java": {
+    "mtime": 1793234592.373039,
+    "ast_hash": "9257e9f9620a1b8051eb54096f4455e9",
+    "semantic_hash": "9257e9f9620a1b8051eb54096f4455e9"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/validator/TransaccionRequestValidator.java": {
+    "mtime": 1793234604.7778776,
+    "ast_hash": "e4110735ead901f517d94523b66a09c5",
+    "semantic_hash": "e4110735ead901f517d94523b66a09c5"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/validator/ValidCanal.java": {
+    "mtime": 1793234573.212976,
+    "ast_hash": "76d0bf004e49ab476a46488cd73e79bb",
+    "semantic_hash": "76d0bf004e49ab476a46488cd73e79bb"
+  },
+  "src/main/java/com/empresa/fraude/adapter/in/web/validator/ValidMoneda.java": {
+    "mtime": 1793234586.485798,
+    "ast_hash": "cfe0b3174e90cf30bae1d139350602e6",
+    "semantic_hash": "cfe0b3174e90cf30bae1d139350602e6"
+  },
+  "src/test/java/com/empresa/fraude/adapter/in/web/validator/DtoValidationTest.java": {
+    "mtime": 1793234882.090939,
+    "ast_hash": "c78cb71f93397783cd627c96dc86fb5e",
+    "semantic_hash": "c78cb71f93397783cd627c96dc86fb5e"
+  },
+  "src/test/java/com/empresa/fraude/adapter/in/web/validator/TransaccionRequestValidatorTest.java": {
+    "mtime": 1793234871.1901133,
+    "ast_hash": "6b00e6d0784a163bbc6c36d9103cf389",
+    "semantic_hash": "6b00e6d0784a163bbc6c36d9103cf389"
+  }
+}

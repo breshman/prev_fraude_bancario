@@ -1,5 +1,7 @@
 package com.empresa.fraude.adapter.in.web.dto;
 
+import com.empresa.fraude.adapter.in.web.validator.ValidCanal;
+import com.empresa.fraude.adapter.in.web.validator.ValidMoneda;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
@@ -33,11 +35,13 @@ public class TransaccionRequest {
 
     @NotBlank(message = "La moneda es obligatoria")
     @Size(min = 3, max = 3, message = "Código de moneda ISO 4217 de 3 caracteres")
+    @ValidMoneda
     @Schema(description = "Código ISO 4217 de la moneda", example = "PEN")
     private String moneda;
 
     @NotBlank(message = "El canal es obligatorio")
-    @Schema(description = "Canal de origen (APP, WEB, ATM, POS)", example = "APP")
+    @ValidCanal
+    @Schema(description = "Canal de origen (APP, WEB, ATM, POS, AGENCIA)", example = "APP")
     private String canal;
 
     @Schema(description = "Tipo de movimiento (TRANSFERENCIA, PAGO_SERVICIO, etc.)", example = "TRANSFERENCIA")

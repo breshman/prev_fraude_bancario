@@ -2,14 +2,19 @@ package com.empresa.fraude.adapter.in.web;
 
 import com.empresa.fraude.domain.exception.*;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -21,8 +26,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, Object>> handleValidationExceptions(MethodArgumentNotValidException ex, HttpServletRequest request) {
         Map<String, String> errors = new HashMap<>();
+        
         for (FieldError error : ex.getBindingResult().getFieldErrors()) {
             errors.put(error.getField(), error.getDefaultMessage());
+        }
+        for (ObjectError error : ex.getBindingResult().getGlobalErrors()) {
+            errors.put(error.getObjectName(), error.getDefaultMessage());
         }
 
         Map<String, Object> body = buildErrorResponse(
@@ -32,6 +41,60 @@ public class GlobalExceptionHandler {
                 request.getRequestURI()
         );
         body.put("detalles", errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<Map<String, Object>> handleConstraintViolation(ConstraintViolationException ex, HttpServletRequest request) {
+        Map<String, String> errors = new HashMap<>();
+        for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
+            String property = violation.getPropertyPath() != null ? violation.getPropertyPath().toString() : "parametro";
+            // Tomar el último segmento de la propiedad si viene como método.parámetro
+            if (property.contains(".")) {
+                property = property.substring(property.lastIndexOf('.') + 1);
+            }
+            errors.put(property, violation.getMessage());
+        }
+
+        Map<String, Object> body = buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                "PARAMETRO_INVALIDO",
+                "Error de validación en parámetros de la solicitud",
+                request.getRequestURI()
+        );
+        body.put("detalles", errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(HandlerMethodValidationException.class)
+    public ResponseEntity<Map<String, Object>> handleHandlerMethodValidation(HandlerMethodValidationException ex, HttpServletRequest request) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getParameterValidationResults().forEach(result -> {
+            String paramName = result.getMethodParameter().getParameterName();
+            result.getResolvableErrors().forEach(error -> {
+                String key = (paramName != null && !paramName.isBlank()) ? paramName : "parametro";
+                errors.put(key, error.getDefaultMessage());
+            });
+        });
+
+        Map<String, Object> body = buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                "PARAMETRO_INVALIDO",
+                "Error de validación en los parámetros del endpoint",
+                request.getRequestURI()
+        );
+        body.put("detalles", errors);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, Object>> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpServletRequest request) {
+        Map<String, Object> body = buildErrorResponse(
+                HttpStatus.BAD_REQUEST,
+                "CUERPO_PETICION_INVALIDO",
+                "El cuerpo de la solicitud no es un JSON válido o contiene tipos de datos incompatibles",
+                request.getRequestURI()
+        );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 

@@ -1,25 +1,30 @@
 package com.empresa.fraude.adapter.in.web;
 
+import com.empresa.fraude.adapter.in.web.dto.ActualizarEstadoAlertaRequest;
 import com.empresa.fraude.adapter.out.persistence.jpa.entity.AlertaFraudeEntity;
+import com.empresa.fraude.application.port.out.AlertaEmailNotificationPort;
 import com.empresa.fraude.application.service.AlertaFraudeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-
-import com.empresa.fraude.application.port.out.AlertaEmailNotificationPort;
-import org.springframework.http.MediaType;
-import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/v1/alertas")
 @RequiredArgsConstructor
+@Validated
 @SecurityRequirement(name = "bearerAuth")
 @Tag(name = "Alertas Antifraude", description = "Endpoints para consulta, priorización y gestión del ciclo de vida de alertas")
 public class AlertaController {
@@ -40,7 +45,9 @@ public class AlertaController {
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
     @Operation(summary = "Consultar alerta por ID", description = "Retorna el detalle completo de la alerta.")
-    public ResponseEntity<AlertaFraudeEntity> obtenerAlerta(@PathVariable Long id) {
+    public ResponseEntity<AlertaFraudeEntity> obtenerAlerta(
+            @PathVariable @Min(value = 1, message = "El ID de la alerta debe ser un entero positivo") Long id
+    ) {
         return ResponseEntity.ok(alertaService.obtenerPorId(id));
     }
 
@@ -48,18 +55,18 @@ public class AlertaController {
     @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
     @Operation(summary = "Actualizar estado de una alerta", description = "Actualiza el estado operativo de la alerta (ej. EN_REVISION, DESCARTADA, CONFIRMADA).")
     public ResponseEntity<AlertaFraudeEntity> actualizarEstado(
-            @PathVariable Long id,
-            @RequestBody Map<String, String> body
+            @PathVariable @Min(value = 1, message = "El ID de la alerta debe ser un entero positivo") Long id,
+            @Valid @RequestBody ActualizarEstadoAlertaRequest request
     ) {
-        String nuevoEstado = body.get("estado");
-        String comentario = body.get("comentario");
-        return ResponseEntity.ok(alertaService.actualizarEstado(id, nuevoEstado, comentario));
+        return ResponseEntity.ok(alertaService.actualizarEstado(id, request.getEstado(), request.getComentario()));
     }
 
     @GetMapping(value = "/{id}/preview-email", produces = MediaType.TEXT_HTML_VALUE)
     @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
     @Operation(summary = "Previsualizar plantilla Thymeleaf de email para la alerta", description = "Genera y retorna el HTML renderizado por Thymeleaf con los datos reales de la alerta.")
-    public ResponseEntity<String> previewEmail(@PathVariable Long id) {
+    public ResponseEntity<String> previewEmail(
+            @PathVariable @Min(value = 1, message = "El ID de la alerta debe ser un entero positivo") Long id
+    ) {
         AlertaFraudeEntity alerta = alertaService.obtenerPorId(id);
 
         BigDecimal monto = alerta.getTransaccion() != null ? alerta.getTransaccion().getMontoTransaccion() : new BigDecimal("14850.00");
@@ -90,8 +97,8 @@ public class AlertaController {
     @PreAuthorize("hasAnyRole('ANALISTA_FRAUDE', 'ADMIN', 'SUPERVISOR')")
     @Operation(summary = "Simular despacho de email con Thymeleaf", description = "Ejecuta el renderizado de Thymeleaf y simula el envío del correo electrónico.")
     public ResponseEntity<Map<String, Object>> simularEmail(
-            @PathVariable Long id,
-            @RequestParam(defaultValue = "analista@securityflow.com") String destinatario
+            @PathVariable @Min(value = 1, message = "El ID de la alerta debe ser un entero positivo") Long id,
+            @RequestParam(defaultValue = "analista@securityflow.com") @Email(message = "El destinatario debe ser una dirección de email válida") String destinatario
     ) {
         AlertaFraudeEntity alerta = alertaService.obtenerPorId(id);
 
