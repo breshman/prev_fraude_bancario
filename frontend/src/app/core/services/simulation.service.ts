@@ -49,6 +49,7 @@ export class SimulationService implements OnDestroy {
 
   // Streaming en vivo
   private liveStreamingSub: Subscription | null = null;
+  private liveStreamingTimer: any = null;
   private isLiveStreamingSubject = new BehaviorSubject<boolean>(false);
 
   constructor() {
@@ -133,12 +134,90 @@ export class SimulationService implements OnDestroy {
   }
 
   /**
+   * Resuelve código de país ISO, coordenadas representativas e IP según el país o anomalía
+   */
+  private resolveGeoAndNetworkData(country?: string, isUnusual?: boolean): {
+    codigoPais: string;
+    latitud: number;
+    longitud: number;
+    direccionIp: string;
+  } {
+    const c = (country || 'Perú').toLowerCase().trim();
+    const rndIp = Math.floor(10 + Math.random() * 80);
+
+    if (c.includes('rusia') || c.includes('russia')) {
+      return {
+        codigoPais: 'RU',
+        latitud: 55.7558,
+        longitud: 37.6173,
+        direccionIp: `95.173.136.${rndIp}`
+      };
+    }
+    if (c.includes('nigeria')) {
+      return {
+        codigoPais: 'NG',
+        latitud: 6.5244,
+        longitud: 3.3792,
+        direccionIp: `102.89.33.${rndIp}`
+      };
+    }
+    if (c.includes('china')) {
+      return {
+        codigoPais: 'CN',
+        latitud: 39.9042,
+        longitud: 116.4074,
+        direccionIp: `202.108.22.${rndIp}`
+      };
+    }
+    if (c.includes('estados unidos') || c.includes('ee.uu') || c.includes('usa') || c.includes('us')) {
+      return {
+        codigoPais: 'US',
+        latitud: 40.7128,
+        longitud: -74.0060,
+        direccionIp: `198.51.100.${rndIp}`
+      };
+    }
+    if (c.includes('méxico') || c.includes('mexico')) {
+      return {
+        codigoPais: 'MX',
+        latitud: 19.4326,
+        longitud: -99.1332,
+        direccionIp: `187.189.45.${rndIp}`
+      };
+    }
+    if (c.includes('colombia')) {
+      return {
+        codigoPais: 'CO',
+        latitud: 4.7110,
+        longitud: -74.0721,
+        direccionIp: `181.143.21.${rndIp}`
+      };
+    }
+
+    if (isUnusual) {
+      return {
+        codigoPais: 'RU',
+        latitud: 55.7558,
+        longitud: 37.6173,
+        direccionIp: `95.173.136.${rndIp}`
+      };
+    }
+
+    return {
+      codigoPais: 'PE',
+      latitud: -12.046374,
+      longitud: -77.042793,
+      direccionIp: `190.235.12.${rndIp}`
+    };
+  }
+
+  /**
    * Ejecuta una simulación individual evaluada por el backend en tiempo real
    */
   simulateSingleTransaction(params: {
     customerName?: string;
     amount: number;
-    channel?: SimulatedTransaction['channel'];
+    channel?: SimulatedTransaction['channel'] | 'APP';
     country?: string;
     city?: string;
     device?: string;
@@ -147,21 +226,43 @@ export class SimulationService implements OnDestroy {
     isNewDevice?: boolean;
     isUnusualLocation?: boolean;
     numeroCuentaOrigen?: string;
+    numeroCuentaDestino?: string;
+    latitud?: number;
+    longitud?: number;
+    direccionIp?: string;
+    codigoPais?: string;
   }): SimulatedTransaction {
     const threshold = this.currentThreshold;
     const channelBackend = (params.channel === 'INTERNACIONAL' || params.channel === 'ONLINE') ? 'WEB' :
-                          (params.channel === 'TRANSFERENCIA_MOVIL' ? 'APP' : (params.channel || 'APP'));
+      (params.channel === 'TRANSFERENCIA_MOVIL' ? 'APP' : (params.channel || 'APP'));
+
+    // Resolver geolocalización e IP para permitir evaluar reglas de velocidad, viaje imposible y país
+    const geoData = this.resolveGeoAndNetworkData(params.country, params.isUnusualLocation);
+    const resolvedCodigoPais = params.codigoPais || geoData.codigoPais;
+    const resolvedLatitud = params.latitud !== undefined ? params.latitud : geoData.latitud;
+    const resolvedLongitud = params.longitud !== undefined ? params.longitud : geoData.longitud;
+    const resolvedIp = params.direccionIp || geoData.direccionIp;
+
+    // Destinatario: si es desconocido, ubicación atípica o monto alto sospechoso, asignar cuenta externa no habitual para RF008
+    const isSuspiciousBeneficiary = params.isUnusualLocation || (resolvedCodigoPais !== 'PE') || (Number(params.amount) > 5000 && params.isNewDevice);
+    const resolvedDestino = params.numeroCuentaDestino || (isSuspiciousBeneficiary
+      ? `CTA-DEST-${Math.floor(100000 + Math.random() * 900000)}`
+      : 'CTA-002-998811');
 
     const req: TransaccionRequest = {
       numeroCuentaOrigen: params.numeroCuentaOrigen || 'CTA-001-445522',
-      numeroCuentaDestino: 'CTA-002-998811',
+      numeroCuentaDestino: resolvedDestino,
       monto: Number(params.amount),
       moneda: 'PEN',
       canal: channelBackend,
       tipoTransaccion: 'TRANSFERENCIA',
-      codigoPais: params.country === 'Perú' || !params.country ? 'PE' : (params.country === 'Rusia' ? 'RU' : 'US'),
-      direccionIp: '190.235.12.' + Math.floor(10 + Math.random() * 80),
-      huellaDispositivo: params.isNewDevice ? 'fingerprint-desconocido-99' : 'device-fingerprint-habitual-01'
+      codigoPais: resolvedCodigoPais,
+      direccionIp: resolvedIp,
+      huellaDispositivo: params.isNewDevice
+        ? `fingerprint-desconocido-${Math.floor(100 + Math.random() * 900)}`
+        : 'device-fingerprint-habitual-01',
+      latitud: resolvedLatitud,
+      longitud: resolvedLongitud
     };
 
     // Objeto preliminar en UI
@@ -171,10 +272,10 @@ export class SimulationService implements OnDestroy {
       customerName: params.customerName || 'Cliente Transaccional',
       accountId: req.numeroCuentaOrigen,
       amount: req.monto,
-      channel: (params.channel || 'ONLINE'),
+      channel: (params.channel === 'APP' ? 'TRANSFERENCIA_MOVIL' : (params.channel || 'ONLINE')),
       country: params.country || 'Perú',
-      city: params.city || 'Lima',
-      device: params.device || 'Dispositivo Habitual',
+      city: params.city || (resolvedCodigoPais === 'PE' ? 'Lima' : (resolvedCodigoPais === 'RU' ? 'Moscú' : (resolvedCodigoPais === 'NG' ? 'Lagos' : 'New York'))),
+      device: params.device || (params.isNewDevice ? 'Dispositivo No Habitual' : 'Dispositivo Habitual'),
       ipAddress: req.direccionIp || '190.235.12.44',
       riskScore: 10,
       riskLevel: 'BAJO',
@@ -211,7 +312,7 @@ export class SimulationService implements OnDestroy {
             this.alertNoticeSubject.next({
               transaction: tempTx,
               breachedCount: 1,
-              message: `¡ALERTA DISPARADA EN BACKEND! ${tempTx.id} evaluada con ${tempTx.riskScore} pts.`,
+              message: `¡ALERTA DISPARADA EN BACKEND! ${tempTx.id} evaluada con ${tempTx.riskScore} pts (${tempTx.status}).`,
               timestamp: new Date()
             });
           }
@@ -238,7 +339,7 @@ export class SimulationService implements OnDestroy {
    */
   generateBatch(count: number, scenario: 'MIXED' | 'HIGH_RISK' | 'NORMAL', notify: boolean = true): void {
     const escBackend = scenario === 'HIGH_RISK' ? 'CRITICO' : (scenario === 'NORMAL' ? 'ESTANDAR' : 'MIXED');
-    
+
     this.http.post<TransaccionResponse[]>(`${environment.apiUrl}/transacciones/simular-lote?cantidad=${count}&escenario=${escBackend}`, {}).pipe(
       rxMap(responses => responses.map(r => this.mapResponseToSimulatedTx(r))),
       tap(newTxs => {
@@ -286,17 +387,119 @@ export class SimulationService implements OnDestroy {
 
     this.liveStreamingSub = of(null).pipe(
       tap(() => {
-        // Enviar 1 transacción al backend cada 3 segundos
-        const timer = setInterval(() => {
+        // Enviar transacciones periódicas con distribución probabilística realista de escenarios y scores
+        this.liveStreamingTimer = setInterval(() => {
           if (!this.isLiveStreamingSubject.value) {
-            clearInterval(timer);
+            clearInterval(this.liveStreamingTimer);
             return;
           }
+
+          const rand = Math.random();
+
+          // 1. ESCENARIO FRAUDE CRÍTICO (~20%): Score 85 - 100 pts -> Decisión: BLOQUEAR (Estado: BLOQUEADA)
+          // Dispara múltiples reglas críticas en el backend:
+          // RF001 (Monto inusual: +25), RF004 (País nuevo: +30), RF007 (Viaje imposible: +40),
+          // RF008 (Beneficiario nuevo y monto alto: +20), RF002 (Dispositivo nuevo: +15), RF003 (IP nueva: +10)
+          // Total score sumado: 140 pts -> Capped a 100 pts (MAX_SCORE) -> BLOQUEAR / BLOQUEADA
+          if (rand < 0.20) {
+            const fraudScenarios = [
+              { country: 'Rusia', city: 'Moscú', device: 'Tor Browser / Proxy Anónimo v13' },
+              { country: 'Rusia', city: 'San Petersburgo', device: 'Emulador Android Nox Rooted' },
+              { country: 'Nigeria', city: 'Lagos', device: 'Dispositivo Clonado / Botnet' },
+              { country: 'China', city: 'Pekín', device: 'VPN Anónima / SOCKS5 Proxy' }
+            ];
+            const target = fraudScenarios[Math.floor(Math.random() * fraudScenarios.length)];
+            const victimNames = ['Juan Alberto Pérez', 'Héctor Balbuena', 'Rosa María Vega', 'Carlos Santillán'];
+
+            this.simulateSingleTransaction({
+              customerName: victimNames[Math.floor(Math.random() * victimNames.length)] + ' (Suplantado)',
+              amount: 12000 + Math.floor(Math.random() * 16000), // S/ 12,000 - S/ 28,000 (Monto muy alto)
+              channel: 'ONLINE',
+              country: target.country,
+              city: target.city,
+              device: target.device,
+              isNewDevice: true,
+              isUnusualLocation: true,
+              numeroCuentaDestino: `CTA-FRAUD-${Math.floor(100000 + Math.random() * 900000)}`
+            });
+            return;
+          }
+
+          // 2. ESCENARIO RIESGO ALTO (~15%): Score 60 - 79 pts -> Decisión: RETENER (Estado: RETENIDA)
+          // Dispara: RF004 (País nuevo: 30 pts), RF008 (Destino nuevo monto > 5000: 20 pts), RF002 (Dispositivo nuevo: 15 pts)
+          if (rand < 0.35) {
+            const highRiskScenarios = [
+              { country: 'Estados Unidos', city: 'Miami', device: 'Navegador Firefox Linux No Habitual' },
+              { country: 'Estados Unidos', city: 'Los Ángeles', device: 'Dispositivo Móvil No Reconocido' },
+              { country: 'México', city: 'Ciudad de México', device: 'Windows 11 Chrome No Registrado' }
+            ];
+            const target = highRiskScenarios[Math.floor(Math.random() * highRiskScenarios.length)];
+
+            this.simulateSingleTransaction({
+              customerName: 'Cliente Corporativo / ' + (Math.random() > 0.5 ? 'Exportadora Lima' : 'Servicios Globales'),
+              amount: 5500 + Math.floor(Math.random() * 3500), // S/ 5,500 - S/ 9,000
+              channel: 'INTERNACIONAL',
+              country: target.country,
+              city: target.city,
+              device: target.device,
+              isNewDevice: true,
+              isUnusualLocation: false, // Sin salto geográfico para mantener score entre 60 y 75
+              numeroCuentaDestino: `CTA-EXT-${Math.floor(100000 + Math.random() * 900000)}`
+            });
+            return;
+          }
+
+          // 3. ESCENARIO RIESGO MEDIO (~25%): Score 30 - 59 pts -> Decisión: MONITOREAR (Estado: APROBADA)
+          // Dispara: RF002 (Dispositivo nuevo: 15 pts) + RF003 (IP nueva: 10 pts) = 25 pts, o país 'US' (30 pts)
+          if (rand < 0.60) {
+            const mediumRiskScenarios = [
+              { country: 'Perú', city: 'Lima', device: 'iPhone 15 Pro No Registrado' },
+              { country: 'Perú', city: 'Arequipa', device: 'MacBook Air Safari Dinámico' },
+              { country: 'Estados Unidos', city: 'Orlando', device: 'Portal Web Hotelería' }
+            ];
+            const target = mediumRiskScenarios[Math.floor(Math.random() * mediumRiskScenarios.length)];
+
+            this.simulateSingleTransaction({
+              customerName: 'Andrea Palacios / Compra En Línea',
+              amount: 1200 + Math.floor(Math.random() * 3200), // S/ 1,200 - S/ 4,400
+              channel: 'ONLINE',
+              country: target.country,
+              city: target.city,
+              device: target.device,
+              isNewDevice: true,
+              isUnusualLocation: false,
+              numeroCuentaDestino: 'CTA-002-998811' // Beneficiario habitual
+            });
+            return;
+          }
+
+          // 4. ESCENARIO LEGÍTIMO / BAJO RIESGO (~40%): Score 0 - 25 pts -> Decisión: APROBAR (Estado: APROBADA)
+          // Operaciones cotidianas habituales
+          const legitScenarios: Array<{
+            country: string;
+            city: string;
+            channel: SimulatedTransaction['channel'];
+            device: string;
+          }> = [
+            { country: 'Perú', city: 'Lima', channel: 'POS', device: 'POS Terminal Izipay Habitual' },
+            { country: 'Perú', city: 'Lima', channel: 'TRANSFERENCIA_MOVIL', device: 'Samsung Galaxy Habitual' },
+            { country: 'Perú', city: 'Miraflores', channel: 'ATM', device: 'Cajero Automático BCP' },
+            { country: 'Perú', city: 'Trujillo', channel: 'TRANSFERENCIA_MOVIL', device: 'device-fingerprint-habitual-01' },
+            { country: 'Perú', city: 'Cusco', channel: 'POS', device: 'POS Niubiz Establecimiento' }
+          ];
+          const legit = legitScenarios[Math.floor(Math.random() * legitScenarios.length)];
+          const names = ['Juan Alberto Pérez', 'María Elena Rosas', 'Ana Torres Rojas', 'Luis Delgado Castro', 'Lucía Paredes'];
+
           this.simulateSingleTransaction({
-            amount: 150 + Math.floor(Math.random() * 8500),
-            channel: 'ONLINE',
-            country: Math.random() > 0.8 ? 'Rusia' : 'Perú',
-            isNewDevice: Math.random() > 0.7
+            customerName: names[Math.floor(Math.random() * names.length)],
+            amount: 25 + Math.floor(Math.random() * 750), // S/ 25 - S/ 775 (Montos comunes)
+            channel: legit.channel,
+            country: legit.country,
+            city: legit.city,
+            device: legit.device,
+            isNewDevice: false,
+            isUnusualLocation: false,
+            numeroCuentaDestino: 'CTA-002-998811'
           });
         }, 3000);
       })
@@ -304,6 +507,10 @@ export class SimulationService implements OnDestroy {
   }
 
   stopLiveStreaming(): void {
+    if (this.liveStreamingTimer) {
+      clearInterval(this.liveStreamingTimer);
+      this.liveStreamingTimer = null;
+    }
     if (this.liveStreamingSub) {
       this.liveStreamingSub.unsubscribe();
       this.liveStreamingSub = null;
