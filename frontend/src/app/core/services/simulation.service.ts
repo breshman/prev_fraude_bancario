@@ -339,7 +339,7 @@ export class SimulationService implements OnDestroy {
    */
   generateBatch(count: number, scenario: 'MIXED' | 'HIGH_RISK' | 'NORMAL', notify: boolean = true): void {
     const escBackend = scenario === 'HIGH_RISK' ? 'CRITICO' : (scenario === 'NORMAL' ? 'ESTANDAR' : 'MIXED');
-
+    // Simular
     this.http.post<TransaccionResponse[]>(`${environment.apiUrl}/transacciones/simular-lote?cantidad=${count}&escenario=${escBackend}`, {}).pipe(
       rxMap(responses => responses.map(r => this.mapResponseToSimulatedTx(r))),
       tap(newTxs => {
@@ -481,12 +481,12 @@ export class SimulationService implements OnDestroy {
             channel: SimulatedTransaction['channel'];
             device: string;
           }> = [
-            { country: 'Perú', city: 'Lima', channel: 'POS', device: 'POS Terminal Izipay Habitual' },
-            { country: 'Perú', city: 'Lima', channel: 'TRANSFERENCIA_MOVIL', device: 'Samsung Galaxy Habitual' },
-            { country: 'Perú', city: 'Miraflores', channel: 'ATM', device: 'Cajero Automático BCP' },
-            { country: 'Perú', city: 'Trujillo', channel: 'TRANSFERENCIA_MOVIL', device: 'device-fingerprint-habitual-01' },
-            { country: 'Perú', city: 'Cusco', channel: 'POS', device: 'POS Niubiz Establecimiento' }
-          ];
+              { country: 'Perú', city: 'Lima', channel: 'POS', device: 'POS Terminal Izipay Habitual' },
+              { country: 'Perú', city: 'Lima', channel: 'TRANSFERENCIA_MOVIL', device: 'Samsung Galaxy Habitual' },
+              { country: 'Perú', city: 'Miraflores', channel: 'ATM', device: 'Cajero Automático BCP' },
+              { country: 'Perú', city: 'Trujillo', channel: 'TRANSFERENCIA_MOVIL', device: 'device-fingerprint-habitual-01' },
+              { country: 'Perú', city: 'Cusco', channel: 'POS', device: 'POS Niubiz Establecimiento' }
+            ];
           const legit = legitScenarios[Math.floor(Math.random() * legitScenarios.length)];
           const names = ['Juan Alberto Pérez', 'María Elena Rosas', 'Ana Torres Rojas', 'Luis Delgado Castro', 'Lucía Paredes'];
 

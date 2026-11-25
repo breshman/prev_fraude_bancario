@@ -95,11 +95,12 @@ public class EvaluacionFraudeService {
                         .puntos(r.getPesoAplicado())
                         .evidencia(r.getValorDetectado())
                         .build());
-                if (motivosAlerta.length() > 0) motivosAlerta.append("; ");
+                if (motivosAlerta.length() > 0)
+                    motivosAlerta.append("; ");
                 motivosAlerta.append(r.getNombreRegla()).append(": ").append(r.getValorDetectado());
             }
         }
-
+        // TODO: Verificar guardado
         EvaluacionFraudeEntity guardada = evaluacionRepo.save(evaluacionEntity);
 
         // 6. Actualizar estado transaccional
