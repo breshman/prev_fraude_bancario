@@ -12,11 +12,19 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/transacciones")
@@ -47,9 +55,47 @@ public class TransaccionController {
     }
 
     @GetMapping
-    @Operation(summary = "Listar transacciones registradas", description = "Retorna el historial completo de transacciones evaluadas almacenadas en la base de datos.")
-    public ResponseEntity<java.util.List<TransaccionResponse>> listarTransacciones() {
-        return ResponseEntity.ok(transaccionService.listarTransacciones());
+    @Operation(summary = "Listar transacciones registradas", description = "Retorna el historial de transacciones evaluadas almacenadas en la base de datos, con filtro opcional por rango de fechas.")
+    public ResponseEntity<List<TransaccionResponse>> listarTransacciones(
+            @Parameter(description = "Fecha inicial del rango (YYYY-MM-DD)") @RequestParam(value = "fechaInicio", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
+            @Parameter(description = "Fecha final del rango (YYYY-MM-DD)") @RequestParam(value = "fechaFin", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
+        return ResponseEntity.ok(transaccionService.listarTransaccionesPorRango(fechaInicio, fechaFin));
+    }
+
+    @GetMapping("/exportar")
+    @Operation(summary = "Exportar transacciones a Excel (.xlsx) o CSV por rango de fechas", description = "Genera y descarga desde el backend el reporte de transacciones y análisis antifraude filtrado por rango de fechas, umbral, estado o selección.")
+    public ResponseEntity<byte[]> exportarTransacciones(
+            @Parameter(description = "Formato de archivo: xlsx, xls o csv") @RequestParam(value = "formato", defaultValue = "xlsx") String formato,
+            @Parameter(description = "Fecha inicial del análisis (YYYY-MM-DD)") @RequestParam(value = "fechaInicio", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
+            @Parameter(description = "Fecha final del análisis (YYYY-MM-DD)") @RequestParam(value = "fechaFin", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin,
+            @Parameter(description = "Umbral de score aplicado para análisis") @RequestParam(value = "umbral", defaultValue = "70") int umbral,
+            @Parameter(description = "Filtro de estado opcional (ALL, BREACHED, APROBADA, RETENIDA, BLOQUEADA)") @RequestParam(value = "estado", required = false) String estado,
+            @Parameter(description = "Exportar únicamente transacciones que superan el umbral") @RequestParam(value = "soloAlertas", required = false) Boolean soloAlertas,
+            @Parameter(description = "Lista opcional de IDs seleccionados") @RequestParam(value = "ids", required = false) List<String> ids) {
+
+        boolean esCsv = "csv".equalsIgnoreCase(formato);
+        byte[] archivo = transaccionService.exportarTransacciones(formato, fechaInicio, fechaFin, umbral, estado, soloAlertas, ids);
+
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        String rangoSufijo = "";
+        if (fechaInicio != null && fechaFin != null) {
+            rangoSufijo = "_" + fechaInicio + "_a_" + fechaFin;
+        } else if (fechaInicio != null) {
+            rangoSufijo = "_desde_" + fechaInicio;
+        } else if (fechaFin != null) {
+            rangoSufijo = "_hasta_" + fechaFin;
+        }
+        String ext = esCsv ? "csv" : "xlsx";
+        String filename = "Analisis_Fraude_SecurityFlow" + rangoSufijo + "_" + timestamp + "." + ext;
+
+        MediaType contentType = esCsv
+                ? MediaType.parseMediaType("text/csv;charset=UTF-8")
+                : MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                .contentType(contentType)
+                .body(archivo);
     }
 
     @PostMapping("/simular-lote")

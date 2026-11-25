@@ -36,4 +36,9 @@ export interface TransaccionResponse {
   moneda?: string;
   canal?: string;
   numeroCuentaOrigen?: string;
+  nombreCliente?: string;
+  codigoPais?: string;
+  ciudad?: string;
+  direccionIp?: string;
+  dispositivo?: string;
 }

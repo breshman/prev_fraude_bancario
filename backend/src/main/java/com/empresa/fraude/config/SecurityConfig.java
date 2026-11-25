@@ -70,7 +70,7 @@ public class SecurityConfig {
         configuration.setAllowedOriginPatterns(List.of("http://localhost:*", "http://127.0.0.1:*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowedHeaders(List.of("*"));
-        configuration.setExposedHeaders(List.of("Authorization", "X-Correlation-Id"));
+        configuration.setExposedHeaders(List.of("Authorization", "X-Correlation-Id", "Content-Disposition"));
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
 

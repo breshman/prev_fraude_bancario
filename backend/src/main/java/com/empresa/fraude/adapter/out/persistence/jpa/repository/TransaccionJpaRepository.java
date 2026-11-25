@@ -15,4 +15,7 @@ public interface TransaccionJpaRepository extends JpaRepository<TransaccionEntit
     List<TransaccionEntity> findByCuentaIdCuentaAndFechaHoraTransaccionAfter(Long idCuenta, OffsetDateTime fecha);
     long countByCuentaClienteIdClienteAndFechaHoraTransaccionAfter(Long idCliente, OffsetDateTime fecha);
     List<TransaccionEntity> findAllByOrderByFechaHoraTransaccionDesc();
+    List<TransaccionEntity> findByFechaHoraTransaccionBetweenOrderByFechaHoraTransaccionDesc(OffsetDateTime fechaInicio, OffsetDateTime fechaFin);
+    List<TransaccionEntity> findByFechaHoraTransaccionGreaterThanEqualOrderByFechaHoraTransaccionDesc(OffsetDateTime fechaInicio);
+    List<TransaccionEntity> findByFechaHoraTransaccionLessThanEqualOrderByFechaHoraTransaccionDesc(OffsetDateTime fechaFin);
 }

@@ -23,25 +23,108 @@ export interface SimulationExportData {
   reasons: string[];
 }
 
+export interface ExcelExportFilterOptions {
+  format?: 'xlsx' | 'xls' | 'csv';
+  startDate?: string;
+  endDate?: string;
+  threshold?: number;
+  statusFilter?: string;
+  onlyAlerts?: boolean;
+  selectedIds?: string[];
+}
+
 export class ExcelExportUtil {
   /**
-   * Genera y descarga un archivo Excel (.xls) con estilos visuales y formato bancario.
+   * Descarga en el navegador un archivo Blob generado por el backend (GET /api/v1/transacciones/exportar),
+   * extrayendo el nombre del archivo desde el header Content-Disposition si está disponible.
    */
-  static exportToExcel(data: SimulationExportData[], filename: string = 'Simulaciones_Fraude_SecurityFlow'): void {
-    const timestampStr = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    const fullFilename = `${filename}_${timestampStr}.xls`;
+  static downloadBackendBlob(
+    blob: Blob,
+    contentDisposition?: string | null,
+    fallbackPrefix: string = 'Analisis_Fraude_SecurityFlow',
+    format: 'xlsx' | 'xls' | 'csv' = 'xlsx',
+    startDate?: string,
+    endDate?: string
+  ): void {
+    let filename = this.extractFilenameFromHeader(contentDisposition);
+    if (!filename) {
+      const timestampStr = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+      const rangePart = startDate && endDate
+        ? `_${startDate}_a_${endDate}`
+        : (startDate ? `_desde_${startDate}` : (endDate ? `_hasta_${endDate}` : ''));
+      const ext = format === 'csv' ? 'csv' : 'xlsx';
+      filename = `${fallbackPrefix}${rangePart}_${timestampStr}.${ext}`;
+    }
+    this.triggerDownload(blob, filename);
+  }
 
-    const xmlContent = this.buildExcelXml(data);
+  /**
+   * Filtra una lista de transacciones por rango de fechas (YYYY-MM-DD) para respaldo local o análisis en vista.
+   */
+  static filterByDateRange<T extends { timestamp: string | Date }>(
+    data: T[],
+    startDate?: string,
+    endDate?: string
+  ): T[] {
+    if (!startDate && !endDate) return data;
+
+    const startMs = startDate ? new Date(`${startDate}T00:00:00`).getTime() : null;
+    const endMs = endDate ? new Date(`${endDate}T23:59:59.999`).getTime() : null;
+
+    return data.filter(item => {
+      const itemTime = new Date(item.timestamp).getTime();
+      if (isNaN(itemTime)) return true;
+      if (startMs !== null && !isNaN(startMs) && itemTime < startMs) return false;
+      if (endMs !== null && !isNaN(endMs) && itemTime > endMs) return false;
+      return true;
+    });
+  }
+
+  private static extractFilenameFromHeader(contentDisposition?: string | null): string | null {
+    if (!contentDisposition) return null;
+    const match = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(contentDisposition);
+    if (match && match[1]) {
+      return match[1].replace(/['"]/g, '').trim();
+    }
+    return null;
+  }
+
+  /**
+   * Genera y descarga un archivo Excel (.xls) con estilos visuales y formato bancario (respaldo local).
+   */
+  static exportToExcel(
+    data: SimulationExportData[],
+    filename: string = 'Analisis_Fraude_SecurityFlow',
+    startDate?: string,
+    endDate?: string
+  ): void {
+    const filtered = this.filterByDateRange(data, startDate, endDate);
+    const timestampStr = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
+    const rangePart = startDate && endDate
+      ? `_${startDate}_a_${endDate}`
+      : (startDate ? `_desde_${startDate}` : (endDate ? `_hasta_${endDate}` : ''));
+    const fullFilename = `${filename}${rangePart}_${timestampStr}.xls`;
+
+    const xmlContent = this.buildExcelXml(filtered);
     const blob = new Blob([xmlContent], { type: 'application/vnd.ms-excel;charset=utf-8' });
     this.triggerDownload(blob, fullFilename);
   }
 
   /**
-   * Genera y descarga un archivo CSV compatible con Excel (BOM UTF-8, separador punto y coma).
+   * Genera y descarga un archivo CSV compatible con Excel (BOM UTF-8, separador punto y coma) (respaldo local).
    */
-  static exportToCsv(data: SimulationExportData[], filename: string = 'Simulaciones_Fraude_SecurityFlow'): void {
+  static exportToCsv(
+    data: SimulationExportData[],
+    filename: string = 'Analisis_Fraude_SecurityFlow',
+    startDate?: string,
+    endDate?: string
+  ): void {
+    const filtered = this.filterByDateRange(data, startDate, endDate);
     const timestampStr = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19);
-    const fullFilename = `${filename}_${timestampStr}.csv`;
+    const rangePart = startDate && endDate
+      ? `_${startDate}_a_${endDate}`
+      : (startDate ? `_desde_${startDate}` : (endDate ? `_hasta_${endDate}` : ''));
+    const fullFilename = `${filename}${rangePart}_${timestampStr}.csv`;
 
     const headers = [
       'ID Transacción',
@@ -62,7 +145,7 @@ export class ExcelExportUtil {
       'Reglas Disparadas'
     ];
 
-    const rows = data.map(item => [
+    const rows = filtered.map(item => [
       item.id,
       this.formatDate(item.timestamp),
       `"${item.customerName.replace(/"/g, '""')}"`,

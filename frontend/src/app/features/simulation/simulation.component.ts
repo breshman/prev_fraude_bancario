@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbTooltipModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 import { SimulationService, SimulatedTransaction, SimulationAlertNotice } from '../../core/services/simulation.service';
 import { FraudService } from '../../core/services/fraud.service';
 import { FraudChartComponent } from '../../shared/components/fraud-chart/fraud-chart.component';
@@ -33,9 +34,23 @@ export class SimulationComponent implements OnInit {
   activeThreshold: number = 70;
   activeFilter: 'ALL' | 'BREACHED' | 'APROBADA' | 'RETENIDA' | 'BLOQUEADA' = 'ALL';
   searchTerm: string = '';
+  startDateFilter: string = '';
+  endDateFilter: string = '';
   showSingleSimModal: boolean = false;
+  showExportDateModal: boolean = false;
+  isExporting: boolean = false;
   toastMessage: string | null = null;
   toastType: 'success' | 'warning' | 'info' = 'info';
+
+  // Configuración del Modal de Exportación por Rango de Fechas (Backend)
+  exportModalConfig = {
+    startDate: '',
+    endDate: '',
+    format: 'xlsx' as 'xlsx' | 'csv',
+    statusFilter: 'ALL' as 'ALL' | 'BREACHED' | 'APROBADA' | 'RETENIDA' | 'BLOQUEADA',
+    onlyAlerts: false,
+    selectedOnly: false
+  };
 
   // Formulario de Simulación Individual
   singleForm = {
@@ -117,12 +132,24 @@ export class SimulationComponent implements OnInit {
 
   // --- Filtrado y Búsqueda ---
   getFilteredSimulations(simulations: SimulatedTransaction[]): SimulatedTransaction[] {
+    const startMs = this.startDateFilter ? new Date(`${this.startDateFilter}T00:00:00`).getTime() : null;
+    const endMs = this.endDateFilter ? new Date(`${this.endDateFilter}T23:59:59.999`).getTime() : null;
+
     return simulations.filter(tx => {
       // Filtro de Estado / Umbral
       if (this.activeFilter === 'BREACHED' && !tx.exceedsThreshold) return false;
       if (this.activeFilter === 'APROBADA' && tx.status !== 'APROBADA') return false;
       if (this.activeFilter === 'RETENIDA' && tx.status !== 'RETENIDA') return false;
       if (this.activeFilter === 'BLOQUEADA' && tx.status !== 'BLOQUEADA') return false;
+
+      // Filtro por Rango de Fechas
+      if (startMs !== null || endMs !== null) {
+        const txTime = new Date(tx.timestamp).getTime();
+        if (!isNaN(txTime)) {
+          if (startMs !== null && !isNaN(startMs) && txTime < startMs) return false;
+          if (endMs !== null && !isNaN(endMs) && txTime > endMs) return false;
+        }
+      }
 
       // Filtro de Búsqueda
       if (this.searchTerm.trim()) {
@@ -136,6 +163,24 @@ export class SimulationComponent implements OnInit {
 
       return true;
     });
+  }
+
+  onApplyDateRangeBackend(): void {
+    this.simulationService.cargarTransaccionesDesdeBackend(
+      this.startDateFilter || undefined,
+      this.endDateFilter || undefined
+    ).subscribe(txs => {
+      const rangoMsg = (this.startDateFilter || this.endDateFilter)
+        ? `(${this.startDateFilter || 'Inicio'} a ${this.endDateFilter || 'Hoy'})`
+        : '(Historial completo)';
+      this.showToast(`📅 Se cargaron ${txs.length} transacciones desde el backend ${rangoMsg}.`, 'info');
+    });
+  }
+
+  onClearDateRange(): void {
+    this.startDateFilter = '';
+    this.endDateFilter = '';
+    this.simulationService.cargarTransaccionesDesdeBackend().subscribe();
   }
 
   // --- Selección y Acciones Masivas ---
@@ -213,10 +258,110 @@ export class SimulationComponent implements OnInit {
     };
   }
 
-  // --- Exportación a Excel ---
-  onExportExcel(format: 'xls' | 'csv' = 'xls', selectedOnly: boolean = false): void {
-    this.simulationService.exportToExcel(format, selectedOnly);
-    this.showToast(`Archivo ${format.toUpperCase()} generado y descargado exitosamente.`, 'success');
+  // --- Exportación a Excel (.xlsx) o CSV desde el Backend ---
+  onExportExcel(format: 'xlsx' | 'xls' | 'csv' = 'xlsx', selectedOnly: boolean = false): void {
+    if (this.isExporting) return;
+    const fmt = format === 'csv' ? 'csv' : 'xlsx';
+    this.isExporting = true;
+
+    this.simulationService.exportToExcel(fmt, selectedOnly, {
+      startDate: this.startDateFilter || undefined,
+      endDate: this.endDateFilter || undefined,
+      statusFilter: this.activeFilter !== 'ALL' ? this.activeFilter : undefined
+    }).pipe(
+      finalize(() => {
+        this.isExporting = false;
+      })
+    ).subscribe(fromBackend => {
+      const rango = (this.startDateFilter || this.endDateFilter)
+        ? ` [${this.startDateFilter || 'Inicio'} a ${this.endDateFilter || 'Hoy'}]`
+        : '';
+      const origen = fromBackend ? 'desde el servidor Backend' : 'localmente';
+      this.showToast(`📊 Reporte ${fmt.toUpperCase()}${rango} descargado ${origen}.`, 'success');
+    });
+  }
+
+  openExportDateModal(format: 'xlsx' | 'xls' | 'csv' = 'xlsx'): void {
+    const fmt = format === 'csv' ? 'csv' : 'xlsx';
+    this.exportModalConfig = {
+      startDate: this.startDateFilter || this.getFormattedDateOffset(-7),
+      endDate: this.endDateFilter || this.getFormattedDateOffset(0),
+      format: fmt,
+      statusFilter: this.activeFilter,
+      onlyAlerts: this.activeFilter === 'BREACHED',
+      selectedOnly: false
+    };
+    this.showExportDateModal = true;
+  }
+
+  applyExportPreset(days: number | 'TODAY' | 'MONTH' | 'ALL'): void {
+    if (days === 'ALL') {
+      this.exportModalConfig.startDate = '';
+      this.exportModalConfig.endDate = '';
+      return;
+    }
+    const today = this.getFormattedDateOffset(0);
+    if (days === 'TODAY') {
+      this.exportModalConfig.startDate = today;
+      this.exportModalConfig.endDate = today;
+    } else if (days === 'MONTH') {
+      const now = new Date();
+      const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
+      this.exportModalConfig.startDate = this.formatDateIso(firstDay);
+      this.exportModalConfig.endDate = today;
+    } else {
+      this.exportModalConfig.startDate = this.getFormattedDateOffset(-days);
+      this.exportModalConfig.endDate = today;
+    }
+  }
+
+  onConfirmBackendDateExport(): void {
+    if (this.isExporting) return;
+    if (this.exportModalConfig.startDate && this.exportModalConfig.endDate &&
+        this.exportModalConfig.startDate > this.exportModalConfig.endDate) {
+      this.showToast('⚠️ La fecha inicial no puede ser mayor que la fecha final.', 'warning');
+      return;
+    }
+
+    // Sincronizar filtro activo de fechas en la vista
+    this.startDateFilter = this.exportModalConfig.startDate;
+    this.endDateFilter = this.exportModalConfig.endDate;
+
+    this.isExporting = true;
+    this.simulationService.exportToExcel(
+      this.exportModalConfig.format,
+      this.exportModalConfig.selectedOnly,
+      {
+        startDate: this.exportModalConfig.startDate || undefined,
+        endDate: this.exportModalConfig.endDate || undefined,
+        statusFilter: this.exportModalConfig.statusFilter,
+        onlyAlerts: this.exportModalConfig.onlyAlerts
+      }
+    ).pipe(
+      finalize(() => {
+        this.isExporting = false;
+      })
+    ).subscribe(fromBackend => {
+      this.showExportDateModal = false;
+      const rango = (this.exportModalConfig.startDate || this.exportModalConfig.endDate)
+        ? ` (${this.exportModalConfig.startDate || 'Inicio'} al ${this.exportModalConfig.endDate || 'Hoy'})`
+        : ' (Historial completo)';
+      const origen = fromBackend ? 'generado por el Backend' : 'generado en modo respaldo';
+      this.showToast(`📊 Reporte ${this.exportModalConfig.format.toUpperCase()}${rango} ${origen} y descargado con éxito.`, 'success');
+    });
+  }
+
+  private getFormattedDateOffset(daysOffset: number): string {
+    const d = new Date();
+    d.setDate(d.getDate() + daysOffset);
+    return this.formatDateIso(d);
+  }
+
+  private formatDateIso(d: Date): string {
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   // --- Toasts y Notificaciones ---

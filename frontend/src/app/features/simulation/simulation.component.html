@@ -68,25 +68,31 @@
         </div>
       </div>
 
-      <!-- Menú Exportar a Excel -->
+      <!-- Menú Exportar a Excel (Desde Backend) -->
       <div class="btn-group" ngbDropdown>
         <button type="button" class="btn btn-success btn-sm shadow-sm dropdown-toggle fw-semibold px-3 py-2 excel-btn"
           ngbDropdownToggle>
           <span class="me-2">📊</span> Descargar en Excel
         </button>
         <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2" ngbDropdownMenu>
-          <h6 class="dropdown-header text-uppercase text-body-secondary fw-bold small">Exportación de Resultados</h6>
-          <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('xls', false)">
-            <strong>📗 Libro de Excel (.xls)</strong>
-            <div class="small text-body-secondary">Con estilos, colores en alertas y celdas formateadas</div>
+          <h6 class="dropdown-header text-uppercase text-body-secondary fw-bold small">Reporte Backend por Rango de Fechas</h6>
+          <button class="dropdown-item rounded-2 py-2" (click)="openExportDateModal('xlsx')">
+            <strong>📅 Descargar por Rango de Fechas (Análisis)</strong>
+            <div class="small text-body-secondary">Filtrar período específico en servidor (.xlsx / .csv)</div>
+          </button>
+          <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header text-uppercase text-body-secondary fw-bold small">Descarga Rápida desde Servidor</h6>
+          <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('xlsx', false)">
+            <strong>📗 Libro de Excel (.xlsx)</strong>
+            <div class="small text-body-secondary">Formato nativo OpenXML con resumen, estilos y alertas</div>
           </button>
           <button class="dropdown-item rounded-2 py-2" (click)="onExportExcel('csv', false)">
             <strong>📄 Archivo CSV con BOM UTF-8</strong>
-            <div class="small text-body-secondary">Compatible universalmente con cualquier software de hoja de cálculo</div>
+            <div class="small text-body-secondary">Generado en Backend para análisis masivo de datos</div>
           </button>
           <div class="dropdown-divider" *ngIf="getSelectedCount(simulations) > 0"></div>
           <button class="dropdown-item rounded-2 py-2 text-primary" *ngIf="getSelectedCount(simulations) > 0"
-            (click)="onExportExcel('xls', true)">
+            (click)="onExportExcel('xlsx', true)">
             <strong>📥 Exportar solo Seleccionadas ({{ getSelectedCount(simulations) }})</strong>
           </button>
         </div>
@@ -326,6 +332,49 @@
           </div>
         </div>
       </div>
+
+      <!-- Barra de Análisis y Descarga en Excel por Rango de Fechas (Backend) -->
+      <div class="row g-2 align-items-center mt-2 pt-3 border-top">
+        <div class="col-12 col-lg-auto">
+          <span class="small fw-bold text-body-secondary d-flex align-items-center gap-1">
+            📅 Rango de Fechas para Análisis:
+          </span>
+        </div>
+        <div class="col-6 col-sm-auto">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-body-tertiary border-0 text-body-secondary">Desde</span>
+            <input type="date" class="form-control bg-body-tertiary border-0" [(ngModel)]="startDateFilter">
+          </div>
+        </div>
+        <div class="col-6 col-sm-auto">
+          <div class="input-group input-group-sm">
+            <span class="input-group-text bg-body-tertiary border-0 text-body-secondary">Hasta</span>
+            <input type="date" class="form-control bg-body-tertiary border-0" [(ngModel)]="endDateFilter">
+          </div>
+        </div>
+        <div class="col-12 col-sm-auto d-flex flex-wrap gap-2">
+          <button type="button" class="btn btn-sm btn-outline-primary fw-semibold"
+            (click)="onApplyDateRangeBackend()"
+            ngbTooltip="Consultar transacciones en la base de datos dentro de este rango">
+            🔎 Filtrar en Backend
+          </button>
+          <button type="button" class="btn btn-sm btn-success fw-semibold shadow-sm"
+            (click)="onExportExcel('xlsx', false)"
+            ngbTooltip="Generar y descargar archivo Excel (.xlsx) desde el Backend para el rango seleccionado">
+            📊 Descargar Excel (.xlsx)
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-success fw-semibold"
+            (click)="onExportExcel('csv', false)"
+            ngbTooltip="Generar y descargar archivo CSV desde el Backend para el rango seleccionado">
+            📄 CSV
+          </button>
+          <button type="button" class="btn btn-sm btn-outline-secondary"
+            *ngIf="startDateFilter || endDateFilter"
+            (click)="onClearDateRange()">
+            ✕ Limpiar Fechas
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Tabla de Transacciones Simuladas (Revisión Masiva) -->
@@ -563,6 +612,102 @@
           <button type="button" class="btn btn-outline-secondary" (click)="showSingleSimModal = false">Cancelar</button>
           <button type="button" class="btn btn-primary fw-semibold px-4 shadow-sm" (click)="onSimulateSingle()">
             ⚡ Evaluar y Simular
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Descarga en Excel por Rango de Fechas (Desde Backend) -->
+  <div class="modal fade show d-block modal-backdrop-custom" *ngIf="showExportDateModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow-lg rounded-4">
+        <div class="modal-header border-0 pb-0 pt-4 px-4">
+          <div>
+            <h5 class="modal-title fw-bold">📊 Descargar Reporte de Análisis (Backend)</h5>
+            <small class="text-muted">Seleccione el rango de fechas y parámetros para generar el archivo desde el servidor.</small>
+          </div>
+          <button type="button" class="btn-close" (click)="showExportDateModal = false"></button>
+        </div>
+
+        <div class="modal-body p-4">
+          <!-- Presets rápidos de fechas -->
+          <div class="mb-3">
+            <label class="form-label small fw-bold text-body-secondary">Períodos Rápidos de Análisis:</label>
+            <div class="d-flex flex-wrap gap-2">
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="applyExportPreset('TODAY')">
+                Hoy
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="applyExportPreset(7)">
+                Últimos 7 días
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="applyExportPreset(30)">
+                Últimos 30 días
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-primary" (click)="applyExportPreset('MONTH')">
+                Mes Actual
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-secondary" (click)="applyExportPreset('ALL')">
+                Todo el Historial
+              </button>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Fecha Inicio</label>
+              <input type="date" class="form-control" [(ngModel)]="exportModalConfig.startDate">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Fecha Fin</label>
+              <input type="date" class="form-control" [(ngModel)]="exportModalConfig.endDate">
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Formato de Descarga</label>
+              <select class="form-select" [(ngModel)]="exportModalConfig.format">
+                <option value="xlsx">📗 Libro Excel (.xlsx oficial sin alertas)</option>
+                <option value="csv">📄 Archivo CSV (UTF-8 BOM)</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label small fw-bold">Estado de Transacción</label>
+              <select class="form-select" [(ngModel)]="exportModalConfig.statusFilter">
+                <option value="ALL">Todas las transacciones</option>
+                <option value="BREACHED">🚨 Solo Superan Umbral ({{ activeThreshold }} pts)</option>
+                <option value="APROBADA">✓ Solo Aprobadas</option>
+                <option value="RETENIDA">⏸️ Solo Retenidas</option>
+                <option value="BLOQUEADA">⛔ Solo Bloqueadas</option>
+              </select>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="checkOnlyAlertsExport"
+                  [(ngModel)]="exportModalConfig.onlyAlerts">
+                <label class="form-check-label small fw-semibold" for="checkOnlyAlertsExport">
+                  Incluir únicamente transacciones que superen el umbral de riesgo ({{ activeThreshold }} pts)
+                </label>
+              </div>
+              <div class="form-check form-switch mt-2" *ngIf="getSelectedCount(simulations) > 0">
+                <input class="form-check-input" type="checkbox" id="checkSelectedOnlyExport"
+                  [(ngModel)]="exportModalConfig.selectedOnly">
+                <label class="form-check-label small fw-semibold" for="checkSelectedOnlyExport">
+                  Exportar solo las {{ getSelectedCount(simulations) }} fila(s) seleccionadas en la tabla
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer border-0 pt-0 pb-4 px-4">
+          <button type="button" class="btn btn-outline-secondary" (click)="showExportDateModal = false">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-success fw-semibold px-4 shadow-sm"
+            (click)="onConfirmBackendDateExport()">
+            📥 Descargar desde Backend
           </button>
         </div>
       </div>

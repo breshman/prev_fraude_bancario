@@ -122,7 +122,11 @@ public class EvaluacionFraudeService {
         }
 
         String cuentaOrigen = tx.getCuenta() != null ? tx.getCuenta().getNumeroCuenta() : null;
+        String nombreCliente = (tx.getCuenta() != null && tx.getCuenta().getCliente() != null)
+                ? buildClienteFullName(tx.getCuenta().getCliente())
+                : "Cliente Bancario";
         String canalStr = tx.getCanal() != null ? tx.getCanal().getCodigoCanal() : "ONLINE";
+        String dispStr = tx.getDispositivo() != null ? tx.getDispositivo().getHuellaDispositivo() : "Dispositivo Registrado";
 
         return TransaccionResponse.builder()
                 .codigoTransaccion(tx.getCodigoTransaccion())
@@ -139,6 +143,20 @@ public class EvaluacionFraudeService {
                 .moneda(tx.getCodigoMoneda())
                 .canal(canalStr)
                 .numeroCuentaOrigen(cuentaOrigen)
+                .nombreCliente(nombreCliente)
+                .codigoPais(tx.getCodigoPais())
+                .ciudad(tx.getCiudad())
+                .direccionIp(tx.getDireccionIp())
+                .dispositivo(dispStr)
                 .build();
+    }
+
+    private String buildClienteFullName(ClienteEntity c) {
+        StringBuilder sb = new StringBuilder();
+        if (c.getNombres() != null) sb.append(c.getNombres());
+        if (c.getApellidoPaterno() != null) sb.append(" ").append(c.getApellidoPaterno());
+        if (c.getApellidoMaterno() != null) sb.append(" ").append(c.getApellidoMaterno());
+        String res = sb.toString().trim();
+        return res.isEmpty() ? "Cliente Bancario" : res;
     }
 }

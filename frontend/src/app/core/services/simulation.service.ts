@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject, Subscription, of } from 'rxjs';
 import { catchError, map as rxMap, tap } from 'rxjs/operators';
-import { ExcelExportUtil } from '../../shared/utils/excel-export.util';
+import { ExcelExportUtil, ExcelExportFilterOptions } from '../../shared/utils/excel-export.util';
 import { FraudService } from './fraud.service';
 import { FraudAlert } from '../models/fraud-alert.model';
 import { environment } from '../../../environments/environment';
@@ -83,9 +83,18 @@ export class SimulationService implements OnDestroy {
 
   /**
    * Carga transacciones reales registradas en la base de datos (GET /api/v1/transacciones)
+   * Permite filtrar opcionalmente por rango de fechas (YYYY-MM-DD) para análisis.
    */
-  cargarTransaccionesDesdeBackend(): Observable<SimulatedTransaction[]> {
-    return this.http.get<TransaccionResponse[]>(`${environment.apiUrl}/transacciones`).pipe(
+  cargarTransaccionesDesdeBackend(fechaInicio?: string, fechaFin?: string): Observable<SimulatedTransaction[]> {
+    let params = new HttpParams();
+    if (fechaInicio) {
+      params = params.set('fechaInicio', fechaInicio);
+    }
+    if (fechaFin) {
+      params = params.set('fechaFin', fechaFin);
+    }
+
+    return this.http.get<TransaccionResponse[]>(`${environment.apiUrl}/transacciones`, { params }).pipe(
       rxMap(responses => (responses && responses.length > 0) ? responses.map(r => this.mapResponseToSimulatedTx(r)) : []),
       tap(txs => {
         this.simulationsSubject.next(txs);
@@ -612,10 +621,100 @@ export class SimulationService implements OnDestroy {
     this.simulationsSubject.next(updated);
   }
 
-  exportToExcel(format: 'xls' | 'csv' = 'xls', selectedOnly: boolean = false): void {
-    const list = selectedOnly
+  /**
+   * Descarga el reporte en Excel (.xlsx) o CSV directamente desde el backend (GET /api/v1/transacciones/exportar)
+   * aplicando filtro por rango de fechas, umbral activo, estado o selección para análisis.
+   * Retorna un Observable<boolean> (una única ejecución por suscripción para evitar descargas duplicadas).
+   */
+  exportToExcel(
+    format: 'xlsx' | 'xls' | 'csv' = 'xlsx',
+    selectedOnly: boolean = false,
+    options?: {
+      startDate?: string;
+      endDate?: string;
+      statusFilter?: string;
+      onlyAlerts?: boolean;
+    }
+  ): Observable<boolean> {
+    const normalizedFormat = format === 'csv' ? 'csv' : 'xlsx';
+    const startDate = options?.startDate?.trim() || undefined;
+    const endDate = options?.endDate?.trim() || undefined;
+    const statusFilter = options?.statusFilter;
+    const onlyAlerts = options?.onlyAlerts;
+    const threshold = this.currentThreshold;
+
+    const selectedIds = selectedOnly
+      ? this.simulationsSubject.value.filter(t => t.selected).map(t => t.id)
+      : [];
+
+    let params = new HttpParams()
+      .set('formato', normalizedFormat)
+      .set('umbral', String(threshold));
+
+    if (startDate) {
+      params = params.set('fechaInicio', startDate);
+    }
+    if (endDate) {
+      params = params.set('fechaFin', endDate);
+    }
+    if (statusFilter && statusFilter !== 'ALL') {
+      params = params.set('estado', statusFilter);
+    }
+    if (onlyAlerts) {
+      params = params.set('soloAlertas', 'true');
+    }
+    if (selectedOnly && selectedIds.length > 0) {
+      params = params.set('ids', selectedIds.join(','));
+    }
+
+    return this.http.get(`${environment.apiUrl}/transacciones/exportar`, {
+      params,
+      observe: 'response',
+      responseType: 'blob'
+    }).pipe(
+      rxMap(response => {
+        const blob = response.body;
+        if (blob) {
+          const contentDisposition = response.headers.get('Content-Disposition');
+          ExcelExportUtil.downloadBackendBlob(
+            blob,
+            contentDisposition,
+            'Analisis_Fraude_SecurityFlow',
+            normalizedFormat,
+            startDate,
+            endDate
+          );
+          return true;
+        }
+        this.fallbackLocalExport('csv', selectedOnly, startDate, endDate, statusFilter, onlyAlerts);
+        return true;
+      }),
+      catchError(err => {
+        console.warn('Descarga desde backend no disponible, usando exportación CSV local de respaldo:', err);
+        this.fallbackLocalExport('csv', selectedOnly, startDate, endDate, statusFilter, onlyAlerts);
+        return of(false);
+      })
+    );
+  }
+
+  private fallbackLocalExport(
+    format: 'xls' | 'csv',
+    selectedOnly: boolean,
+    startDate?: string,
+    endDate?: string,
+    statusFilter?: string,
+    onlyAlerts?: boolean
+  ): void {
+    let list = selectedOnly
       ? this.simulationsSubject.value.filter(t => t.selected)
       : this.simulationsSubject.value;
+
+    if (onlyAlerts || statusFilter === 'BREACHED') {
+      list = list.filter(t => t.exceedsThreshold);
+    } else if (statusFilter && statusFilter !== 'ALL') {
+      list = list.filter(t => t.status === statusFilter);
+    }
+
     const exportData = list.map(t => ({
       id: t.id,
       timestamp: t.timestamp,
@@ -636,14 +735,22 @@ export class SimulationService implements OnDestroy {
     }));
 
     if (format === 'csv') {
-      ExcelExportUtil.exportToCsv(exportData);
+      ExcelExportUtil.exportToCsv(exportData, 'Analisis_Fraude_SecurityFlow', startDate, endDate);
     } else {
-      ExcelExportUtil.exportToExcel(exportData);
+      ExcelExportUtil.exportToExcel(exportData, 'Analisis_Fraude_SecurityFlow', startDate, endDate);
     }
   }
 
-  exportToCsv(selectedOnly: boolean = false): void {
-    this.exportToExcel('csv', selectedOnly);
+  exportToCsv(
+    selectedOnly: boolean = false,
+    options?: {
+      startDate?: string;
+      endDate?: string;
+      statusFilter?: string;
+      onlyAlerts?: boolean;
+    }
+  ): Observable<boolean> {
+    return this.exportToExcel('csv', selectedOnly, options);
   }
 
   // --- Mappers ---
@@ -662,14 +769,14 @@ export class SimulationService implements OnDestroy {
     return {
       id: shortId,
       timestamp: resp.fechaRegistro ? new Date(resp.fechaRegistro) : new Date(),
-      customerName: resp.numeroCuentaOrigen ? `Cuenta ${resp.numeroCuentaOrigen}` : 'Cliente Bancario',
+      customerName: resp.nombreCliente || (resp.numeroCuentaOrigen ? `Cuenta ${resp.numeroCuentaOrigen}` : 'Cliente Bancario'),
       accountId: resp.numeroCuentaOrigen || 'CTA-001-445522',
       amount: Number(resp.monto || 250.00),
       channel: (resp.canal as SimulatedTransaction['channel']) || 'ONLINE',
-      country: 'Perú',
-      city: 'Lima',
-      device: 'Dispositivo Registrado',
-      ipAddress: '190.235.12.44',
+      country: resp.codigoPais || 'Perú',
+      city: resp.ciudad || 'Lima',
+      device: resp.dispositivo || 'Dispositivo Registrado',
+      ipAddress: resp.direccionIp || '190.235.12.44',
       riskScore: score,
       riskLevel: resp.evaluacion?.nivelRiesgo || 'BAJO',
       threshold,

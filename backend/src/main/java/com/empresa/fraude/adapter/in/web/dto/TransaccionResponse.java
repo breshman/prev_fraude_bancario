@@ -45,6 +45,21 @@ public class TransaccionResponse {
     @Schema(description = "Número de cuenta de origen", example = "CTA-001-445522")
     private String numeroCuentaOrigen;
 
+    @Schema(description = "Nombre del cliente titular", example = "Juan Alberto Perez Gomez")
+    private String nombreCliente;
+
+    @Schema(description = "Código ISO del país de origen", example = "PE")
+    private String codigoPais;
+
+    @Schema(description = "Ciudad de origen", example = "Lima")
+    private String ciudad;
+
+    @Schema(description = "Dirección IP de origen", example = "190.235.12.44")
+    private String direccionIp;
+
+    @Schema(description = "Huella o nombre del dispositivo", example = "device-fingerprint-habitual-01")
+    private String dispositivo;
+
     @Data
     @Builder
     @NoArgsConstructor
